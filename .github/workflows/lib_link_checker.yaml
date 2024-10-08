@@ -1,0 +1,98 @@
+name: Check Library Broken Links
+
+on:
+  schedule:
+    - cron: '0 1 * * 3'  # Run weekly on Wed at 01:00
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  check_links:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.PAT }}  # Explicitly set the token
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Cache Node.js modules
+      uses: actions/cache@v4
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.OS }}-node-
+    
+    - name: Install dependencies
+      run: npm install linkinator -g
+    
+    - name: Create reports directory
+      run: mkdir -p reports
+    
+    - name: Check for broken links
+      run: |
+        DATE=$(date +'%Y-%m-%d')
+        REPORT_FILE="reports/links_report_$DATE.csv"
+        linkinator "${{ secrets.LIB_URL }}" --recurse --skip "^(?!${{ secrets.LIB_URL }})" --format CSV > $REPORT_FILE
+        echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
+      continue-on-error: true
+    
+    - name: Check if broken links were found
+      id: check_broken_links
+      run: |
+        if grep -q "BROKEN" "${{ env.REPORT_FILE }}"; then
+          echo "broken_links_found=true" >> $GITHUB_OUTPUT
+          echo "STATUS_MESSAGE=Broken links have been detected on the website. Please check attached report or on the Github repo: https://github.com/ab604/link-checker for details." >> $GITHUB_ENV
+        else
+          echo "broken_links_found=false" >> $GITHUB_OUTPUT
+          echo "STATUS_MESSAGE=No broken links found. All links are working correctly." >> $GITHUB_ENV
+        fi
+    
+    - name: Commit report to repository
+      if: always()
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add "${{ env.REPORT_FILE }}"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Add links report for $(date +'%Y-%m-%d')"
+          git push "https://${{ secrets.PAT }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF#refs/heads/}
+        fi
+
+    - name: Upload links report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: links-report
+        path: ${{ env.REPORT_FILE }}
+    
+    - name: Send email notification
+      id: send_email
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Required mail server settings:
+        server_address: smtp.gmail.com
+        server_port: 465
+        # Credentials
+        username: ${{secrets.GMAIL_USERNAME}}
+        password: ${{secrets.GMAIL_PASSWORD}}
+        # Email subject
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Intro to Open Research' || 'No Broken Links Found on Intro to Open Research' }}
+        body: ${{ env.STATUS_MESSAGE }}
+        attachments: ${{ env.REPORT_FILE }}
+        # Recipient email address
+        to: ab60454@gmail.com
+        # Sender email address
+        from: Alistair Bailey <ab60454@gmail.com>
+        priority: normal
+        # Optional whether this connection use TLS (default is true if server_port is 465)
+        secure: true
+      env:
+        STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
