@@ -37,8 +37,6 @@ jobs:
       run: |
         DATE=$(date +'%Y-%m-%d')
         REPORT_FILE="reports/links_report_$DATE.csv"
-        echo "Links Report for $DATE" > $REPORT_FILE
-        echo "--------------------------------" >> $REPORT_FILE
         linkinator "${{ secrets.WEBSITE_URL }}" --recurse --skip "^(?!${{ secrets.WEBSITE_URL }})" --format CSV >> $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
@@ -90,6 +88,9 @@ jobs:
         body: ${{ env.STATUS_MESSAGE }}
         to: ab604@soton.ac.uk
         from: Check Links <ab60454@gmail.com>
+        priority: normal
+        # Optional whether this connection use TLS (default is true if server_port is 465)
+        secure: true
         attachments: ${{ env.REPORT_FILE }}
     
     - name: Create issue if email fails
