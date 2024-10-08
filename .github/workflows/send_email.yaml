@@ -1,10 +1,6 @@
 name: Send Email
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -17,17 +13,17 @@ jobs:
       uses: dawidd6/action-send-mail@v3
       with:
         # Required mail server settings:
-        server_address: smtp.office365.com
-        server_port: 587
+        server_address: smtp.gmail.com
+        server_port: 465
         # Credentials
-        username: ${{secrets.SMTP_USERNAME}}
-        password: ${{secrets.SMTP_PASSWORD}}
+        username: ${{secrets.GMAIL_USERNAME}}
+        password: ${{secrets.GMAIL_PASSWORD}}
         # Email subject
         subject: Hello World
         # Email body
-        body: Outlook SMTP test
+        body: GMail test
         # Recipient email address
         to: ab604@soton.ac.uk
         # Sender email address
-        from: Me <ab604@soton.ac.uk>
+        from: Me <ab60454@gmail.com>
         
