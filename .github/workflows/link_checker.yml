@@ -36,7 +36,7 @@ jobs:
     - name: Check for broken links
       run: |
         DATE=$(date +'%Y-%m-%d')
-        REPORT_FILE="reports/links_report_$DATE.txt"
+        REPORT_FILE="reports/links_report_$DATE.csv"
         echo "Links Report for $DATE" > $REPORT_FILE
         echo "--------------------------------" >> $REPORT_FILE
         linkinator "${{ secrets.WEBSITE_URL }}" --recurse --skip "^(?!${{ secrets.WEBSITE_URL }})" --format CSV >> $REPORT_FILE
