@@ -60,7 +60,7 @@ jobs:
     
     - name: Send email notification
       if: steps.check_broken_links.outputs.broken_links_found == 'true'
-      uses: dawidd6/action-send-mail@v4
+      uses: dawidd6/action-send-mail@v3
       with:
         server_address: ${{secrets.SMTP_SERVER}}
         server_port: ${{secrets.SMTP_PORT}}
