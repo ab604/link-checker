@@ -37,14 +37,14 @@ jobs:
       run: |
         DATE=$(date +'%Y-%m-%d')
         REPORT_FILE="reports/ab_links_report_$DATE.csv"
-        linkinator "${{ secrets.AB_URL }}" --recurse --format CSV > $REPORT_FILE
+        linkinator "${{ secrets.AB_URL }}" --recurse --skip "^(?:https?:\/\/(?:dx\.)?doi\.org|.*\.(png|jpg|jpeg|gif|svg|ico)$)"  --format CSV > $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
     - name: Check if broken links were found
       id: check_broken_links
       run: |
-        if grep -q "404" "${{ env.REPORT_FILE }}"; then
+        if grep -qE '\b(404|0)\b' "${{ env.REPORT_FILE }}"; then
           echo "broken_links_found=true" >> $GITHUB_OUTPUT
           echo "STATUS_MESSAGE=Broken 404 links have been detected on the website. Please check attached report for all link details." >> $GITHUB_ENV
         else

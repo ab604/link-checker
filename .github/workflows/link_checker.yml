@@ -88,9 +88,8 @@ jobs:
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
         # Recipient email address
-        #to: n.s.clarkson@soton.ac.uk
-        #cc: ab604@soton.ac.uk
-        to: ab604@soton.ac.uk
+        to: n.s.clarkson@soton.ac.uk
+        cc: ab604@soton.ac.uk
         # Sender email address
         from: Alistair Bailey <ab60454@gmail.com>
         priority: normal
