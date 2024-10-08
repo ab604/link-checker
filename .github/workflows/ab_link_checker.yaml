@@ -46,10 +46,10 @@ jobs:
       run: |
         if grep -q "404" "${{ env.REPORT_FILE }}"; then
           echo "broken_links_found=true" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=Broken links have been detected on the website. Please check the report on the Github repo: https://github.com/ab604/link-checker for details." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=Broken 404 links have been detected on the website. Please check attached report for all link details." >> $GITHUB_ENV
         else
           echo "broken_links_found=false" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=No broken links found. All links are working correctly." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=No 404 broken links found. Please check attached report for all link details." >> $GITHUB_ENV
         fi
     
     - name: Commit report to repository
@@ -84,7 +84,7 @@ jobs:
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
         # Email subject
-        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on your website' || 'No Broken Links Found on your website' }}
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken 404 Links Found on your website' || 'No 404 Broken Links Found on your website' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
         # Recipient email address
