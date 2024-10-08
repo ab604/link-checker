@@ -11,7 +11,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v4
-    
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # Explicitly set the token
+
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
@@ -55,13 +57,16 @@ jobs:
     - name: Commit report to repository
       if: always()
       run: |
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add "${{ env.REPORT_FILE }}"
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Add links report for $(date +'%Y-%m-%d')" && git push)
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT }}
-    
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Add links report for $(date +'%Y-%m-%d')"
+          git push origin HEAD:${GITHUB_REF}
+        fi
+
     - name: Upload links report
       if: always()
       uses: actions/upload-artifact@v4
@@ -69,49 +74,49 @@ jobs:
         name: links-report
         path: ${{ env.REPORT_FILE }}
     
-    - name: Send email notification
-      id: send_email
-      if: always()
-      continue-on-error: true
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: ${{secrets.SMTP_SERVER}}
-        server_port: ${{secrets.SMTP_PORT}}
-        username: ${{secrets.SMTP_USERNAME}}
-        password: ${{secrets.SMTP_PASSWORD}}
-        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Website' || 'No Broken Links Found on Website' }}
-        body: ${{ env.STATUS_MESSAGE }}
-        to: ab604@soton.ac.uk
-        from: GitHub Actions
-        attachments: ${{ env.REPORT_FILE }}
+    # - name: Send email notification
+    #   id: send_email
+    #   if: always()
+    #   continue-on-error: true
+    #   uses: dawidd6/action-send-mail@v3
+    #   with:
+    #     server_address: ${{secrets.SMTP_SERVER}}
+    #     server_port: ${{secrets.SMTP_PORT}}
+    #     username: ${{secrets.SMTP_USERNAME}}
+    #     password: ${{secrets.SMTP_PASSWORD}}
+    #     subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Website' || 'No Broken Links Found on Website' }}
+    #     body: ${{ env.STATUS_MESSAGE }}
+    #     to: ab604@soton.ac.uk
+    #     from: GitHub Actions
+    #     attachments: ${{ env.REPORT_FILE }}
     
-    - name: Create issue if email fails
-      if: always() && steps.send_email.outcome == 'failure'
-      uses: actions/github-script@v7
-      with:
-        script: |
-          const issueTitle = "Link Checker Email Notification Failed";
-          const issueBody = `
-          The link checker workflow completed, but the email notification failed to send.
+    # - name: Create issue if email fails
+    #   if: always() && steps.send_email.outcome == 'failure'
+    #   uses: actions/github-script@v7
+    #   with:
+    #     script: |
+    #       const issueTitle = "Link Checker Email Notification Failed";
+    #       const issueBody = `
+    #       The link checker workflow completed, but the email notification failed to send.
           
-          Please check the following:
-          1. SMTP server settings
-          2. Email credentials
-          3. Server availability
+    #       Please check the following:
+    #       1. SMTP server settings
+    #       2. Email credentials
+    #       3. Server availability
           
-          Workflow run: [${context.runId}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
+    #       Workflow run: [${context.runId}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})
           
-          Report is available in the workflow artifacts.
+    #       Report is available in the workflow artifacts.
           
-          Status message: ${process.env.STATUS_MESSAGE}
-          `;
+    #       Status message: ${process.env.STATUS_MESSAGE}
+    #       `;
           
-          await github.rest.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: issueTitle,
-            body: issueBody,
-            labels: ['automation', 'email-failure']
-          });
+    #       await github.rest.issues.create({
+    #         owner: context.repo.owner,
+    #         repo: context.repo.repo,
+    #         title: issueTitle,
+    #         body: issueBody,
+    #         labels: ['automation', 'email-failure']
+    #       });
       env:
         STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
