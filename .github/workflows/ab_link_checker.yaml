@@ -2,7 +2,7 @@ name: Check my site
 
 on:
   schedule:
-    - cron: '0 9 * * 1'  # Run weekly on Monday at 09:00
+    - cron: '0 9 * * 6'  # Run weekly on Saturday at 09:00
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
@@ -37,7 +37,7 @@ jobs:
       run: |
         DATE=$(date +'%Y-%m-%d')
         REPORT_FILE="reports/ab_links_report_$DATE.csv"
-        linkinator "${{ secrets.AB_URL }}" --recurse --format CSV > $REPORT_FILE
+        linkinator "${{ secrets.AB_URL }}" --recurse --skip "(doi\.org|\.img$)" --format CSV > $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
