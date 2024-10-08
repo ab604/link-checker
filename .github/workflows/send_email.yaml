@@ -26,4 +26,7 @@ jobs:
         to: ab604@soton.ac.uk
         # Sender email address
         from: Me <ab60454@gmail.com>
+        priority: normal
+        # Optional whether this connection use TLS (default is true if server_port is 465)
+        secure: true
         
