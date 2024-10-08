@@ -18,7 +18,7 @@ jobs:
         node-version: '20'
     
     - name: Install dependencies
-      run: npm install broken-link-checker -g
+      run: npm install linkinator -g
     
     - name: Create reports directory
       run: mkdir -p reports
@@ -29,7 +29,7 @@ jobs:
         REPORT_FILE="reports/broken_links_$DATE.txt"
         echo "Broken Links Report for $DATE" > $REPORT_FILE
         echo "--------------------------------" >> $REPORT_FILE
-        blc ${{ secrets.WEBSITE_URL }} -ro >> $REPORT_FILE
+        linkinator ${{ secrets.WEBSITE_URL }} --recurse --skip '^(?!${{ secrets.WEBSITE_URL }})' --format CSV >> $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
@@ -37,16 +37,16 @@ jobs:
       id: check_broken_links
       run: |
         if grep -q "BROKEN" ${{ env.REPORT_FILE }}; then
-          echo "::set-output name=broken_links_found::true"
+          echo "broken_links_found=true" >> $GITHUB_OUTPUT
         else
-          echo "::set-output name=broken_links_found::false"
+          echo "broken_links_found=false" >> $GITHUB_OUTPUT
         fi
     
     - name: Commit report to repository
       if: steps.check_broken_links.outputs.broken_links_found == 'true'
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
         git add ${{ env.REPORT_FILE }}
         git commit -m "Add broken links report for $(date +'%Y-%m-%d')"
         git push
