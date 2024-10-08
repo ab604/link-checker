@@ -37,7 +37,7 @@ jobs:
       run: |
         DATE=$(date +'%Y-%m-%d')
         REPORT_FILE="reports/ab_links_report_$DATE.csv"
-        linkinator "${{ secrets.AB_URL }}" --recurse --skip "^(?!${{ secrets.AB_URL }})" --format CSV > $REPORT_FILE
+        linkinator "${{ secrets.AB_URL }}" --recurse --format CSV > $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
