@@ -1,0 +1,73 @@
+name: Check Broken Links
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sunday at 00:00
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  check_links:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+    
+    - name: Install dependencies
+      run: npm install broken-link-checker -g
+    
+    - name: Create reports directory
+      run: mkdir -p reports
+    
+    - name: Check for broken links
+      run: |
+        DATE=$(date +'%Y-%m-%d')
+        REPORT_FILE="reports/broken_links_$DATE.txt"
+        echo "Broken Links Report for $DATE" > $REPORT_FILE
+        echo "--------------------------------" >> $REPORT_FILE
+        blc ${{ secrets.WEBSITE_URL }} -ro >> $REPORT_FILE
+        echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
+      continue-on-error: true
+    
+    - name: Check if broken links were found
+      id: check_broken_links
+      run: |
+        if grep -q "BROKEN" ${{ env.REPORT_FILE }}; then
+          echo "::set-output name=broken_links_found::true"
+        else
+          echo "::set-output name=broken_links_found::false"
+        fi
+    
+    - name: Commit report to repository
+      if: steps.check_broken_links.outputs.broken_links_found == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add ${{ env.REPORT_FILE }}
+        git commit -m "Add broken links report for $(date +'%Y-%m-%d')"
+        git push
+    
+    - name: Upload broken links report
+      if: steps.check_broken_links.outputs.broken_links_found == 'true'
+      uses: actions/upload-artifact@v4
+      with:
+        name: broken-links-report
+        path: ${{ env.REPORT_FILE }}
+    
+    - name: Send email notification
+      if: steps.check_broken_links.outputs.broken_links_found == 'true'
+      uses: dawidd6/action-send-mail@v4
+      with:
+        server_address: ${{secrets.SMTP_SERVER}}
+        server_port: ${{secrets.SMTP_PORT}}
+        username: ${{secrets.SMTP_USERNAME}}
+        password: ${{secrets.SMTP_PASSWORD}}
+        subject: Broken Links Found on Website
+        body: Broken links have been detected on the website. Please check the attached report and the repository for details.
+        to: your-email@example.com
+        from: GitHub Actions
+        attachments: ${{ env.REPORT_FILE }}
