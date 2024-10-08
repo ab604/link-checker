@@ -68,6 +68,6 @@ jobs:
         password: ${{secrets.SMTP_PASSWORD}}
         subject: Broken Links Found on Website
         body: Broken links have been detected on the website. Please check the attached report and the repository for details.
-        to: your-email@example.com
+        to: ab604@soton.ac.uk
         from: GitHub Actions
         attachments: ${{ env.REPORT_FILE }}
