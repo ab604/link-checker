@@ -37,7 +37,7 @@ jobs:
       run: |
         DATE=$(date +'%Y-%m-%d')
         REPORT_FILE="reports/links_report_$DATE.csv"
-        linkinator "${{ secrets.WEBSITE_URL }}" --recurse --skip "^(?!${{ secrets.WEBSITE_URL }})" --format CSV >> $REPORT_FILE
+        linkinator "${{ secrets.WEBSITE_URL }}" --recurse --skip "^(?!${{ secrets.WEBSITE_URL }})" --format CSV > $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
@@ -74,6 +74,7 @@ jobs:
     
     - name: Send email notification
       id: send_email
+      if: always()
       uses: dawidd6/action-send-mail@v3
       with:
         # Required mail server settings:
@@ -82,14 +83,32 @@ jobs:
         # Credentials
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
-        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Website' || 'No Broken Links Found on Website' }}
-        body: ${{ env.STATUS_MESSAGE }}
+        # Email subject
+        subject: Hello World
+        # Email body
+        body: GMail test
+        # Recipient email address
         to: ab604@soton.ac.uk
-        from: Link Checker <ab60454@gmail.com>
+        # Sender email address
+        from: Me <ab60454@gmail.com>
         priority: normal
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true
-        attachments: ${{ env.REPORT_FILE }}
+      # with:
+      #   # Required mail server settings:
+      #   server_address: smtp.gmail.com
+      #   server_port: 465
+      #   # Credentials
+      #   username: ${{secrets.GMAIL_USERNAME}}
+      #   password: ${{secrets.GMAIL_PASSWORD}}
+      #   subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Website' || 'No Broken Links Found on Website' }}
+      #   body: ${{ env.STATUS_MESSAGE }}
+      #   to: ab604@soton.ac.uk
+      #   from: Link Checker <ab60454@gmail.com>
+      #   priority: normal
+      #   # Optional whether this connection use TLS (default is true if server_port is 465)
+      #   secure: true
+      #   attachments: ${{ env.REPORT_FILE }}
   
       env:
         STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
