@@ -24,7 +24,7 @@ jobs:
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.OS }}-node-
-    
+  
     - name: Install dependencies
       run: npm install linkinator -g
     
@@ -34,8 +34,8 @@ jobs:
     - name: Check for broken links
       run: |
         DATE=$(date +'%Y-%m-%d')
-        REPORT_FILE="reports/broken_links_$DATE.txt"
-        echo "Broken Links Report for $DATE" > $REPORT_FILE
+        REPORT_FILE="reports/links_report_$DATE.txt"
+        echo "Links Report for $DATE" > $REPORT_FILE
         echo "--------------------------------" >> $REPORT_FILE
         linkinator ${{ secrets.WEBSITE_URL }} --recurse --skip '^(?!${{ secrets.WEBSITE_URL }})' --format CSV >> $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
@@ -46,36 +46,35 @@ jobs:
       run: |
         if grep -q "BROKEN" ${{ env.REPORT_FILE }}; then
           echo "broken_links_found=true" >> $GITHUB_OUTPUT
+          echo "STATUS_MESSAGE=Broken links have been detected on the website. Please check the attached report and the repository for details." >> $GITHUB_ENV
         else
           echo "broken_links_found=false" >> $GITHUB_OUTPUT
+          echo "STATUS_MESSAGE=No broken links found. All links are working correctly." >> $GITHUB_ENV
         fi
     
     - name: Commit report to repository
-      if: steps.check_broken_links.outputs.broken_links_found == 'true'
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add ${{ env.REPORT_FILE }}
-        git commit -m "Add broken links report for $(date +'%Y-%m-%d')"
+        git commit -m "Add links report for $(date +'%Y-%m-%d')"
         git push
     
-    - name: Upload broken links report
-      if: steps.check_broken_links.outputs.broken_links_found == 'true'
+    - name: Upload links report
       uses: actions/upload-artifact@v4
       with:
-        name: broken-links-report
+        name: links-report
         path: ${{ env.REPORT_FILE }}
     
     - name: Send email notification
-      if: steps.check_broken_links.outputs.broken_links_found == 'true'
       uses: dawidd6/action-send-mail@v3
       with:
         server_address: ${{secrets.SMTP_SERVER}}
         server_port: ${{secrets.SMTP_PORT}}
         username: ${{secrets.SMTP_USERNAME}}
         password: ${{secrets.SMTP_PASSWORD}}
-        subject: Broken Links Found on Website
-        body: Broken links have been detected on the website. Please check the attached report and the repository for details.
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Website' || 'No Broken Links Found on Website' }}
+        body: ${{ env.STATUS_MESSAGE }}
         to: ab604@soton.ac.uk
         from: GitHub Actions
         attachments: ${{ env.REPORT_FILE }}
