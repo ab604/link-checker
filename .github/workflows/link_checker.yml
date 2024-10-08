@@ -84,7 +84,7 @@ jobs:
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
         # Email subject
-        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken 404 Links Found on Intro to Open Research' || 'No Broken 404 Links Found on Intro to Open Research' }}
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Intro to Open Research' || 'No Broken Links Found on Intro to Open Research' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
         # Recipient email address
