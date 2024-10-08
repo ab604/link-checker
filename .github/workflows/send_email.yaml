@@ -1,0 +1,33 @@
+name: Send Email
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  send_email:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Required mail server settings:
+        server_address: smtp.office365.com
+        server_port: 587
+        # Credentials
+        username: ${{secrets.SMTP_USERNAME}}
+        password: ${{secrets.SMTP_PASSWORD}}
+        # Email subject
+        subject: Hello World
+        # Email body
+        body: Outlook SMTP test
+        # Recipient email address
+        to: ab604@soton.ac.uk
+        # Sender email address
+        from: Me <ab604@soton.ac.uk>
+        
