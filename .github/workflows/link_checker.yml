@@ -46,7 +46,7 @@ jobs:
       run: |
         if grep -q "BROKEN" "${{ env.REPORT_FILE }}"; then
           echo "broken_links_found=true" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=Broken links have been detected on the website. Please check the attached report for details." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=Broken links have been detected on the website. Please check the report on the Github repo: https://github.com/ab604/link-checker for details." >> $GITHUB_ENV
         else
           echo "broken_links_found=false" >> $GITHUB_OUTPUT
           echo "STATUS_MESSAGE=No broken links found. All links are working correctly." >> $GITHUB_ENV
@@ -86,28 +86,14 @@ jobs:
         # Email subject
         subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Intro to Open Research' || 'No Broken Links Found on Intro to Open Research' }}
         body: ${{ env.STATUS_MESSAGE }}
+        attachments: ${{ env.REPORT_FILE }}
         # Recipient email address
-        to: ab604@soton.ac.uk
+        to: ab604@ab604.uk
+        #to: n.s.clarkson@soton.ac.uk
         # Sender email address
         from: Link Checker <ab60454@gmail.com>
         priority: normal
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true
-      # with:
-      #   # Required mail server settings:
-      #   server_address: smtp.gmail.com
-      #   server_port: 465
-      #   # Credentials
-      #   username: ${{secrets.GMAIL_USERNAME}}
-      #   password: ${{secrets.GMAIL_PASSWORD}}
-      #   subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Website' || 'No Broken Links Found on Website' }}
-      #   body: ${{ env.STATUS_MESSAGE }}
-      #   to: ab604@soton.ac.uk
-      #   from: Link Checker <ab60454@gmail.com>
-      #   priority: normal
-      #   # Optional whether this connection use TLS (default is true if server_port is 465)
-      #   secure: true
-      #   attachments: ${{ env.REPORT_FILE }}
-  
       env:
         STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
