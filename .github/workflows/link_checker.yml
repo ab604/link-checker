@@ -84,13 +84,12 @@ jobs:
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
         # Email subject
-        subject: Hello World
-        # Email body
-        body: GMail test
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Intro to Open Research' || 'No Broken Links Found on Intro to Open Research' }}
+        body: ${{ env.STATUS_MESSAGE }}
         # Recipient email address
         to: ab604@soton.ac.uk
         # Sender email address
-        from: Me <ab60454@gmail.com>
+        from: Link Checker <ab60454@gmail.com>
         priority: normal
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true
