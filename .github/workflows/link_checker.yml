@@ -44,7 +44,7 @@ jobs:
     - name: Check if broken links were found
       id: check_broken_links
       run: |
-        if grep -q "404|0" "${{ env.REPORT_FILE }}"; then
+        if grep -qE '\b(404|0)\b' "${{ env.REPORT_FILE }}"; then
           echo "broken_links_found=true" >> $GITHUB_OUTPUT
           echo "STATUS_MESSAGE=Broken links (404 page not found or 0 timeouts) have been detected on the website. Please check the attached report for details." >> $GITHUB_ENV
         else
@@ -88,8 +88,9 @@ jobs:
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
         # Recipient email address
-        to: n.s.clarkson@soton.ac.uk
-        cc: ab604@soton.ac.uk
+        #to: n.s.clarkson@soton.ac.uk
+        #cc: ab604@soton.ac.uk
+        to: ab604@soton.ac.uk
         # Sender email address
         from: Alistair Bailey <ab60454@gmail.com>
         priority: normal
