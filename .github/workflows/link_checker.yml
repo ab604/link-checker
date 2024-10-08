@@ -60,7 +60,7 @@ jobs:
         git add "${{ env.REPORT_FILE }}"
         git diff --quiet && git diff --staged --quiet || (git commit -m "Add links report for $(date +'%Y-%m-%d')" && git push)
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT }}
     
     - name: Upload links report
       if: always()
