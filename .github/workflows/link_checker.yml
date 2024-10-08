@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # Explicitly set the token
+        token: ${{ secrets.PAT }}  # Explicitly set the token
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
@@ -64,7 +64,7 @@ jobs:
           echo "No changes to commit"
         else
           git commit -m "Add links report for $(date +'%Y-%m-%d')"
-          git push origin HEAD:${GITHUB_REF}
+          git push "https://${{ secrets.PAT }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF#refs/heads/}
         fi
 
     - name: Upload links report
