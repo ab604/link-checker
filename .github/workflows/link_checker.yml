@@ -5,13 +5,13 @@ on:
     - cron: '0 9 * * 1'  # Run weekly on Monday at 09:00
   workflow_dispatch:  # Allow manual triggering
 
+permissions:
+  contents: write  # Add explicit permission to write to repository
+
 jobs:
   check_links:
     runs-on: ubuntu-latest
 
-permissions:
-  contents: write  # Add explicit permission to write to repository
-      
     steps:
     - uses: actions/checkout@v4
       with:
