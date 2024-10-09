@@ -1,10 +1,13 @@
+# Workflow name
 name: Check my site
 
+# Define when the workflow should run
 on:
   schedule:
     - cron: '0 9 * * 6'  # Run weekly on Saturday at 09:00
   workflow_dispatch:  # Allow manual triggering
 
+# Set permissions for the workflow
 permissions:
   contents: write  # Add explicit permission to write to repository
 
@@ -13,15 +16,18 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+    # Check out the repository code
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # Use Github token
+        token: ${{ secrets.GITHUB_TOKEN }}  # Use Github token for authentication
 
+    # Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
 
+    # Cache Node.js modules to speed up subsequent runs
     - name: Cache Node.js modules
       uses: actions/cache@v4
       with:
@@ -30,20 +36,24 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
     
+    # Install the linkinator tool globally
     - name: Install dependencies
       run: npm install linkinator -g
     
+    # Create a directory to store reports
     - name: Create reports directory
       run: mkdir -p reports
     
+    # Run linkinator to check for broken links
     - name: Check for broken links
       run: |
         DATE=$(date +'%Y-%m-%d')
         REPORT_FILE="reports/ab_links_report_$DATE.csv"
         linkinator "${{ secrets.AB_URL }}" --recurse --skip "^(?:https?:\/\/(?:dx\.)?doi\.org|.*\.(png|jpg|jpeg|gif|svg|ico)$)"  --format CSV > $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
-      continue-on-error: true
+      continue-on-error: true  # Continue even if linkinator finds errors
     
+    # Check if any 404 broken links were found in the report
     - name: Check if broken links were found
       id: check_broken_links
       run: |
@@ -55,8 +65,9 @@ jobs:
           echo "STATUS_MESSAGE=No 404 broken links found. Please check attached report for all link details." >> $GITHUB_ENV
         fi
     
+    # Commit the report to the repository
     - name: Commit report to repository
-      if: always()
+      if: always()  # Run this step regardless of previous step outcomes
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
@@ -68,34 +79,34 @@ jobs:
           git push origin HEAD:${GITHUB_REF}
         fi
         
+    # Upload the report as an artifact
     - name: Upload links report
-      if: always()
+      if: always()  # Run this step regardless of previous step outcomes
       uses: actions/upload-artifact@v4
       with:
         name: links-report
         path: ${{ env.REPORT_FILE }}
     
+    # Send an email notification with the report
     - name: Send email notification
       id: send_email
-      if: always()
+      if: always()  # Run this step regardless of previous step outcomes
       uses: dawidd6/action-send-mail@v3
       with:
-        # Required mail server settings:
+        # Email server settings
         server_address: smtp.gmail.com
         server_port: 465
-        # Credentials
+        # Credentials for the email account
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
-        # Email subject
+        # Email subject (changes based on whether broken links were found)
         subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken 404 Links Found on your website' || 'No 404 Broken Links Found on your website' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
-        # Recipient email address
+        # Recipient and sender email addresses
         to: ${{secrets.EMAIL_RECIPIENT}}
-        # Sender email address
         from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
         priority: normal
-        # Optional whether this connection use TLS (default is true if server_port is 465)
-        secure: true
+        secure: true  # Use TLS for the email connection
       env:
         STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}

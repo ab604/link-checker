@@ -1,3 +1,4 @@
+# Workflow name
 name: Check Broken Links
 
 on:
@@ -13,15 +14,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Checkout the repository
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}  # Explicitly set the token
+        token: ${{ secrets.GITHUB_TOKEN }}  # Use Github token for authentication
 
+    # Set up Node.js environment
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '20'
 
+    # Cache Node.js modules to speed up future runs
     - name: Cache Node.js modules
       uses: actions/cache@v4
       with:
@@ -30,12 +34,15 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
     
+    # Install linkinator globally
     - name: Install dependencies
       run: npm install linkinator -g
     
+    # Create a directory for reports
     - name: Create reports directory
       run: mkdir -p reports
     
+    # Run linkinator to check for broken links
     - name: Check for broken links
       run: |
         DATE=$(date +'%Y-%m-%d')
@@ -44,6 +51,7 @@ jobs:
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
+    # Analyze the report to check if broken links were found
     - name: Check if broken links were found
       id: check_broken_links
       run: |
@@ -55,19 +63,21 @@ jobs:
           echo "STATUS_MESSAGE=No broken links found. All normal page links are working correctly. The attached report may indicate other link issues that you may or may not choose to ignore." >> $GITHUB_ENV
         fi
     
-        - name: Commit report to repository
-        if: always()
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add "${{ env.REPORT_FILE }}"
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Add links report for $(date +'%Y-%m-%d')"
-            git push origin HEAD:${GITHUB_REF}
-          fi
+    # Commit the report to the repository
+    - name: Commit report to repository
+      if: always()
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add "${{ env.REPORT_FILE }}"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Add links report for $(date +'%Y-%m-%d')"
+          git push origin HEAD:${GITHUB_REF}
+        fi
   
+    # Upload the report as an artifact
     - name: Upload links report
       if: always()
       uses: actions/upload-artifact@v4
@@ -75,6 +85,7 @@ jobs:
         name: links-report
         path: ${{ env.REPORT_FILE }}
     
+    # Send email notification with the report
     - name: Send email notification
       id: send_email
       if: always()
