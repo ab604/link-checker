@@ -89,9 +89,9 @@ jobs:
         attachments: ${{ env.REPORT_FILE }}
         # Recipient email address
         to: n.s.clarkson@soton.ac.uk
-        cc: ab604@soton.ac.uk
+        cc: ${{secrets.EMAIL_RECIPIENT}}
         # Sender email address
-        from: Alistair Bailey <ab60454@gmail.com>
+        from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
         priority: normal
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true
