@@ -65,9 +65,9 @@ jobs:
           echo "No changes to commit"
         else
           git commit -m "Add links report for $(date +'%Y-%m-%d')"
-          git push "https://${{ secrets.PAT }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF#refs/heads/}
+          git push origin HEAD:${GITHUB_REF}
         fi
-
+        
     - name: Upload links report
       if: always()
       uses: actions/upload-artifact@v4
