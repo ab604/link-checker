@@ -8,11 +8,14 @@ on:
 jobs:
   check_links:
     runs-on: ubuntu-latest
-    
+
+permissions:
+  contents: write  # Add explicit permission to write to repository
+      
     steps:
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.PAT }}  # Explicitly set the token
+        token: ${{ secrets.GITHUB_TOKEN }}  # Explicitly set the token
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
@@ -52,19 +55,19 @@ jobs:
           echo "STATUS_MESSAGE=No broken links found. All normal page links are working correctly. The attached report may indicate other link issues that you may or may not choose to ignore." >> $GITHUB_ENV
         fi
     
-    - name: Commit report to repository
-      if: always()
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add "${{ env.REPORT_FILE }}"
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
-        else
-          git commit -m "Add links report for $(date +'%Y-%m-%d')"
-          git push "https://${{ secrets.PAT }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF#refs/heads/}
-        fi
-
+        - name: Commit report to repository
+        if: always()
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add "${{ env.REPORT_FILE }}"
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add links report for $(date +'%Y-%m-%d')"
+            git push origin HEAD:${GITHUB_REF}
+          fi
+  
     - name: Upload links report
       if: always()
       uses: actions/upload-artifact@v4
