@@ -5,6 +5,9 @@ on:
     - cron: '0 9 * * 6'  # Run weekly on Saturday at 09:00
   workflow_dispatch:  # Allow manual triggering
 
+permissions:
+  contents: write  # Add explicit permission to write to repository
+
 jobs:
   check_links:
     runs-on: ubuntu-latest
@@ -12,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        token: ${{ secrets.PAT }}  # Explicitly set the token
+        token: ${{ secrets.GITHUB_TOKEN }}  # Use Github token
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
