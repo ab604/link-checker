@@ -31,46 +31,89 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
-    - name: Cache LinkChecker data
-      uses: actions/cache@v4
-      with:
-        path: ~/.linkchecker
-        key: ${{ runner.os }}-linkchecker-${{ hashFiles('**/*.csv') }}
-        restore-keys: |
-          ${{ runner.os }}-linkchecker-
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
-
-    - name: Install LinkChecker
+    - name: Install dependencies
       run: |
-        pip install linkchecker
+        pip install requests beautifulsoup4
 
-    - name: Run LinkChecker
+    - name: Run Link Checker
       run: |
-        DATE=$(date +'%Y-%m-%d')
-        mkdir -p reports
-        REPORT_FILE="reports/lib-AZ-links-report-$DATE.csv"
-        linkchecker --check-extern --recursion-level=3 --no-warnings \
-          --file-output=$REPORT_FILE \
-          "${{ secrets.AZ_URL }}"
-        echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
-      continue-on-error: true
-    
-    # Check if any 404 errors were found in the report
-    - name: Check if broken links were found
-      id: check_broken_links
-      run: |
-        if grep -q "404" "${{ env.REPORT_FILE }}"; then
-          echo "broken_links_found=true" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library A-Z. Please check attached report for all link details." >> $GITHUB_ENV
-        else
-          echo "broken_links_found=false" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=No 404 broken links found. Please check attached report for all link details." >> $GITHUB_ENV
-        fi
-    
+        cat << EOF > check_links.py
+        import csv
+        import requests
+        from bs4 import BeautifulSoup
+        from datetime import datetime
+        import os
+
+        def check_link(url):
+            try:
+                response = requests.get(url, timeout=10)
+                return response.status_code
+            except requests.RequestException:
+                return 'Error'
+
+        def check_links(start_url):
+            visited = set()
+            to_visit = [start_url]
+            results = []
+
+            while to_visit:
+                url = to_visit.pop(0)
+                if url in visited:
+                    continue
+                visited.add(url)
+
+                status_code = check_link(url)
+                results.append((url, status_code))
+
+                if status_code == 200:
+                    try:
+                        response = requests.get(url, timeout=10)
+                        soup = BeautifulSoup(response.text, 'html.parser')
+                        for link in soup.find_all('a', href=True):
+                            new_url = link['href']
+                            if new_url.startswith('http'):
+                                to_visit.append(new_url)
+                    except requests.RequestException:
+                        pass
+
+            return results
+
+        start_url = "${{ secrets.AZ_URL }}"
+        results = check_links(start_url)
+
+        os.makedirs('reports', exist_ok=True)
+        date = datetime.now().strftime('%Y-%m-%d')
+        report_file = f"reports/lib-AZ-links-report-{date}.csv"
+
+        with open(report_file, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(['URL', 'Status Code'])
+            for url, status_code in results:
+                writer.writerow([url, status_code])
+
+        print(f"REPORT_FILE={report_file}")
+        with open(os.environ['GITHUB_ENV'], 'a') as env_file:
+            env_file.write(f"REPORT_FILE={report_file}\n")
+
+        broken_links = [url for url, status in results if status != 200]
+        if broken_links:
+            print("broken_links_found=true")
+            print("STATUS_MESSAGE=Broken links have been detected on the Library A-Z. Please check attached report for all link details.")
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                f.write("broken_links_found=true\n")
+            with open(os.environ['GITHUB_ENV'], 'a') as f:
+                f.write("STATUS_MESSAGE=Broken links have been detected on the Library A-Z. Please check attached report for all link details.\n")
+        else:
+            print("broken_links_found=false")
+            print("STATUS_MESSAGE=No broken links found. Please check attached report for all link details.")
+            with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+                f.write("broken_links_found=false\n")
+            with open(os.environ['GITHUB_ENV'], 'a') as f:
+                f.write("STATUS_MESSAGE=No broken links found. Please check attached report for all link details.\n")
+        EOF
+
+        python check_links.py
+
     # Commit the report to the repository
     - name: Commit report to repository
       if: always()
@@ -99,22 +142,16 @@ jobs:
       if: always()
       uses: dawidd6/action-send-mail@v3
       with:
-        # Required mail server settings:
         server_address: smtp.gmail.com
         server_port: 465
-        # Credentials
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
-        # Email subject
         subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Library A-Z website' || 'No Broken Links Found on Library A-Z website' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
-        # Recipient email address
         to: ${{secrets.EMAIL_RECIPIENT}}
-        # Sender email address 
         from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
         priority: normal
-        # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true
       env:
         STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
