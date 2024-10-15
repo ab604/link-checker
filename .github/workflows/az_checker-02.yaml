@@ -66,8 +66,6 @@ jobs:
                         continue
                     visited.add(url)
 
-                    parsed_url = urlparse(url)
-
                     url, status_code, content_type = await check_link(session, url)
                     results.append((url, status_code, content_type))
                     print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type}")
@@ -79,8 +77,7 @@ jobs:
                             soup = BeautifulSoup(text, 'html.parser')
                             for link in soup.find_all('a', href=True):
                                 new_url = urljoin(url, link['href'])
-                                new_parsed_url = urlparse(new_url)
-                                if new_parsed_url.netloc == domain and not new_parsed_url.netloc.endswith('soton.ac.uk'):
+                                if urlparse(new_url).netloc == domain:
                                     to_visit.append((new_url, depth + 1))
                         except Exception as e:
                             print(f"Error parsing {url}: {str(e)}", file=sys.stderr)
