@@ -53,39 +53,35 @@ jobs:
             except Exception as e:
                 return url, 'Error', str(e)
 
+        async def get_external_links(session, url):
+            external_links = set()
+            try:
+                async with session.get(url, timeout=10) as response:
+                    text = await response.text()
+                soup = BeautifulSoup(text, 'html.parser')
+                for link in soup.find_all('a', href=True):
+                    href = link['href']
+                    full_url = urljoin(url, href)
+                    parsed_url = urlparse(full_url)
+                    if parsed_url.netloc != 'library.soton.ac.uk' and parsed_url.scheme in ['http', 'https']:
+                        external_links.add(full_url)
+            except Exception as e:
+                print(f"Error parsing {url}: {str(e)}", file=sys.stderr)
+            return external_links
+
         async def check_links(start_url):
-            base_domain = 'soton.ac.uk'
-            visited = set()
-            to_visit = [start_url]
             results = []
+            external_links = set()
 
             async with aiohttp.ClientSession() as session:
-                while to_visit:
-                    url = to_visit.pop(0)
-                    if url in visited:
-                        continue
-                    visited.add(url)
+                # First, get all external links from the A-Z page
+                external_links = await get_external_links(session, start_url)
 
-                    parsed_url = urlparse(url)
-                    if base_domain in parsed_url.netloc:
-                        # Only parse HTML for internal links
-                        try:
-                            async with session.get(url, timeout=10) as response:
-                                text = await response.text()
-                            soup = BeautifulSoup(text, 'html.parser')
-                            for link in soup.find_all('a', href=True):
-                                new_url = urljoin(url, link['href'])
-                                new_parsed_url = urlparse(new_url)
-                                if base_domain not in new_parsed_url.netloc and new_parsed_url.scheme in ['http', 'https']:
-                                    if new_url not in visited:
-                                        to_visit.append(new_url)
-                        except Exception as e:
-                            print(f"Error parsing {url}: {str(e)}", file=sys.stderr)
-                    else:
-                        # Check external links
-                        url, status_code, content_type = await check_link(session, url)
-                        results.append((url, status_code, content_type))
-                        print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type}")
+                # Now check all these external links
+                for url in external_links:
+                    url, status_code, content_type = await check_link(session, url)
+                    results.append((url, status_code, content_type))
+                    print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type}")
 
             return results
 
