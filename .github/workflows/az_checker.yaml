@@ -50,7 +50,7 @@ jobs:
       run: |
         DATE=$(date +'%Y-%m-%d')
         REPORT_FILE="reports/lib-AZ-links-report-$DATE.csv"
-        linkinator "${{ secrets.AZ_URL }}" --recurse --retry true --retry-errors true --retry-errors-count 3 --retry-errors-jitter 5 --format CSV > $REPORT_FILE
+        linkinator "${{ secrets.AZ_URL }}" --recurse true --retry true --retry-errors true --retry-errors-count 3 --retry-errors-jitter 5 --format CSV > $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
