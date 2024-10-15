@@ -54,7 +54,7 @@ jobs:
         mkdir -p reports
         REPORT_FILE="reports/lib-AZ-links-report-$DATE.csv"
         linkchecker --check-extern --recursion-level=3 --no-warnings \
-          --output=csv --file-output=csv:$REPORT_FILE \
+          --file-output=$REPORT_FILE \
           "${{ secrets.AZ_URL }}"
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
