@@ -1,21 +1,21 @@
 url,status,state,parent,failureDetails
 "https://library.soton.ac.uk/az.php",200,OK,"","[]"
 "https://dkou0skpxpnwz.cloudfront.net/apps/common/favicon/favicon-32x32.png",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://dkou0skpxpnwz.cloudfront.net/apps/common/favicon/apple-touch-icon.png",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://dkou0skpxpnwz.cloudfront.net/apps/common/favicon/safari-pinned-tab.svg",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://dkou0skpxpnwz.cloudfront.net/apps/common/favicon/favicon.ico",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://dkou0skpxpnwz.cloudfront.net/apps/common/favicon/favicon-16x16.png",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://dkou0skpxpnwz.cloudfront.net/apps/common/favicon/apple-touch-icon.png",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://dkou0skpxpnwz.cloudfront.net/apps/common/favicon/site.webmanifest",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://dkou0skpxpnwz.cloudfront.net/apps/common/favicon/safari-pinned-tab.svg",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://static-assets-eu.libguides.com/web/css3.12.4/lg-public.min.css",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://static-assets-eu.libguides.com/web/jquery/js/1.12.4_jquery.min.js",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://static-assets-eu.libguides.com/web/jquery/css/jquery-ui.min.css?2691",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://static-assets-eu.libguides.com/web/js3.12.4/lg-public.min.js",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://static-assets-eu.libguides.com/web/js/sa.min.js?3116",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://code.jquery.com/ui/1.13.2/jquery-ui.min.js",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://static-assets-eu.libguides.com/web/select2-3.5.2/select2.js",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://static-assets-eu.libguides.com/web/js3.12.4/lg-public.min.js",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://static-assets-eu.libguides.com/web/select2-3.5.2/select2.css",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://code.jquery.com/ui/1.13.2/jquery-ui.min.js",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://static-assets-eu.libguides.com/web/js/sa.min.js?3116",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://www.googletagmanager.com/gtag/js?id=G-4BH3MX4PJD",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://lgimages.s3.amazonaws.com/data/imagemanager/80421/banner-left.jpg",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://lgimages.s3.amazonaws.com/data/imagemanager/80421/banner-right.jpg",200,OK,"https://library.soton.ac.uk/az.php","[]"
@@ -23,19 +23,57 @@ url,status,state,parent,failureDetails
 "https://dkou0skpxpnwz.cloudfront.net/sites/512/icons/4095/tutorial_icon.png",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://dkou0skpxpnwz.cloudfront.net/sites/512/icons/4094/06free.png",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://www.southampton.ac.uk/",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://d-econ.org/about-the-d-econ-database/d-econ-database-2/",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://soton.idm.oclc.org/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,shib&custid=s3879645&groupid=main&profile=ehost&defaultdb=cul",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://soton.idm.oclc.org/login?url=https://www.womensvoicesandlifewriting.amdigital.co.uk/",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://soton.idm.oclc.org/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,shib&custid=s3879645&groupid=main&profile=ehost&defaultdb=cul",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://d-econ.org/about-the-d-econ-database/d-econ-database-2/",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://www.economist.com/get-the-app",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://ec.europa.eu/eurostat/data/database",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://apps.spatialni.gov.uk/PRONIApplication/",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://www.economist.com/",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://apps.spatialni.gov.uk/PRONIApplication/",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://southampton.libapps.com/libapps/login.php?site_id=512",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://www.oxfordscholarlyeditions.com/",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://twitter.com/UniSotonLibrary",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "http://library.soton.ac.uk/tutorials/ebsco",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://www.southampton.ac.uk/library",200,OK,"https://library.soton.ac.uk/az.php","[]"
 "https://myaccount.economist.com/s/login/SelfRegister",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"http://library.soton.ac.uk/home/",200,OK,"https://library.soton.ac.uk/az.php","[]"
-"https://library.soton.ac.uk/",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://www.oxfordscholarlyeditions.com/",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"http://library.soton.ac.uk/home/",200,OK,"https://library.soton.ac.uk/az.php","[
+  {
+    "config": {
+      "method": "HEAD",
+      "url": "http://library.soton.ac.uk/home/",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36"
+      },
+      "responseType": "stream",
+      "timeout": null
+    },
+    "error": {
+      "message": "request to https://library.soton.ac.uk/home/ failed, reason: read ECONNRESET",
+      "type": "system",
+      "errno": "ECONNRESET",
+      "code": "ECONNRESET"
+    },
+    "code": "ECONNRESET"
+  }
+]"
 "https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet",200,OK,"https://library.soton.ac.uk/az.php","[]"
+"https://library.soton.ac.uk/",200,OK,"https://library.soton.ac.uk/az.php","[
+  {
+    "config": {
+      "method": "HEAD",
+      "url": "https://library.soton.ac.uk/",
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36"
+      },
+      "responseType": "stream",
+      "timeout": null
+    },
+    "error": {
+      "message": "request to https://library.soton.ac.uk/home failed, reason: Client network socket disconnected before secure TLS connection was established",
+      "type": "system",
+      "errno": "ECONNRESET",
+      "code": "ECONNRESET"
+    },
+    "code": "ECONNRESET"
+  }
+]"
