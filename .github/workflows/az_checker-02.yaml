@@ -47,11 +47,12 @@ jobs:
     - name: Run LinkChecker
       run: |
         DATE=$(date +'%Y-%m-%d')
+        mkdir -p reports
         REPORT_FILE="reports/lib-AZ-links-report-$DATE.csv"
         linkchecker --check-extern --recursion-level=3 --no-warnings \
-          --output=csv --file-output=$REPORT_FILE \
+          --output=csv --file-output=csv:$REPORT_FILE \
           "${{ secrets.AZ_URL }}"
-          echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
+        echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
     # Check if any 404 errors were found in the report
