@@ -112,7 +112,6 @@ jobs:
                 f.write("broken_links_found=false\n")
             with open(os.environ['GITHUB_ENV'], 'a') as f:
                 f.write("STATUS_MESSAGE=No broken links found. Please check attached report for all link details.\n")
-
         EOF
 
         python check_links.py
