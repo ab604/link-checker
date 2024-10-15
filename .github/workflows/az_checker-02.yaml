@@ -5,6 +5,10 @@ on:
     - cron: '0 0 * * 0'  # Run weekly on Sundays at midnight UTC
   workflow_dispatch:  # Allow manual triggering
 
+# Permissions
+permissions:
+    contents: write  # Add explicit permission to write to repository  
+
 jobs:
   linkchecker:
     runs-on: ubuntu-latest
