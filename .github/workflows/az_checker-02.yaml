@@ -1,0 +1,115 @@
+name: Python A-Z Link Checker
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sundays at midnight UTC
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  linkchecker:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # Use Github token for authentication
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Cache LinkChecker data
+      uses: actions/cache@v4
+      with:
+        path: ~/.linkchecker
+        key: ${{ runner.os }}-linkchecker-${{ hashFiles('**/*.csv') }}
+        restore-keys: |
+          ${{ runner.os }}-linkchecker-
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install LinkChecker
+      run: |
+        pip install linkchecker
+
+    - name: Run LinkChecker
+      run: |
+        DATE=$(date +'%Y-%m-%d')
+        REPORT_FILE="reports/lib-AZ-links-report-$DATE.csv"
+        linkchecker --check-extern --recursion-level=3 --no-warnings \
+          --output=csv --file-output=$REPORT_FILE \
+          "${{ secrets.AZ_URL }}"
+          echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
+      continue-on-error: true
+    
+    # Check if any 404 errors were found in the report
+    - name: Check if broken links were found
+      id: check_broken_links
+      run: |
+        if grep -q "404" "${{ env.REPORT_FILE }}"; then
+          echo "broken_links_found=true" >> $GITHUB_OUTPUT
+          echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library A-Z. Please check attached report for all link details." >> $GITHUB_ENV
+        else
+          echo "broken_links_found=false" >> $GITHUB_OUTPUT
+          echo "STATUS_MESSAGE=No 404 broken links found. Please check attached report for all link details." >> $GITHUB_ENV
+        fi
+    
+    # Commit the report to the repository
+    - name: Commit report to repository
+      if: always()
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add "${{ env.REPORT_FILE }}"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Add links report for $(date +'%Y-%m-%d')"
+          git push origin HEAD:${GITHUB_REF}
+        fi
+  
+    # Upload the report as an artifact
+    - name: Upload links report
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: links-report
+        path: ${{ env.REPORT_FILE }}
+    
+    # Send email notification with the report
+    - name: Send email notification
+      id: send_email
+      if: always()
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Required mail server settings:
+        server_address: smtp.gmail.com
+        server_port: 465
+        # Credentials
+        username: ${{secrets.GMAIL_USERNAME}}
+        password: ${{secrets.GMAIL_PASSWORD}}
+        # Email subject
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Library A-Z website' || 'No Broken Links Found on Library A-Z website' }}
+        body: ${{ env.STATUS_MESSAGE }}
+        attachments: ${{ env.REPORT_FILE }}
+        # Recipient email address
+        to: ${{secrets.EMAIL_RECIPIENT}}
+        # Sender email address 
+        from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
+        priority: normal
+        # Optional whether this connection use TLS (default is true if server_port is 465)
+        secure: true
+      env:
+        STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
