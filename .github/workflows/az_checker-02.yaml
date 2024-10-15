@@ -67,8 +67,6 @@ jobs:
                     visited.add(url)
 
                     parsed_url = urlparse(url)
-                    if parsed_url.netloc.endswith('soton.ac.uk'):
-                        continue  # Skip soton.ac.uk links
 
                     url, status_code, content_type = await check_link(session, url)
                     results.append((url, status_code, content_type))
