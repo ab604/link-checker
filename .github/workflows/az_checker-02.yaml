@@ -43,13 +43,14 @@ jobs:
         from bs4 import BeautifulSoup
         from datetime import datetime
         import os
+        import sys
 
         def check_link(url):
             try:
                 response = requests.get(url, timeout=10)
-                return response.status_code
-            except requests.RequestException:
-                return 'Error'
+                return response.status_code, response.headers.get('content-type', '')
+            except requests.RequestException as e:
+                return 'Error', str(e)
 
         def check_links(start_url):
             visited = set()
@@ -62,19 +63,20 @@ jobs:
                     continue
                 visited.add(url)
 
-                status_code = check_link(url)
-                results.append((url, status_code))
+                status_code, content_type = check_link(url)
+                results.append((url, status_code, content_type))
+                print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type}")
 
-                if status_code == 200:
+                if status_code == 200 and 'text/html' in content_type.lower():
                     try:
                         response = requests.get(url, timeout=10)
-                        soup = BeautifulSoup(response.text, 'html.parser')
+                        soup = BeautifulSoup(response.content, 'html.parser', from_encoding=response.encoding)
                         for link in soup.find_all('a', href=True):
                             new_url = link['href']
                             if new_url.startswith('http'):
                                 to_visit.append(new_url)
-                    except requests.RequestException:
-                        pass
+                    except Exception as e:
+                        print(f"Error parsing {url}: {str(e)}", file=sys.stderr)
 
             return results
 
@@ -87,15 +89,15 @@ jobs:
 
         with open(report_file, 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
-            writer.writerow(['URL', 'Status Code'])
-            for url, status_code in results:
-                writer.writerow([url, status_code])
+            writer.writerow(['URL', 'Status Code', 'Content-Type'])
+            for url, status_code, content_type in results:
+                writer.writerow([url, status_code, content_type])
 
         print(f"REPORT_FILE={report_file}")
         with open(os.environ['GITHUB_ENV'], 'a') as env_file:
             env_file.write(f"REPORT_FILE={report_file}\n")
 
-        broken_links = [url for url, status in results if status != 200]
+        broken_links = [url for url, status, _ in results if status != 200]
         if broken_links:
             print("broken_links_found=true")
             print("STATUS_MESSAGE=Broken links have been detected on the Library A-Z. Please check attached report for all link details.")
@@ -110,6 +112,7 @@ jobs:
                 f.write("broken_links_found=false\n")
             with open(os.environ['GITHUB_ENV'], 'a') as f:
                 f.write("STATUS_MESSAGE=No broken links found. Please check attached report for all link details.\n")
+
         EOF
 
         python check_links.py
