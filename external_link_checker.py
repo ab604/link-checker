@@ -10,7 +10,8 @@ import chardet
 
 SKIP_DOMAINS = [
     'eprints.soton.ac.uk',
-    'facebook.com'
+    'facebook.com',
+    'google.com'
     # Add more domains here
 ]
 
