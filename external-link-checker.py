@@ -14,7 +14,8 @@ async def check_link(session, url):
     except Exception as e:
         return url, 'Error', str(e)
 
-async def get_external_links(session, url):
+async def get_links(session, url):
+    internal_links = set()
     external_links = set()
     try:
         async with session.get(url, timeout=10) as response:
@@ -24,20 +25,34 @@ async def get_external_links(session, url):
             href = link['href']
             full_url = urljoin(url, href)
             parsed_url = urlparse(full_url)
-            if parsed_url.netloc != 'soton.ac.uk' and parsed_url.netloc != 'www.soton.ac.uk' and parsed_url.scheme in ['http', 'https']:
+            if parsed_url.netloc.endswith('soton.ac.uk') and parsed_url.scheme in ['http', 'https']:
+                internal_links.add(full_url)
+            elif parsed_url.scheme in ['http', 'https']:
                 external_links.add(full_url)
     except Exception as e:
         print(f"Error parsing {url}: {str(e)}", file=sys.stderr)
-    return external_links
+    return internal_links, external_links
 
-async def check_links(start_url):
-    external_links = set()
+async def crawl_and_check_links(start_url, max_pages=100):
+    visited = set()
+    to_visit = {start_url}
+    all_external_links = set()
     results = []
 
     async with aiohttp.ClientSession() as session:
-        external_links = await get_external_links(session, start_url)
+        while to_visit and len(visited) < max_pages:
+            url = to_visit.pop()
+            if url in visited:
+                continue
+            visited.add(url)
+            print(f"Crawling: {url}")
 
-        for url in external_links:
+            internal, external = await get_links(session, url)
+            to_visit.update(internal - visited)
+            all_external_links.update(external)
+
+        print(f"Checking {len(all_external_links)} external links...")
+        for url in all_external_links:
             url, status_code, content_type = await check_link(session, url)
             results.append((url, status_code, content_type))
             print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type}")
@@ -46,7 +61,8 @@ async def check_links(start_url):
 
 async def main():
     start_url = os.environ.get('START_URL', 'https://www.library.soton.ac.uk')
-    results = await check_links(start_url)
+    max_pages = int(os.environ.get('MAX_PAGES', 500))
+    results = await crawl_and_check_links(start_url, max_pages)
 
     os.makedirs('reports', exist_ok=True)
     date = datetime.now().strftime('%Y-%m-%d')
