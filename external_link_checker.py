@@ -16,16 +16,13 @@ async def check_link(session, url):
         return url, 'Error', str(e)
 
 def decode_content(content):
-    # Try UTF-8 first
     try:
         return content.decode('utf-8')
     except UnicodeDecodeError:
-        # If UTF-8 fails, use chardet to detect encoding
         detected = chardet.detect(content)
         try:
             return content.decode(detected['encoding'])
         except:
-            # If all else fails, decode with 'latin-1'
             return content.decode('latin-1')
 
 async def get_links(session, url):
@@ -51,7 +48,7 @@ async def get_links(session, url):
 async def crawl_and_check_links(start_url, max_pages=100):
     visited = set()
     to_visit = {start_url}
-    all_external_links = set()
+    all_external_links = {}  # Changed to a dict to store parent URLs
     results = []
 
     async with aiohttp.ClientSession() as session:
@@ -64,13 +61,15 @@ async def crawl_and_check_links(start_url, max_pages=100):
 
             internal, external = await get_links(session, url)
             to_visit.update(internal - visited)
-            all_external_links.update(external)
+            for ext_link in external:
+                if ext_link not in all_external_links:
+                    all_external_links[ext_link] = url  # Store parent URL
 
         print(f"Checking {len(all_external_links)} external links...")
-        for url in all_external_links:
-            url, status_code, content_type = await check_link(session, url)
-            results.append((url, status_code, content_type))
-            print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type}")
+        for ext_url, parent_url in all_external_links.items():
+            url, status_code, content_type = await check_link(session, ext_url)
+            results.append((url, status_code, content_type, parent_url))
+            print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type} - Parent: {parent_url}")
 
     return results
 
@@ -93,15 +92,15 @@ async def main():
 
     with open(report_file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
-        writer.writerow(['URL', 'Status Code', 'Content-Type'])
-        for url, status_code, content_type in results:
-            writer.writerow([url, status_code, content_type])
+        writer.writerow(['URL', 'Status Code', 'Content-Type', 'Parent URL'])
+        for url, status_code, content_type, parent_url in results:
+            writer.writerow([url, status_code, content_type, parent_url])
 
     print(f"REPORT_FILE={report_file}")
     with open(os.environ['GITHUB_ENV'], 'a') as env_file:
         env_file.write(f"REPORT_FILE={report_file}\n")
 
-    broken_links = [url for url, status, _ in results if status != 200]
+    broken_links = [url for url, status, _, _ in results if status != 200]
     if broken_links:
         print("broken_links_found=true")
         print("STATUS_MESSAGE=Broken external links have been detected. Please check attached report for all link details.")
