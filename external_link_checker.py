@@ -6,6 +6,7 @@ from datetime import datetime
 import os
 import sys
 from urllib.parse import urlparse, urljoin
+import chardet
 
 async def check_link(session, url):
     try:
@@ -14,12 +15,26 @@ async def check_link(session, url):
     except Exception as e:
         return url, 'Error', str(e)
 
+def decode_content(content):
+    # Try UTF-8 first
+    try:
+        return content.decode('utf-8')
+    except UnicodeDecodeError:
+        # If UTF-8 fails, use chardet to detect encoding
+        detected = chardet.detect(content)
+        try:
+            return content.decode(detected['encoding'])
+        except:
+            # If all else fails, decode with 'latin-1'
+            return content.decode('latin-1')
+
 async def get_links(session, url):
     internal_links = set()
     external_links = set()
     try:
         async with session.get(url, timeout=10) as response:
-            text = await response.text()
+            content = await response.read()
+            text = decode_content(content)
         soup = BeautifulSoup(text, 'html.parser')
         for link in soup.find_all('a', href=True):
             href = link['href']

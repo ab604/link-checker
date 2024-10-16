@@ -32,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install requests beautifulsoup4 aiohttp
+        pip install requests beautifulsoup4 aiohttp chardet
 
     - name: Run Link Checker
       run: python external_link_checker.py
