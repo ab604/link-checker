@@ -1,6 +1,4 @@
-name: External A-Z Link Checker
-# recursively check all pages within the library.soton.ac.uk domain, 
-# starting from the A-Z page, and then check all external links found on these pages
+name: External Link Checker
 
 on:
   schedule:
@@ -37,15 +35,9 @@ jobs:
         pip install requests beautifulsoup4 aiohttp
 
     - name: Run Link Checker
-      run: |
-        cat << EOF > check_links.py
-        # Paste the entire script here
-        EOF
-
-        python check_links.py
+      run: python external_link_checker.py
       env:
         START_URL: ${{ secrets.AZ_URL }}
-
 
     # Commit the report to the repository
     - name: Commit report to repository
@@ -79,7 +71,7 @@ jobs:
         server_port: 465
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
-        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Library A-Z website' || 'No Broken Links Found on Library A-Z website' }}
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken External Links Found' || 'No Broken External Links Found' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
         to: ${{secrets.EMAIL_RECIPIENT}}
