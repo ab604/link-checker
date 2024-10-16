@@ -61,7 +61,15 @@ async def crawl_and_check_links(start_url, max_pages=100):
 
 async def main():
     start_url = os.environ.get('START_URL', 'https://www.library.soton.ac.uk')
-    max_pages = int(os.environ.get('MAX_PAGES', 500))
+    
+    try:
+        max_pages = int(os.environ.get('MAX_PAGES', ''))
+    except ValueError:
+        print("Invalid or missing MAX_PAGES value. Using default of 500.")
+        max_pages = 500
+
+    print(f"Starting crawl from {start_url} with max pages set to {max_pages}")
+    
     results = await crawl_and_check_links(start_url, max_pages)
 
     os.makedirs('reports', exist_ok=True)
