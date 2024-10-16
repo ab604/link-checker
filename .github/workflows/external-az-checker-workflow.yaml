@@ -34,8 +34,17 @@ jobs:
       run: |
         pip install requests beautifulsoup4 aiohttp
 
+    - name: Debug - List directory contents
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "Directory contents:"
+        ls -R
+
     - name: Run Link Checker
-      run: python external_link_checker.py
+      run: |
+        echo "Attempting to run script..."
+        python external-link-checker.py
       env:
         START_URL: ${{ secrets.AZ_URL }}
 
