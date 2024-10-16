@@ -8,6 +8,18 @@ import sys
 from urllib.parse import urlparse, urljoin
 import chardet
 
+SKIP_DOMAINS = [
+    'eprints.soton.ac.uk',
+    'facebook.com'
+    # Add more domains here
+]
+
+SKIP_URLS = [
+    'https://www.specific-page-to-skip.com/page',
+    'https://another-specific-page.org/skip-this',
+    # Add more specific URLs here
+]
+
 async def check_link(session, url):
     try:
         async with session.get(url, timeout=10) as response:
@@ -25,6 +37,8 @@ def decode_content(content):
         except:
             return content.decode('latin-1')
 
+from urllib.parse import urlparse, urljoin
+
 async def get_links(session, url):
     internal_links = set()
     external_links = set()
@@ -37,6 +51,11 @@ async def get_links(session, url):
             href = link['href']
             full_url = urljoin(url, href)
             parsed_url = urlparse(full_url)
+            
+            # Check if the URL should be skipped
+            if any(domain in parsed_url.netloc for domain in SKIP_DOMAINS) or full_url in SKIP_URLS:
+                continue
+            
             if parsed_url.netloc.endswith('soton.ac.uk') and parsed_url.scheme in ['http', 'https']:
                 internal_links.add(full_url)
             elif parsed_url.scheme in ['http', 'https']:
@@ -48,7 +67,7 @@ async def get_links(session, url):
 async def crawl_and_check_links(start_url, max_pages=100):
     visited = set()
     to_visit = {start_url}
-    all_external_links = {}  # Changed to a dict to store parent URLs
+    all_external_links = {}
     results = []
 
     async with aiohttp.ClientSession() as session:
@@ -56,6 +75,12 @@ async def crawl_and_check_links(start_url, max_pages=100):
             url = to_visit.pop()
             if url in visited:
                 continue
+            
+            # Check if the URL should be skipped
+            parsed_url = urlparse(url)
+            if any(domain in parsed_url.netloc for domain in SKIP_DOMAINS) or url in SKIP_URLS:
+                continue
+            
             visited.add(url)
             print(f"Crawling: {url}")
 
@@ -63,10 +88,15 @@ async def crawl_and_check_links(start_url, max_pages=100):
             to_visit.update(internal - visited)
             for ext_link in external:
                 if ext_link not in all_external_links:
-                    all_external_links[ext_link] = url  # Store parent URL
+                    all_external_links[ext_link] = url
 
         print(f"Checking {len(all_external_links)} external links...")
         for ext_url, parent_url in all_external_links.items():
+            # Check if the external URL should be skipped
+            parsed_ext_url = urlparse(ext_url)
+            if any(domain in parsed_ext_url.netloc for domain in SKIP_DOMAINS) or ext_url in SKIP_URLS:
+                continue
+            
             url, status_code, content_type = await check_link(session, ext_url)
             results.append((url, status_code, content_type, parent_url))
             print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type} - Parent: {parent_url}")
