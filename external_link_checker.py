@@ -14,23 +14,6 @@ urls = [f"{base_url}a={chr(i)}" for i in range(97, 123)]
 # Add the "other" URL
 urls.append(f"{base_url}a=other")
 
-async def check_link(session, url):
-    try:
-        async with session.get(url, timeout=10) as response:
-            return url, response.status, response.headers.get('content-type', '')
-    except Exception as e:
-        return url, 'Error', str(e)
-
-def decode_content(content):
-    try:
-        return content.decode('utf-8')
-    except UnicodeDecodeError:
-        detected = chardet.detect(content)
-        try:
-            return content.decode(detected['encoding'])
-        except:
-            return content.decode('latin-1')
-
 async def get_links(session, url):
     links = set()
     try:
@@ -38,31 +21,28 @@ async def get_links(session, url):
             content = await response.read()
             text = decode_content(content)
         soup = BeautifulSoup(text, 'html.parser')
-        for link in soup.find_all('a', href=True):
-            href = link['href']
-            full_url = urljoin(url, href)
-            parsed_url = urlparse(full_url)
-            if parsed_url.scheme in ['http', 'https']:
-                links.add(full_url)
+        
+        # Look specifically for the main content area
+        # You might need to adjust this selector based on the actual page structure
+        main_content = soup.find('div', {'id': 's-lg-az-content'})  # or whatever the container ID is
+        
+        if main_content:
+            for link in main_content.find_all('a', href=True):
+                href = link['href']
+                # Skip anchor links and javascript
+                if href.startswith('#') or href.startswith('javascript:'):
+                    continue
+                full_url = urljoin(url, href)
+                parsed_url = urlparse(full_url)
+                if parsed_url.scheme in ['http', 'https']:
+                    links.add(full_url)
+        
+        # Debug print
+        print(f"Found {len(links)} unique links on {url}")
+        
     except Exception as e:
         print(f"Error parsing {url}: {str(e)}", file=sys.stderr)
     return links
-
-async def check_all_links(urls):
-    results = []
-    async with aiohttp.ClientSession() as session:
-        for start_url in urls:
-            print(f"Checking links on: {start_url}")
-            links = await get_links(session, start_url)
-            
-            tasks = [check_link(session, link) for link in links]
-            link_results = await asyncio.gather(*tasks)
-            
-            for url, status_code, content_type in link_results:
-                results.append((url, status_code, content_type, start_url))
-                print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type} - Parent: {start_url}")
-
-    return results
 
 async def main():
     print(f"Starting link check for {len(urls)} pages")
