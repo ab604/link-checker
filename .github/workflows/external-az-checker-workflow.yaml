@@ -88,7 +88,7 @@ jobs:
         server_port: 465
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
-        subject: ${{ broken_links_found == 'true' && 'Broken External Links Found' || 'No Broken External Links Found' }}
+        subject: ${{ steps.linkchecker.outputs.broken_links == 'true' && 'Broken External Links Found' || 'No Broken External Links Found' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
         to: ${{secrets.EMAIL_RECIPIENT}}
