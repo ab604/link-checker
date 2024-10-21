@@ -8,10 +8,15 @@ import sys
 from urllib.parse import urlparse, urljoin
 import chardet
 
+base_url = "https://library.soton.ac.uk/az.php?"
+# Create URLs for a-z using list comprehension
+urls = [f"{base_url}a={chr(i)}" for i in range(97, 123)]
+# Add the "other" URL
+urls.append(f"{base_url}a=other")
+
 SKIP_DOMAINS = [
-    'eprints.soton.ac.uk',
-    'facebook.com',
-    'google.com'
+    'skip-domain.com',
+    'skip-another.com'
     # Add more domains here
 ]
 
@@ -38,11 +43,8 @@ def decode_content(content):
         except:
             return content.decode('latin-1')
 
-from urllib.parse import urlparse, urljoin
-
 async def get_links(session, url):
-    internal_links = set()
-    external_links = set()
+    links = set()
     try:
         async with session.get(url, timeout=10) as response:
             content = await response.read()
@@ -57,69 +59,34 @@ async def get_links(session, url):
             if any(domain in parsed_url.netloc for domain in SKIP_DOMAINS) or full_url in SKIP_URLS:
                 continue
             
-            if parsed_url.netloc.endswith('soton.ac.uk') and parsed_url.scheme in ['http', 'https']:
-                internal_links.add(full_url)
-            elif parsed_url.scheme in ['http', 'https']:
-                external_links.add(full_url)
+            if parsed_url.scheme in ['http', 'https']:
+                links.add(full_url)
     except Exception as e:
         print(f"Error parsing {url}: {str(e)}", file=sys.stderr)
-    return internal_links, external_links
+    return links
 
-async def crawl_and_check_links(start_url, max_pages=100):
-    visited = set()
-    to_visit = {start_url}
-    all_external_links = {}
+async def check_all_links(urls):
     results = []
-
     async with aiohttp.ClientSession() as session:
-        while to_visit and len(visited) < max_pages:
-            url = to_visit.pop()
-            if url in visited:
-                continue
+        for start_url in urls:
+            print(f"Checking links on: {start_url}")
+            links = await get_links(session, start_url)
             
-            # Check if the URL should be skipped
-            parsed_url = urlparse(url)
-            if any(domain in parsed_url.netloc for domain in SKIP_DOMAINS) or url in SKIP_URLS:
-                continue
-            
-            visited.add(url)
-            print(f"Crawling: {url}")
-
-            internal, external = await get_links(session, url)
-            to_visit.update(internal - visited)
-            for ext_link in external:
-                if ext_link not in all_external_links:
-                    all_external_links[ext_link] = url
-
-        print(f"Checking {len(all_external_links)} external links...")
-        for ext_url, parent_url in all_external_links.items():
-            # Check if the external URL should be skipped
-            parsed_ext_url = urlparse(ext_url)
-            if any(domain in parsed_ext_url.netloc for domain in SKIP_DOMAINS) or ext_url in SKIP_URLS:
-                continue
-            
-            url, status_code, content_type = await check_link(session, ext_url)
-            results.append((url, status_code, content_type, parent_url))
-            print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type} - Parent: {parent_url}")
+            for link in links:
+                url, status_code, content_type = await check_link(session, link)
+                results.append((url, status_code, content_type, start_url))
+                print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type} - Parent: {start_url}")
 
     return results
 
 async def main():
-    start_url = os.environ.get('START_URL', 'https://www.library.soton.ac.uk')
+    print(f"Starting link check for {len(urls)} pages")
     
-    try:
-        max_pages = int(os.environ.get('MAX_PAGES', ''))
-    except ValueError:
-        print("Invalid or missing MAX_PAGES value. Using default of 500.")
-        max_pages = 500
-
-    print(f"Starting crawl from {start_url} with max pages set to {max_pages}")
-    
-    results = await crawl_and_check_links(start_url, max_pages)
+    results = await check_all_links(urls)
 
     os.makedirs('reports', exist_ok=True)
     date = datetime.now().strftime('%Y-%m-%d')
-    report_file = f"reports/external-links-report-{date}.csv"
+    report_file = f"reports/links-report-{date}.csv"
 
     with open(report_file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
@@ -134,18 +101,18 @@ async def main():
     broken_links = [url for url, status, _, _ in results if status != 200]
     if broken_links:
         print("broken_links_found=true")
-        print("STATUS_MESSAGE=Broken external links have been detected. Please check attached report for all link details.")
+        print("STATUS_MESSAGE=Broken links have been detected. Please check attached report for all link details.")
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             f.write("broken_links_found=true\n")
         with open(os.environ['GITHUB_ENV'], 'a') as f:
-            f.write("STATUS_MESSAGE=Broken external links have been detected. Please check attached report for all link details.\n")
+            f.write("STATUS_MESSAGE=Broken links have been detected. Please check attached report for all link details.\n")
     else:
         print("broken_links_found=false")
-        print("STATUS_MESSAGE=No broken external links found. Please check attached report for all link details.")
+        print("STATUS_MESSAGE=No broken links found. Please check attached report for all link details.")
         with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
             f.write("broken_links_found=false\n")
         with open(os.environ['GITHUB_ENV'], 'a') as f:
-            f.write("STATUS_MESSAGE=No broken external links found. Please check attached report for all link details.\n")
+            f.write("STATUS_MESSAGE=No broken links found. Please check attached report for all link details.\n")
 
 if __name__ == "__main__":
     asyncio.run(main())
