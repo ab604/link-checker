@@ -1,48 +1,28 @@
 import csv
 import asyncio
 import aiohttp
-from bs4 import BeautifulSoup
 from datetime import datetime
 import os
-import sys
-from urllib.parse import urlparse, urljoin
+from playwright.async_api import async_playwright
 
-base_url = "https://library.soton.ac.uk/az.php?"
-# Create URLs for a-z using list comprehension
-urls = [f"{base_url}a={chr(i)}" for i in range(97, 123)]
-# Add the "other" URL
-urls.append(f"{base_url}a=other")
+base_url = "https://library.soton.ac.uk/az.php"
 
-def decode_content(content):
-    try:
-        return content.decode('utf-8')
-    except UnicodeDecodeError:
-        return content.decode('iso-8859-1')
-
-async def get_links(session, url):
+async def get_links_with_playwright(url):
     links = set()
-    try:
-        async with session.get(url, timeout=10) as response:
-            content = await response.read()
-            text = decode_content(content)
-        soup = BeautifulSoup(text, 'html.parser')
+    async with async_playwright() as p:
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto(url)
         
-        main_content = soup.find('div', {'id': 's-lg-az-cols'})
+        await page.wait_for_selector('.s-lg-az-result')
         
-        if main_content:
-            for link in main_content.find_all('a', href=True):
-                href = link['href']
-                if href.startswith('#') or href.startswith('javascript:'):
-                    continue
-                full_url = urljoin(url, href)
-                parsed_url = urlparse(full_url)
-                if parsed_url.scheme in ['http', 'https']:
-                    links.add(full_url)
+        elements = await page.query_selector_all('.s-lg-az-result a')
+        for element in elements:
+            href = await element.get_attribute('href')
+            if href and not href.startswith('#') and not href.startswith('javascript:'):
+                links.add(href)
         
-        print(f"Found {len(links)} unique links on {url}")
-        
-    except Exception as e:
-        print(f"Error parsing {url}: {str(e)}", file=sys.stderr)
+        await browser.close()
     return links
 
 async def check_link(session, url, parent_url):
@@ -52,40 +32,33 @@ async def check_link(session, url, parent_url):
     except Exception as e:
         return url, str(e), None, parent_url
 
-async def check_all_links(urls):
+async def main():
+    print(f"Starting link check for {base_url}")
+    
+    links = await get_links_with_playwright(base_url)
+    print(f"Found {len(links)} links")
+    
     all_results = []
     async with aiohttp.ClientSession() as session:
-        for url in urls:
-            links = await get_links(session, url)
-            tasks = [check_link(session, link, url) for link in links]
-            results = await asyncio.gather(*tasks)
-            all_results.extend(results)
-    return all_results
-
-async def main():
-    print(f"Starting link check for {len(urls)} pages")
-    
-    results = await check_all_links(urls)
+        tasks = [check_link(session, link, base_url) for link in links]
+        all_results = await asyncio.gather(*tasks)
 
     os.makedirs('reports', exist_ok=True)
     date = datetime.now().strftime('%Y-%m-%d')
     report_file = f"reports/az-links-report-{date}.csv"
 
-    with open(report_file, 'w', newline='') as csvfile:
+    with open(report_file, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['URL', 'Status Code', 'Content-Type', 'Parent URL'])
-        for url, status_code, content_type, parent_url in results:
-            writer.writerow([url, status_code, content_type, parent_url])
+        for result in all_results:
+            writer.writerow(result)
 
     print(f"REPORT_FILE={report_file}")
     with open(os.environ.get('GITHUB_ENV', 'env.txt'), 'a') as env_file:
         env_file.write(f"REPORT_FILE={report_file}\n")
 
-    broken_links = [url for url, status, _, _ in results if status != 200]
-    if broken_links:
-        message = "Broken links have been detected. Please check attached report for all link details."
-    else:
-        message = "No broken links found. Please check attached report for all link details."
+    broken_links = [url for url, status, _, _ in all_results if isinstance(status, int) and status != 200]
+    message = "Broken links have been detected. Please check attached report for all link details." if broken_links else "No broken links found. Please check attached report for all link details."
 
     print(f"broken_links_found={'true' if broken_links else 'false'}")
     print(f"STATUS_MESSAGE={message}")

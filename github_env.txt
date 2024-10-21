@@ -1,0 +1,9 @@
+STATUS_MESSAGE=Broken links have been detected. Please check attached report for all link details.
+STATUS_MESSAGE=Broken links have been detected. Please check attached report for all link details.
+STATUS_MESSAGE=No broken links found. Please check attached report for all link details.
+STATUS_MESSAGE=No broken links found. Please check attached report for all link details.
+STATUS_MESSAGE=No broken links found. Please check attached report for all link details.
+STATUS_MESSAGE=No broken links found. Please check attached report for all link details.
+STATUS_MESSAGE=No broken links found. Please check attached report for all link details.
+STATUS_MESSAGE=Broken links have been detected. Please check attached report for all link details.
+STATUS_MESSAGE=Broken links have been detected. Please check attached report for all link details.
