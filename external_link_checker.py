@@ -27,7 +27,7 @@ async def get_links(session, url):
             text = decode_content(content)
         soup = BeautifulSoup(text, 'html.parser')
         
-        main_content = soup.find('div', {'id': 's-lib-public-main'})
+        main_content = soup.find('div', {'id': 's-lg-az-result'})
         
         if main_content:
             for link in main_content.find_all('a', href=True):
