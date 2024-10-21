@@ -14,18 +14,6 @@ urls = [f"{base_url}a={chr(i)}" for i in range(97, 123)]
 # Add the "other" URL
 urls.append(f"{base_url}a=other")
 
-SKIP_DOMAINS = [
-    'skip-domain.com',
-    'skip-another.com'
-    # Add more domains here
-]
-
-SKIP_URLS = [
-    'https://www.specific-page-to-skip.com/page',
-    'https://another-specific-page.org/skip-this',
-    # Add more specific URLs here
-]
-
 async def check_link(session, url):
     try:
         async with session.get(url, timeout=10) as response:
@@ -54,11 +42,6 @@ async def get_links(session, url):
             href = link['href']
             full_url = urljoin(url, href)
             parsed_url = urlparse(full_url)
-            
-            # Check if the URL should be skipped
-            if any(domain in parsed_url.netloc for domain in SKIP_DOMAINS) or full_url in SKIP_URLS:
-                continue
-            
             if parsed_url.scheme in ['http', 'https']:
                 links.add(full_url)
     except Exception as e:
@@ -72,8 +55,10 @@ async def check_all_links(urls):
             print(f"Checking links on: {start_url}")
             links = await get_links(session, start_url)
             
-            for link in links:
-                url, status_code, content_type = await check_link(session, link)
+            tasks = [check_link(session, link) for link in links]
+            link_results = await asyncio.gather(*tasks)
+            
+            for url, status_code, content_type in link_results:
                 results.append((url, status_code, content_type, start_url))
                 print(f"Checked: {url} - Status: {status_code} - Content-Type: {content_type} - Parent: {start_url}")
 
@@ -86,7 +71,7 @@ async def main():
 
     os.makedirs('reports', exist_ok=True)
     date = datetime.now().strftime('%Y-%m-%d')
-    report_file = f"reports/links-report-{date}.csv"
+    report_file = f"reports/az-links-report-{date}.csv"
 
     with open(report_file, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
