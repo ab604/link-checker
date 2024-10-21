@@ -30,15 +30,31 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
+    - name: Cache Playwright browsers
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-playwright-
+    
     - name: Install dependencies
       run: |
-        pip install requests beautifulsoup4 aiohttp chardet
+        python -m pip install --upgrade pip
+        pip install playwright aiohttp beautifulsoup4
+        
+    - name: Install Playwright browsers (if not cached)
+      run: |
+        # Only install if the browser binary doesn't exist
+        if [ ! -d ~/.cache/ms-playwright/chromium-* ]; then
+          playwright install chromium
+          playwright install-deps chromium
+        fi
 
     - name: Run Link Checker
       run: python external_link_checker.py
-      env:
-        START_URL: ${{ secrets.AZ_URL }}
-        MAX_PAGES: ${{ secrets.MAX_PAGES }}
+      #env:
+      #  START_URL: ${{ secrets.AZ_URL }}
 
     # Commit the report to the repository
     - name: Commit report to repository
