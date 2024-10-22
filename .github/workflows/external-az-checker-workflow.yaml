@@ -93,7 +93,9 @@ jobs:
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add "${{ env.REPORT_FILE }}"
+        git add
+        if [ -f "${{ env.REPORT_FILE }}" ]; then git add "${{ env.REPORT_FILE }}"; fi
+        if [ -f "${{ env.REPORT_404_FILE }}" ]; then git add "${{ env.REPORT_404_FILE }}"; fi
         if git diff --staged --quiet; then
           echo "No changes to commit"
         else
