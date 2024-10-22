@@ -68,49 +68,49 @@ jobs:
           git push origin HEAD:${GITHUB_REF}
         fi
     
-    - name: Run Link Checker
-      run: python url-checker.py
-      #env:
-      #  START_URL: ${{ secrets.AZ_URL }}
+    # - name: Run Link Checker
+    #   run: python url-checker.py
+    #   #env:
+    #   #  START_URL: ${{ secrets.AZ_URL }}
 
-    # Commit the report to the repository
-    - name: Commit report to repository
-      if: always()
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add "${{ env.REPORT_FILE }}"
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
-        else
-          git commit -m "Add links report for $(date +'%Y-%m-%d')"
-          git push origin HEAD:${GITHUB_REF}
-        fi
+    # # Commit the report to the repository
+    # - name: Commit report to repository
+    #   if: always()
+    #   run: |
+    #     git config --local user.email "github-actions[bot]@users.noreply.github.com"
+    #     git config --local user.name "github-actions[bot]"
+    #     git add "${{ env.REPORT_FILE }}"
+    #     if git diff --staged --quiet; then
+    #       echo "No changes to commit"
+    #     else
+    #       git commit -m "Add links report for $(date +'%Y-%m-%d')"
+    #       git push origin HEAD:${GITHUB_REF}
+    #     fi
   
-    # Upload the report as an artifact
-    - name: Upload links report
-      if: always()
-      uses: actions/upload-artifact@v4
-      with:
-        name: links-report
-        path: ${{ env.REPORT_FILE }}
+    # # Upload the report as an artifact
+    # - name: Upload links report
+    #   if: always()
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: links-report
+    #     path: ${{ env.REPORT_FILE }}
     
-    # Send email notification with the report
-    - name: Send email notification
-      id: send_email
-      if: always()
-      uses: dawidd6/action-send-mail@v3
-      with:
-        server_address: smtp.gmail.com
-        server_port: 465
-        username: ${{secrets.GMAIL_USERNAME}}
-        password: ${{secrets.GMAIL_PASSWORD}}
-        subject: ${{ steps.linkchecker.outputs.broken_links_found == 'true' && 'Broken External Links Found' || 'No Broken External Links Found' }}
-        body: ${{ env.STATUS_MESSAGE }}
-        attachments: ${{ env.REPORT_FILE }}
-        to: ${{secrets.EMAIL_RECIPIENT}}
-        from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
-        priority: normal
-        secure: true
-      env:
-        STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
+    # # Send email notification with the report
+    # - name: Send email notification
+    #   id: send_email
+    #   if: always()
+    #   uses: dawidd6/action-send-mail@v3
+    #   with:
+    #     server_address: smtp.gmail.com
+    #     server_port: 465
+    #     username: ${{secrets.GMAIL_USERNAME}}
+    #     password: ${{secrets.GMAIL_PASSWORD}}
+    #     subject: ${{ steps.linkchecker.outputs.broken_links_found == 'true' && 'Broken External Links Found' || 'No Broken External Links Found' }}
+    #     body: ${{ env.STATUS_MESSAGE }}
+    #     attachments: ${{ env.REPORT_FILE }}
+    #     to: ${{secrets.EMAIL_RECIPIENT}}
+    #     from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
+    #     priority: normal
+    #     secure: true
+    #   env:
+    #     STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}

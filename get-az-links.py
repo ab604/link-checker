@@ -47,9 +47,9 @@ async def main():
         for link in links:
             writer.writerow([link, base_url])
 
-    #print(f"LINKS_FILE={links_file}")
-    #with open(os.environ.get('GITHUB_ENV', 'env.txt'), 'a') as env_file:
-    #    env_file.write(f"LINKS_FILE={links_file}\n")
+    print(f"LINKS_FILE={links_file}")
+    with open(os.environ.get('GITHUB_ENV', 'env.txt'), 'a') as env_file:
+        env_file.write(f"LINKS_FILE={links_file}\n")
 
     print(f"Links saved to {links_file}")
 
