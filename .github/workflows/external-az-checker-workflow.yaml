@@ -73,6 +73,20 @@ jobs:
       env:
         LINKS_FILE: ${{ env.LINKS_FILE }}
 
+    # Check if any 404 errors were found in the report
+    - name: Check if broken links were found
+      id: check_broken_links
+      run: |
+        if grep -q "404" "${{ env.REPORT_FILE }}"; then
+          echo "broken_links_found=true" >> $GITHUB_OUTPUT
+          echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library website. Please check attached report for all link details." >> $GITHUB_ENV
+          echo "ATTACHMENT=${{ env.REPORT_404_FILE }}" >> $GITHUB_ENV
+        else
+          echo "broken_links_found=false" >> $GITHUB_OUTPUT
+          echo "STATUS_MESSAGE=No 404 broken links found. Please check attached report for all link details." >> $GITHUB_ENV
+          echo "ATTACHMENT=${{ env.REPORT_FILE }}" >> $GITHUB_ENV
+        fi
+
     # Commit the report to the repository
     - name: Commit report to repository
       if: always()
@@ -105,12 +119,13 @@ jobs:
         server_port: 465
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
-        subject: ${{ steps.linkchecker.outputs.broken_links_found == 'true' && 'Broken External Links Found' || 'No Broken External Links Found' }}
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Library A-Z List' || 'No Broken Links Found on Library A-Z List' }}
         body: ${{ env.STATUS_MESSAGE }}
-        attachments: ${{ env.REPORT_FILE }}
+        attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.EMAIL_RECIPIENT}}
         from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
         priority: normal
         secure: true
       env:
         STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
+        ATTACHMENT: ${{ env.ATTACHMENT }}

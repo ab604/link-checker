@@ -121,7 +121,7 @@ async def main():
     # Sort results by line number before writing
     results.sort(key=lambda x: x[4])  # Sort by line number
     
-    # Write results to report
+    # Write results to main report
     report_file = f"reports/az-links-report-{date}.csv"
     with open(report_file, 'w', newline='', encoding='utf-8') as csvfile:
         writer = csv.writer(csvfile)
@@ -129,9 +129,21 @@ async def main():
         for url, status_code, content_type, parent_url, line_number in results:
             writer.writerow([url, status_code, content_type, parent_url, line_number])
     
+    # Write 404 status links to separate report
+    report_404_file = f"reports/az-links-404-report-{date}.csv"
+    with open(report_404_file, 'w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['URL', 'Status Code', 'Content-Type', 'Parent URL', 'Input Line'])
+        for result in results:
+            if isinstance(result[1], int) and result[1] == 404:
+                writer.writerow(result)
+    
     print(f"\nREPORT_FILE={report_file}")
+    print(f"REPORT_404_FILE={report_404_file}")
+    
     with open(os.environ.get('GITHUB_ENV', 'env.txt'), 'a') as env_file:
         env_file.write(f"REPORT_FILE={report_file}\n")
+        env_file.write(f"REPORT_404_FILE={report_404_file}\n")
 
     # Check for broken links
     broken_links = [
