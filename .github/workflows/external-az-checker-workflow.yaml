@@ -41,7 +41,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install playwright aiohttp beautifulsoup4
+        pip install playwright aiohttp beautifulsoup4 aiohttp_retry tenacity
         
     - name: Install Playwright browsers (if not cached)
       run: |
@@ -50,9 +50,26 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
         fi
+      
+    - name: Run Get Links
+      run: python get-az-links.py
 
+    # Commit links list to the repository
+    - name: Commit links list to repository
+      if: always()
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add "${{ env.LINKS_FILE }}"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Add links list for $(date +'%Y-%m-%d')"
+          git push origin HEAD:${GITHUB_REF}
+        fi
+    
     - name: Run Link Checker
-      run: python external_link_checker.py
+      run: python url-checker.py
       #env:
       #  START_URL: ${{ secrets.AZ_URL }}
 
