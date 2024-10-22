@@ -47,19 +47,13 @@ async def main():
         for link in links:
             writer.writerow([link, base_url])
 
-    print(f"LINKS_FILE={links_file}")
-    with open(os.environ.get('GITHUB_ENV', 'env.txt'), 'a') as env_file:
-        env_file.write(f"LINKS_FILE={links_file}\n")
-
     print(f"Links saved to {links_file}")
 
-    github_output = os.environ.get('GITHUB_OUTPUT', 'github_output.txt')
-    with open(github_output, 'a') as f:
-        f.write(f"Links saved to {links_file}\n")
+    # Set output for GitHub Actions
+    print(f"::set-output name=links_file::{links_file}")
 
-    github_env = os.environ.get('GITHUB_ENV', 'github_env.txt')
-    with open(github_env, 'a') as f:
-        f.write(f"Links saved to {links_file}\n")
+    # Set environment variable for GitHub Actions
+    print(f"::set-env name=LINKS_FILE::{links_file}")
 
 if __name__ == "__main__":
     asyncio.run(main())
