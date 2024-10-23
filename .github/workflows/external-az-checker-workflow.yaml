@@ -125,7 +125,7 @@ jobs:
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.EMAIL_RECIPIENT}}
-        from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
+        from: Library Link Checker ${{secrets.EMAIL_SENDER}}
         priority: normal
         secure: true
       env:
