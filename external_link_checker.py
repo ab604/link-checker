@@ -6,7 +6,8 @@ import os
 from playwright.async_api import async_playwright
 from aiohttp_retry import RetryClient, ExponentialRetry
 
-base_url = "https://library.soton.ac.uk/az.php?"
+#base_url = "https://library.soton.ac.uk/az.php?"
+base_url = "${{ secrets.AZ_URL }}"
 
 async def get_links_with_playwright(url):
     links = set()
