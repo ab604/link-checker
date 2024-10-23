@@ -125,7 +125,7 @@ jobs:
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.EMAIL_RECIPIENT}}
-        from: ${{secrets.EMAIL_SENDER}}
+        from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
         priority: normal
         secure: true
       env:
