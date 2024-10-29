@@ -105,7 +105,7 @@ jobs:
         to: n.s.clarkson@soton.ac.uk
         cc: ${{secrets.EMAIL_RECIPIENT}}
         # Sender email address
-        from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
+        from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
         priority: normal
         # Optional whether this connection use TLS (default is true if server_port is 465)
         secure: true

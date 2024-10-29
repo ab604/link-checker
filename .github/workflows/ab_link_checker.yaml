@@ -105,7 +105,7 @@ jobs:
         attachments: ${{ env.REPORT_FILE }}
         # Recipient and sender email addresses
         to: ${{secrets.EMAIL_RECIPIENT}}
-        from: Alistair Bailey ${{secrets.EMAIL_SENDER}}
+        from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
         priority: normal
         secure: true  # Use TLS for the email connection
       env:
