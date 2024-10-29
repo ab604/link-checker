@@ -60,31 +60,31 @@ jobs:
         fi
       
     # Execute script to gather links
-    # - name: Run Get Links
-      # env:
-        # BASE_URL: "https://library.soton.ac.uk"
-      # run: python get-links.py --recurse --max-depth 3
+    - name: Run Get Links
+      env:
+        BASE_URL: "https://library.soton.ac.uk"
+      run: python get-links.py --recurse --max-depth 3
 
     # Commit the gathered links to the repository
-    # - name: Commit links list to repository
-      # if: always()  # Run even if previous steps fail
-      # run: |
-        # git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        # git config --local user.name "github-actions[bot]"
-        # git add "${{ env.LINKS_FILE }}"
-        # if git diff --staged --quiet; then
-          # echo "No changes to commit"
-        # else
-          # git commit -m "Add library links list for $(date +'%Y-%m-%d')"
-          # git push origin HEAD:${GITHUB_REF}
-        # fi
+    - name: Commit links list to repository
+      if: always()  # Run even if previous steps fail
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add "${{ env.LINKS_FILE }}"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Add library links list for $(date +'%Y-%m-%d')"
+          git push origin HEAD:${GITHUB_REF}
+        fi
     
     # Run the link checker script
     - name: Run Link Checker
       run: python check-urls.py
       env:
-        LINKS_FILE : reports/get-links-2024-10-29.csv
-        #LINKS_FILE: ${{ env.LINKS_FILE }}
+        LINKS_FILE: ${{ env.LINKS_FILE }}
+        #LINKS_FILE : reports/get-links-2024-10-29.csv
 
     # Analyze results and set environment variables for email notification
     - name: Check if broken links were found
