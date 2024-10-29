@@ -13,6 +13,8 @@ from datetime import datetime
 
 # Define the target URL for scraping
 base_url = os.environ['BASE_URL'] # "https://library.soton.ac.uk/az.php?"
+if not base_url:
+        base_url = "https://library.soton.ac.uk/az.php?"
 
 async def get_links_with_playwright(url):
     """

@@ -1,0 +1,150 @@
+# Workflow to get links on the Library site
+name: Library Python Link Crawler
+
+# Define when the workflow should run
+on:
+  schedule:
+    - cron: '0 1 * * 0'  # Run weekly on Sundays at 0100 UTC
+  workflow_dispatch:  # Allow manual triggering of the workflow
+
+# Set explicit permissions for the workflow
+permissions:
+    contents: write  # Allow writing to repository contents
+
+jobs:
+  linkchecker:
+    runs-on: ubuntu-latest
+    steps:
+    # Check out the repository code
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # Authenticate using GitHub token
+
+    # Set up Python environment
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    # Cache pip packages to speed up future runs
+    - name: Cache pip packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    # Cache Playwright browsers to avoid reinstalling
+    - name: Cache Playwright browsers
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/ms-playwright
+        key: ${{ runner.os }}-playwright-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-playwright-
+    
+    # Install required Python packages
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install playwright asyncio argparse csv
+        
+    # Install Playwright browsers if not found in cache
+    - name: Install Playwright browsers (if not cached)
+      run: |
+        if [ ! -d ~/.cache/ms-playwright/chromium-* ]; then
+          playwright install chromium
+          playwright install-deps chromium
+        fi
+      
+    # Execute script to gather links
+    - name: Run Get Links
+      env:
+        BASE_URL: "https://library.soton.ac.uk"
+      run: python get-links.py --recurse
+
+    # Commit the gathered links to the repository
+    - name: Commit links list to repository
+      if: always()  # Run even if previous steps fail
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add "${{ env.LINKS_FILE }}"
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "Add library links list for $(date +'%Y-%m-%d')"
+          git push origin HEAD:${GITHUB_REF}
+        fi
+    
+    # Run the link checker script
+    # - name: Run Link Checker
+      # run: python url-checker.py
+      # env:
+        # LINKS_FILE: ${{ env.LINKS_FILE }}
+
+    # Analyze results and set environment variables for email notification
+    # - name: Check if broken links were found
+      # id: check_broken_links
+      # run: |
+        # if grep -q "404" "${{ env.REPORT_FILE }}"; then
+          # echo "broken_links_found=true" >> $GITHUB_OUTPUT
+          # echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library website. Please check attached csv files for broken links and all link details." >> $GITHUB_ENV
+          # echo "ATTACHMENT=${{ env.REPORT_404_FILE }},${{ env.REPORT_FILE }}" >> $GITHUB_ENV
+        # else
+          # echo "broken_links_found=false" >> $GITHUB_OUTPUT
+          # echo "STATUS_MESSAGE=No 404 broken links found. Please check attached csv file for all link details." >> $GITHUB_ENV
+          # echo "ATTACHMENT=${{ env.REPORT_FILE }}" >> $GITHUB_ENV
+        # fi
+
+    # Commit the link checker report to the repository
+    # - name: Commit report to repository
+      # if: always()
+      # run: |
+        # git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        # git config --local user.name "github-actions[bot]"
+        # git add
+        # if [ -f "${{ env.REPORT_FILE }}" ]; then git add "${{ env.REPORT_FILE }}"; fi
+        # if [ -f "${{ env.REPORT_404_FILE }}" ]; then git add "${{ env.REPORT_404_FILE }}"; fi
+        # if git diff --staged --quiet; then
+          # echo "No changes to commit"
+        # else
+          # git commit -m "Add links report for $(date +'%Y-%m-%d')"
+          # git push origin HEAD:${GITHUB_REF}
+        # fi
+  
+    # Save the report as a workflow artifact
+    # - name: Upload links report
+      # if: always()
+      # uses: actions/upload-artifact@v4
+      # with:
+        # name: links-report
+        # path: ${{ env.REPORT_FILE }}
+    
+    # Send email notification with results
+    # - name: Send email notification
+      # id: send_email
+      # if: always()
+      # uses: dawidd6/action-send-mail@v3
+      # with:
+        # server_address: smtp.gmail.com
+        # server_port: 465
+        # username: ${{secrets.GMAIL_USERNAME}}
+        # password: ${{secrets.GMAIL_PASSWORD}}
+        # subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Library A-Z List' || 'No Broken Links Found on Library A-Z List' }}
+        # body: ${{ env.STATUS_MESSAGE }}
+        # attachments: ${{ env.ATTACHMENT }}
+        # to: ${{secrets.LL_EMAIL_RECIPIENT}}
+        # cc: ${{secrets.EMAIL_RECIPIENT}}
+        # from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
+        # priority: normal
+        # secure: true
+      # env:
+        # STATUS_MESSAGE: ${{ env.STATUS_MESSAGE }}
+        # ATTACHMENT: ${{ env.ATTACHMENT }}
+
+    # Prevent GitHub from disabling the workflow due to inactivity
+    - name: Keepalive Workflow
+      uses: gautamkrishnar/keepalive-workflow@2.0.7

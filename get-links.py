@@ -25,7 +25,8 @@ async def get_links(page, url):
             href = await element.get_attribute('href')
             if href and not href.startswith(('mailto:', '#', 'javascript:', 'tel:')):
                 absolute_url = urljoin(url, href)
-                links.add(absolute_url)
+                if "ld.php?content_id=" not in absolute_url:  # Skip URLs with this pattern
+                    links.add(absolute_url)
     except Exception as e:
         print(f"Error getting links from {url}: {str(e)}")
     return links
@@ -47,7 +48,7 @@ async def crawl_site(base_url, recurse=False, max_links=10000):
 
         while to_visit and len(all_links) < max_links:
             url = to_visit.pop()
-            if url in visited:
+            if url in visited or "ld.php?content_id=" in url:  # Skip if visited or contains pattern
                 continue
             
             visited.add(url)
@@ -77,7 +78,7 @@ async def main():
 
     base_url = os.environ.get('BASE_URL') # "https://library.soton.ac.uk"
     if not base_url:
-        print("Error: BASE_URL environment variable is not set.")
+        base_url = "https://library.soton.ac.uk"
         return
 
     print(f"Starting link collection for {base_url}")
@@ -94,6 +95,11 @@ async def main():
             
             async for links_batch in crawl_site(base_url, args.recurse):
                 writer.writerows(links_batch)
+    
+    # Set environment variable for GitHub Actions
+    print(f"LINKS_FILE={links_file}")
+    with open(os.environ.get('GITHUB_ENV', 'env.txt'), 'a') as env_file:
+        env_file.write(f"LINKS_FILE={links_file}\n")
         
         print(f"Links saved to get-links-{date}.csv")
 

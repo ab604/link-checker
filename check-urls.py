@@ -105,7 +105,7 @@ async def main():
     old_date = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
     links_file = os.environ.get('LINKS_FILE')
     if not links_file:
-        links_file = f"reports/az-links-{old_date}.csv"
+        links_file = f"reports/get-links-{old_date}.csv"
     os.makedirs('reports', exist_ok=True)
     
     # Initialize URL checker
@@ -117,8 +117,8 @@ async def main():
     )
 
     # Open report files and create CSV writers
-    report_file = f"reports/az-links-report-{date}.csv"
-    report_404_file = f"reports/az-links-404-report-{date}.csv"
+    report_file = f"reports/check-links-report-{date}.csv"
+    report_404_file = f"reports/check-links-404-report-{date}.csv"
     
     with open(report_file, 'w', newline='', encoding='utf-8') as main_csvfile, \
          open(report_404_file, 'w', newline='', encoding='utf-8') as file_404_csvfile:
