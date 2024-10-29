@@ -63,7 +63,7 @@ jobs:
     - name: Run Get Links
       env:
         BASE_URL: "https://library.soton.ac.uk"
-      run: python get-links.py --recurse
+      run: python get-links.py --recurse --max-depth 2
 
     # Commit the gathered links to the repository
     - name: Commit links list to repository

@@ -31,7 +31,7 @@ async def get_links(page, url):
         print(f"Error getting links from {url}: {str(e)}")
     return links
 
-async def crawl_site(base_url, recurse=False, max_links=10000):
+async def crawl_site(base_url, recurse=False, max_links=10000, max_depth=5):
     """
     Crawls the site starting from the base_url.
     If recurse is True, it will follow links within the same domain.
@@ -42,13 +42,14 @@ async def crawl_site(base_url, recurse=False, max_links=10000):
         page = await browser.new_page()
         
         visited = set()
-        to_visit = {base_url}
+        to_visit = [(base_url, 0)]  # (url, depth)
         all_links = []
         base_domain = urlparse(base_url).netloc
 
         while to_visit and len(all_links) < max_links:
-            url = to_visit.pop()
-            if url in visited or "ld.php?content_id=" in url:  # Skip if visited or contains pattern
+            url, depth = to_visit.pop(0)
+            
+            if url in visited or "ld.php?content_id=" in url or depth >= max_depth:
                 continue
             
             visited.add(url)
@@ -57,7 +58,7 @@ async def crawl_site(base_url, recurse=False, max_links=10000):
             for link in links:
                 all_links.append((link, url))
                 if recurse and urlparse(link).netloc == base_domain and link not in visited:
-                    to_visit.add(link)
+                    to_visit.append((link, depth + 1))
             
             # Write links to file in batches to save memory
             if len(all_links) >= 1000:
@@ -73,13 +74,13 @@ async def crawl_site(base_url, recurse=False, max_links=10000):
 async def main():
     parser = argparse.ArgumentParser(description="Crawl a website and collect links.")
     parser.add_argument("--recurse", action="store_true", help="Recursively crawl the site")
+    parser.add_argument("--max-depth", type=int, default=5, help="Maximum depth for recursive crawling")
     parser.add_argument("--format", choices=["CSV"], default="CSV", help="Output format")
     args = parser.parse_args()
 
     base_url = os.environ.get('BASE_URL') # "https://library.soton.ac.uk"
     if not base_url:
         base_url = "https://library.soton.ac.uk"
-        return
 
     print(f"Starting link collection for {base_url}")
 
@@ -93,7 +94,7 @@ async def main():
             writer = csv.writer(csvfile)
             writer.writerow(["URL", "Parent URL"])
             
-            async for links_batch in crawl_site(base_url, args.recurse):
+            async for links_batch in crawl_site(base_url, args.recurse, max_depth=args.max_depth):
                 writer.writerows(links_batch)
     
     # Set environment variable for GitHub Actions
