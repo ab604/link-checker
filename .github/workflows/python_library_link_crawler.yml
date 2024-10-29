@@ -83,7 +83,8 @@ jobs:
     - name: Run Link Checker
       run: python check-urls.py
       env:
-        LINKS_FILE: ${{ env.LINKS_FILE }}
+        LINKS_FILE : reports/get-links-2024-10-29.csv
+        #LINKS_FILE: ${{ env.LINKS_FILE }}
 
     # Analyze results and set environment variables for email notification
     - name: Check if broken links were found
