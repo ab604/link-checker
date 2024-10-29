@@ -1,10 +1,10 @@
-# Workflow to get links on the Library site
+# Workflow to get and check links on the Library site
 name: Library Python Link Crawler
 
 # Define when the workflow should run
 on:
   schedule:
-    - cron: '0 1 * * 0'  # Run weekly on Sundays at 0100 UTC
+    - cron: '0 1 * * 3'  # Run weekly 0100 UTC on Wednesday
   workflow_dispatch:  # Allow manual triggering of the workflow
 
 # Set explicit permissions for the workflow
@@ -84,7 +84,6 @@ jobs:
       run: python check-urls.py
       env:
         LINKS_FILE: ${{ env.LINKS_FILE }}
-        #LINKS_FILE : reports/get-links-2024-10-29.csv
 
     # Analyze results and set environment variables for email notification
     - name: Check if broken links were found
