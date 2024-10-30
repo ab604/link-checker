@@ -133,7 +133,7 @@ jobs:
         server_port: 465
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
-        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Library A-Z List' || 'No Broken Links Found on Library A-Z List' }}
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Report A-Z - FAO Simon' || 'No Broken Links Report A-Z - FAO Simon' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.LL_EMAIL_RECIPIENT}}
