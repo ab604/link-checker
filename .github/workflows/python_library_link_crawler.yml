@@ -136,8 +136,8 @@ jobs:
         subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Library Crawl List' || 'No Broken Links Found on Library Crawl List' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.ATTACHMENT }}
-        to: ${{secrets.LL_EMAIL_RECIPIENT}}
-        cc: ${{secrets.EMAIL_RECIPIENT}}
+        to: ${{secrets.EMAIL_RECIPIENT}}
+        # cc: ${{secrets.EMAIL_RECIPIENT}}
         from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
         priority: normal
         secure: true
