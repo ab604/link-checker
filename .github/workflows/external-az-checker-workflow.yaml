@@ -62,7 +62,7 @@ jobs:
     # Execute script to gather links
     - name: Run Get Links
       env:
-        BASE_URL: "https://library.soton.ac.uk/az.php?"
+        BASE_URL: ${{secrets.AZ_URL}}
       run: python get-az-links.py
 
     # Commit the gathered links to the repository

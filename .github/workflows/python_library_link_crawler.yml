@@ -62,7 +62,7 @@ jobs:
     # Execute script to gather links
     - name: Run Get Links
       env:
-        BASE_URL: "https://library.soton.ac.uk"
+        BASE_URL: ${{secrets.LIB_URL}} 
       run: python get-links.py --recurse --max-depth 3
 
     # Commit the gathered links to the repository
