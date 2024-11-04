@@ -19,13 +19,19 @@ async def get_links(page, url):
     """
     links = set()
     try:
+        # Navigate to the URL and wait for the network to be idle
         await page.goto(url, wait_until='networkidle')
+        # Find all <a> elements on the page
         elements = await page.query_selector_all('a')
         for element in elements:
+            # Get the 'href' attribute of each <a> element
             href = await element.get_attribute('href')
+            # Filter out links that start with 'mailto:', '#', 'javascript:', or 'tel:'
             if href and not href.startswith(('mailto:', '#', 'javascript:', 'tel:')):
+                # Convert the relative URL to an absolute URL
                 absolute_url = urljoin(url, href)
-                if "ld.php?content_id=" not in absolute_url:  # Skip URLs with this pattern
+                # Skip URLs that contain "ld.php?content_id="
+                if "ld.php?content_id=" not in absolute_url:
                     links.add(absolute_url)
     except Exception as e:
         print(f"Error getting links from {url}: {str(e)}")
@@ -49,6 +55,7 @@ async def crawl_site(base_url, recurse=False, max_links=10000, max_depth=5):
         while to_visit and len(all_links) < max_links:
             url, depth = to_visit.pop(0)
             
+            # Skip URLs that have already been visited, contain "ld.php?content_id=", or exceed the maximum depth
             if url in visited or "ld.php?content_id=" in url or depth >= max_depth:
                 continue
             
@@ -57,6 +64,7 @@ async def crawl_site(base_url, recurse=False, max_links=10000, max_depth=5):
             
             for link in links:
                 all_links.append((link, url))
+                # If recursing, add new links to the to_visit list if they are within the same domain and haven't been visited
                 if recurse and urlparse(link).netloc == base_domain and link not in visited:
                     to_visit.append((link, depth + 1))
             
@@ -78,13 +86,14 @@ async def main():
     parser.add_argument("--format", choices=["CSV"], default="CSV", help="Output format")
     args = parser.parse_args()
 
-    base_url = os.environ.get('BASE_URL') # "https://library.soton.ac.uk"
-    if not base_url:
-        base_url = "https://library.soton.ac.uk"
+    # Get the base URL from the environment variable, or use a default value
+    base_url = os.environ.get('BASE_URL') or "https://library.soton.ac.uk"
 
     print(f"Starting link collection for {base_url}")
 
+    # Create the 'reports' directory if it doesn't exist
     os.makedirs('reports', exist_ok=True)
+    # Generate the filename for the CSV file based on the current date
     date = datetime.now().strftime('%Y-%m-%d')
     links_file = f"reports/get-links-{date}.csv"
 
@@ -94,10 +103,11 @@ async def main():
             writer = csv.writer(csvfile)
             writer.writerow(["URL", "Parent URL"])
             
+            # Crawl the site and write the collected links to the CSV file in batches
             async for links_batch in crawl_site(base_url, args.recurse, max_depth=args.max_depth):
                 writer.writerows(links_batch)
     
-    # Set environment variable for GitHub Actions
+    # Set the LINKS_FILE environment variable for GitHub Actions
     print(f"LINKS_FILE={links_file}")
     with open(os.environ.get('GITHUB_ENV', 'env.txt'), 'a') as env_file:
         env_file.write(f"LINKS_FILE={links_file}\n")
