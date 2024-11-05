@@ -1,21 +1,18 @@
 # Workflow name
-name: Check Library Broken Links
+name: Check Links on Open Research
 
-# Trigger conditions
 on:
-  #schedule:
-  #  - cron: '0 1 * * 3'  # Run weekly on Wed at 01:00
+  schedule:
+    - cron: '0 9 * * 1'  # Run weekly on Monday at 09:00
   workflow_dispatch:  # Allow manual triggering
 
-# Permissions
 permissions:
   contents: write  # Add explicit permission to write to repository
 
-# Jobs
 jobs:
   check_links:
     runs-on: ubuntu-latest
-    
+
     steps:
     # Checkout the repository
     - uses: actions/checkout@v4
@@ -28,7 +25,7 @@ jobs:
       with:
         node-version: '20'
 
-    # Cache Node.js modules for faster builds
+    # Cache Node.js modules to speed up future runs
     - name: Cache Node.js modules
       uses: actions/cache@v4
       with:
@@ -49,21 +46,21 @@ jobs:
     - name: Check for broken links
       run: |
         DATE=$(date +'%Y-%m-%d')
-        REPORT_FILE="reports/lib_links_report_$DATE.csv"
-        linkinator "${{ secrets.LIB_URL }}" --recurse --format CSV > $REPORT_FILE
+        REPORT_FILE="reports/links_report_$DATE.csv"
+        linkinator "${{ secrets.WEBSITE_URL }}" --recurse --format CSV > $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
       continue-on-error: true
     
-    # Check if any 404 errors were found in the report
+    # Analyze the report to check if broken links were found
     - name: Check if broken links were found
       id: check_broken_links
       run: |
-        if grep -q "404" "${{ env.REPORT_FILE }}"; then
+        if grep -qE '\b(404|0)\b' "${{ env.REPORT_FILE }}"; then
           echo "broken_links_found=true" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=Broken 404 links have been detected on the Library website. Please check attached report for all link details." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=Broken links (404 page not found or 0 timeouts) have been detected on the website. Please check the attached report for details." >> $GITHUB_ENV
         else
           echo "broken_links_found=false" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=No 404 broken links found. Please check attached report for all link details." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=No broken links found. All normal page links are working correctly. The attached report may indicate other link issues that you may or may not choose to ignore." >> $GITHUB_ENV
         fi
     
     # Commit the report to the repository
@@ -101,12 +98,13 @@ jobs:
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
         # Email subject
-        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Library website' || 'No Broken Links Found on Library website' }}
+        subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Found on Intro to Open Research' || 'No Broken Links Found on Intro to Open Research' }}
         body: ${{ env.STATUS_MESSAGE }}
         attachments: ${{ env.REPORT_FILE }}
         # Recipient email address
-        to: ${{secrets.EMAIL_RECIPIENT}}
-        # Sender email address 
+        to: n.s.clarkson@soton.ac.uk
+        cc: ${{secrets.EMAIL_RECIPIENT}}
+        # Sender email address
         from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
         priority: normal
         # Optional whether this connection use TLS (default is true if server_port is 465)

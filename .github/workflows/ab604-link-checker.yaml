@@ -1,5 +1,5 @@
 # Workflow name
-name: Check my site
+name: Check links on my site
 
 # Define when the workflow should run
 on:
