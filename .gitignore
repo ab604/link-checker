@@ -5,6 +5,6 @@ old-workflows/
 old-scripts/
 node_modules/
 .venv
-.vscode
+.vscode/
 *.txt
 test.csv
