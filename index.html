@@ -77,7 +77,10 @@
             <button class="tab-button" onclick="loadData('all')">All Links</button>
             <button class="tab-button active" onclick="loadData('404')">Broken Links (404)</button>
         </div>
-
+        <div class="link-table-container">
+            <p>This page has two tables: One table is for all links checked that includes both working and broken (404) links. The other table is only for broken (404) links<br>URL is the checked link. Status is the HTTP status code. Page Found On is the parent page on which the checked link occurs.</p>
+            <input type="text" class="search-box" placeholder="Search links...">
+            <div id="linkTable">
         <div id="linkTable"></div>
     </div>
 
@@ -227,6 +230,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadData('404');
         });
+
+    // Add your JavaScript code here
+    const reportDate = document.getElementById('reportDate');
+    reportDate.textContent = new Date().toLocaleString();
+
+    // Initially show the 404 link table
+    showLinkTable('404');
     </script>
 </body>
 </html>
