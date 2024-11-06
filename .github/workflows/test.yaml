@@ -93,7 +93,7 @@ jobs:
     - name: Run Link Checker
       run: python url-checker.py
       env:
-        LINKS_FILE: reports/test-links-2024-11-06.csv
+        LINKS_FILE: reports/test-links-2024-10-29.csv
 
     # Analyze results and set environment variables for email notification
     - name: Check if broken links were found
