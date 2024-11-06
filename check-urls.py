@@ -21,9 +21,19 @@ class URLChecker:
         self.max_concurrent = max_concurrent
         self.retry_delay = retry_delay
         self.semaphore = asyncio.Semaphore(max_concurrent)  # Initialize semaphore
-        # Set standard headers for requests to mimic browser behavior
+
+        # Get GitHub Actions context
+        run_id = os.environ.get('GITHUB_RUN_ID', 'unknown')
+        workflow_name = os.environ.get('GITHUB_WORKFLOW', 'unknown')
+        repository = os.environ.get('GITHUB_REPOSITORY', 'unknown')
+
+        # Set headers for requests to mimic browser and provide server log tracking
         self.headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...',
+            'User-Agent': f'GitHubActionAZLinkChecker/1.0 (Run:{run_id}; Workflow:{workflow_name}; Repo:{repository})',
+            'X-GitHub-Action-Run': run_id,
+            'X-Workflow-Source': workflow_name,
+            'X-GitHub-Repository': repository,
+            # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
             'Connection': 'keep-alive',
@@ -105,7 +115,7 @@ async def main():
     old_date = (datetime.now() - timedelta(days=7)).strftime('%Y-%m-%d')
     links_file = os.environ.get('LINKS_FILE')
     if not links_file:
-        links_file = f"reports/test-links-{old_date}.csv"
+        links_file = f"reports/get-links-{old_date}.csv"
     os.makedirs('reports', exist_ok=True)
     
     # Initialize URL checker
@@ -117,8 +127,8 @@ async def main():
     )
 
     # Open report files and create CSV writers
-    report_file = f"reports/test-links-report-{date}.csv"
-    report_404_file = f"reports/test-links-404-report-{date}.csv"
+    report_file = f"reports/check-links-report-{date}.csv"
+    report_404_file = f"reports/check-links-404-report-{date}.csv"
     
     with open(report_file, 'w', newline='', encoding='utf-8') as main_csvfile, \
          open(report_404_file, 'w', newline='', encoding='utf-8') as file_404_csvfile:

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Link Checker Report</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.5.2/css/tabulator.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.5.2/js/tabulator.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Roboto, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative; /* Add this for positioning the logo */
+        }
+        .page-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            width: 90px; /* Adjust to match h1 size */
+            height: 90px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .report-date {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        #linkTable {
+            margin-top: 20px;
+            background-color: white;
+        }
+        .tab-buttons {
+            margin-bottom: 20px;
+        }
+        .tab-button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #e0e0e0;
+            cursor: pointer;
+        }
+        .tab-button.active {
+            background-color: #005C84;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+        <h1>Test Link Checker Report</h1>
+        <img src="black-stag.svg" alt="Black Stag Logo" class="logo">
+        </div>
+        <div class="report-date">Report generated: <span id="reportDate"></span></div>
+        
+        <div class="tab-buttons">
+            <button class="tab-button" onclick="loadData('all')">All Links</button>
+            <button class="tab-button active" onclick="loadData('404')">Broken Links (404)</button>
+        </div>
+
+        <div id="linkTable"></div>
+    </div>
+
+    <script>
+        // Initialize table with link formatters
+        let table = new Tabulator("#linkTable", {
+            height: "700px",
+            layout: "fitColumns",
+            pagination: true,
+            paginationSize: 25,
+            columns: [
+                {
+                    title: "URL", 
+                    field: "URL", 
+                    sorter: "string", 
+                    width: 300,
+                    formatter: function(cell) {
+                        const value = cell.getValue();
+                        return value ? `<a href="${value}" target="_blank">${value}</a>` : '';
+                    }
+                },
+                {title: "Status", field: "Status Code", sorter: "string", width: 100},
+                {
+                    title: "Status Emoji",
+                    field: "Status Code",
+                    width: 150,
+                    formatter: function(cell) {
+                        const statusCode = cell.getValue();
+                        if (statusCode === '200') {
+                            return '😺'; // Happy cat for 200 OK
+                        } else if (statusCode === '404') {
+                            return '😿'; // Sad cat for 404 Not Found
+                        } else {
+                            return '🐶'; // Dog for any other status
+                        }
+                    }
+                },
+                {
+                    title: "Page Found On", 
+                    field: "Parent URL", 
+                    sorter: "string",
+                    formatter: function(cell) {
+                        const value = cell.getValue();
+                        return value ? `<a href="${value}" target="_blank">${value}</a>` : '';
+                    }
+                } 
+            ]
+        });
+
+        // Set current date
+        document.getElementById("reportDate").textContent = new Date().toLocaleDateString();
+
+        // Load data function
+        async function loadData(type) {
+            // Update active button
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Load appropriate CSV file
+            const fileName = type === '404' ? 'broken_links.csv' : 'all_links.csv';
+            try {
+                const response = await fetch(fileName);
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                table.setData(data);
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }
+
+        // Advanced CSV parser
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            return lines.slice(1).filter(line => line.trim()).map(line => {
+                const values = [];
+                let currentValue = '';
+                let inQuotes = false;
+                
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    
+                    if (char === '"' && line[i+1] === '"') {
+                        currentValue += '"';
+                        i++;
+                    } else if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        values.push(currentValue.trim());
+                        currentValue = '';
+                    } else {
+                        currentValue += char;
+                    }
+                }
+                
+                // Add the last value
+                values.push(currentValue.trim());
+                
+                // Map values to headers
+                return headers.reduce((obj, header, i) => {
+                    // Remove surrounding quotes if present
+                    let value = values[i];
+                    if (value && value.startsWith('"') && value.endsWith('"')) {
+                        value = value.slice(1, -1);
+                    }
+                    obj[header] = value;
+                    return obj;
+                }, {});
+            });
+        }
+
+
+        // Set current date
+        document.getElementById("reportDate").textContent = new Date().toLocaleDateString();
+
+        // Load data function
+        async function loadData(type) {
+            // Update active button
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+    
+            // If called from a button click, use event.target
+            if (event && event.target) {
+                event.target.classList.add('active');
+            } else {
+                // If called on page load, activate the 404 button
+                document.querySelector('.tab-button[onclick="loadData(\'404\')"]').classList.add('active');
+            }
+
+            // Load appropriate CSV file
+            const fileName = type === '404' ? 'broken_links.csv' : 'all_links.csv';
+            try {
+                const response = await fetch(fileName);
+                const csvText = await response.text();
+                const data = parseCSV(csvText);
+                table.setData(data);
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
+        }   
+
+        // Load broken links when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData('404');
+        });
+    </script>
+</body>
+</html>
