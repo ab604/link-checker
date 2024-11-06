@@ -79,7 +79,7 @@
         </div>
         <div class="link-table-container">
             <p>This page has two tables: One table is for all links checked that includes both working and broken links. The other table is only for broken (404) links<br>URL is the checked link. Status is the HTTP status code. Page Found On is the parent page on which the checked link occurs.</p>
-            <input type="text" class="search-box" placeholder="Search links..." oninput="filterTable()>
+            <input type="text" class="search-box" placeholder="Search links..." oninput="filterTable()">
             <div id="linkTable">
         <div id="linkTable"></div>
     </div>
@@ -228,27 +228,29 @@
 
         // Load broken links when page loads
         document.addEventListener('DOMContentLoaded', () => {
+            const reportDate = document.getElementById('reportDate');
+            reportDate.textContent = new Date().toLocaleString();
+
             loadData('404');
-        });
+            });
+        // Add your JavaScript code here
+        const reportDate = document.getElementById('reportDate');
+        reportDate.textContent = new Date().toLocaleString();
 
-    // Add your JavaScript code here
-    const reportDate = document.getElementById('reportDate');
-    reportDate.textContent = new Date().toLocaleString();
+        function filterTable() {
+          const searchBox = document.querySelector('.search-box');
+          const filter = searchBox.value.toLowerCase();
+          const rows = document.querySelectorAll('#linkTable tr');
 
-    function filterTable() {
-      const searchBox = document.querySelector('.search-box');
-      const filter = searchBox.value.toLowerCase();
-      const rows = document.querySelectorAll('#linkTable tr');
-
-      rows.forEach(row => {
-        const linkText = row.textContent.toLowerCase();
-        if (linkText.includes(filter)) {
-          row.style.display = '';
-        } else {
-          row.style.display = 'none';
+          rows.forEach(row => {
+            const linkText = row.textContent.toLowerCase();
+            if (linkText.includes(filter)) {
+              row.style.display = '';
+            } else {
+              row.style.display = 'none';
+            }
+          });
         }
-      });
-    }
     </script>
 </body>
 </html>
