@@ -1,10 +1,10 @@
 URL,Status Code,Content-Type,Parent URL,Input Line
 https://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,https://library.soton.ac.uk,2
 https://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,https://library.soton.ac.uk,3
-https://library.soton.ac.uk/returntocampus,Timeout after 15 seconds,,https://library.soton.ac.uk,4
+https://library.soton.ac.uk/returntocampus,200,text/html; charset=UTF-8,https://library.soton.ac.uk,4
 https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,200,text/html; charset=UTF-8,https://library.soton.ac.uk,5
-https://library.soton.ac.uk/blog,Timeout after 15 seconds,,https://library.soton.ac.uk,6
-https://library.soton.ac.uk/home/feedback,Timeout after 15 seconds,,https://library.soton.ac.uk,7
+https://library.soton.ac.uk/blog,200,text/html; charset=UTF-8,https://library.soton.ac.uk,6
+https://library.soton.ac.uk/home/feedback,200,text/html; charset=UTF-8,https://library.soton.ac.uk,7
 https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,200,text/html; charset=UTF-8,https://library.soton.ac.uk,8
 https://library.soton.ac.uk/homepage,200,text/html; charset=UTF-8,https://library.soton.ac.uk,9
 https://library.soton.ac.uk/nol,200,text/html; charset=UTF-8,https://library.soton.ac.uk,10
@@ -14,23 +14,23 @@ https://library.soton.ac.uk/opening,200,text/html; charset=UTF-8,https://library
 https://library.soton.ac.uk/home/keycontacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk,14
 https://library.soton.ac.uk/Accessibility-Fire-Safety,200,text/html; charset=UTF-8,https://library.soton.ac.uk,15
 https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk,16
-https://library.soton.ac.uk/researchdata,Timeout after 15 seconds,,https://library.soton.ac.uk,17
+https://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,https://library.soton.ac.uk,17
 https://www.southampton.ac.uk/isolutions/getting-help/index.page,200,text/html; charset=utf-8,https://library.soton.ac.uk,18
 https://library.soton.ac.uk/openaccess/finding-open-access,200,text/html; charset=UTF-8,https://library.soton.ac.uk,19
 https://www.southampton.ac.uk/archives,200,text/html; charset=utf-8,https://library.soton.ac.uk,20
 https://www.thinglink.com/card/1734893194337845734,200,text/html;charset=UTF-8,https://library.soton.ac.uk,21
 https://www.southampton.ac.uk/library/regulations/ejournals.page,200,text/html; charset=UTF-8,https://library.soton.ac.uk,22
-https://library.soton.ac.uk/nhs,200,text/html; charset=UTF-8,https://library.soton.ac.uk,23
+https://library.soton.ac.uk/nhs,Timeout after 15 seconds,,https://library.soton.ac.uk,23
 https://library.soton.ac.uk/library,200,text/html; charset=UTF-8,https://library.soton.ac.uk,24
 https://library.soton.ac.uk/openaccess,200,text/html; charset=UTF-8,https://library.soton.ac.uk,25
 https://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,https://library.soton.ac.uk,26
 https://library.soton.ac.uk/home/resourceinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk,27
-https://library.soton.ac.uk/appointment,200,text/html; charset=UTF-8,https://library.soton.ac.uk,28
+https://library.soton.ac.uk/appointment,Timeout after 15 seconds,,https://library.soton.ac.uk,28
 https://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,https://library.soton.ac.uk,29
 https://library.soton.ac.uk/wsa,200,text/html; charset=UTF-8,https://library.soton.ac.uk,30
 https://library.soton.ac.uk/customer-service/visit,200,text/html; charset=UTF-8,https://library.soton.ac.uk,31
 https://www.instagram.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk,32
-https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https://library.soton.ac.uk,33
+https://library.soton.ac.uk/research/training,Timeout after 15 seconds,,https://library.soton.ac.uk,33
 https://library.soton.ac.uk/wsa/specialcollections,200,text/html; charset=UTF-8,https://library.soton.ac.uk,34
 https://twitter.com/UniSotonLibrary,200,text/html; charset=utf-8,https://library.soton.ac.uk,35
 https://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,https://library.soton.ac.uk,36
@@ -58,13 +58,13 @@ https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,https://library.
 https://library.soton.ac.uk/sash/online-reading-lists,200,text/html; charset=UTF-8,https://library.soton.ac.uk,58
 https://library.soton.ac.uk/supporting-staff/resources,200,text/html; charset=UTF-8,https://library.soton.ac.uk,59
 https://library.soton.ac.uk/identifiers/research/publicid/home,200,text/html; charset=UTF-8,https://library.soton.ac.uk,60
-https://library.soton.ac.uk/systematic-reviews,200,text/html; charset=UTF-8,https://library.soton.ac.uk,61
+https://library.soton.ac.uk/systematic-reviews,Timeout after 15 seconds,,https://library.soton.ac.uk,61
 https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html; charset=utf-8,https://library.soton.ac.uk,62
-https://library.soton.ac.uk/home/contact,Timeout after 15 seconds,,https://library.soton.ac.uk,63
+https://library.soton.ac.uk/home/contact,200,text/html; charset=UTF-8,https://library.soton.ac.uk,63
 https://library.soton.ac.uk/libraryprojects,200,text/html; charset=UTF-8,https://library.soton.ac.uk,64
 https://library.soton.ac.uk/wsa/dalian,200,text/html; charset=UTF-8,https://library.soton.ac.uk,65
 https://library.soton.ac.uk/library-exhibition-spaces,200,text/html; charset=UTF-8,https://library.soton.ac.uk,66
-https://library.soton.ac.uk/ill,Timeout after 15 seconds,,https://library.soton.ac.uk,67
+https://library.soton.ac.uk/ill,200,text/html; charset=UTF-8,https://library.soton.ac.uk,67
 https://library.soton.ac.uk/hsl,200,text/html; charset=UTF-8,https://library.soton.ac.uk,68
 https://www.southampton.ac.uk/archives/,200,text/html; charset=utf-8,https://library.soton.ac.uk,69
 https://library.soton.ac.uk/sash/workshops/online-training,200,text/html; charset=UTF-8,https://library.soton.ac.uk,70
@@ -75,22 +75,22 @@ https://www.southampton.ac.uk/library,200,text/html; charset=utf-8,https://libra
 https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https://library.soton.ac.uk,75
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk,76
 https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,https://library.soton.ac.uk,77
-https://library.soton.ac.uk,Timeout after 15 seconds,,https://library.soton.ac.uk,78
+https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk,78
 https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk,79
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,https://library.soton.ac.uk,80
 https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk,81
-https://library.soton.ac.uk/copyright/researchers,200,text/html; charset=UTF-8,https://library.soton.ac.uk,82
+https://library.soton.ac.uk/copyright/researchers,Timeout after 15 seconds,,https://library.soton.ac.uk,82
 https://library.soton.ac.uk/librarycatalogues,200,text/html; charset=UTF-8,https://library.soton.ac.uk,83
 https://archives.soton.ac.uk/,200,text/html; charset=utf-8,https://library.soton.ac.uk,84
 https://southampton.on.worldcat.org/advancedsearch,200,text/html;charset=utf-8,https://library.soton.ac.uk,85
 https://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,86
-https://library.soton.ac.uk/hartley,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,87
+https://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,87
 http://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,88
-https://library.soton.ac.uk/home/feedback,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,89
+https://library.soton.ac.uk/home/feedback,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,89
 http://library.soton.ac.uk/artistsbooks,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,90
 https://blackboard.soton.ac.uk/,200,text/html; charset=utf-8,https://library.soton.ac.uk/wsa/dalian,91
 http://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,92
-https://library.soton.ac.uk/c.php?g=131315&p=4709318,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,93
+https://library.soton.ac.uk/c.php?g=131315&p=4709318,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,93
 https://library.soton.ac.uk/nol,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,94
 https://library.soton.ac.uk/wsa/visionaire,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,95
 https://www.southampton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,96
@@ -103,29 +103,29 @@ https://library.soton.ac.uk/openaccess,200,text/html; charset=UTF-8,https://libr
 https://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,103
 https://library.soton.ac.uk/home/resourceinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,104
 https://library.soton.ac.uk/appointment,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,105
-https://library.soton.ac.uk/newspaperresources,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,106
+https://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,106
 https://library.soton.ac.uk/wsa,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,107
 https://www.instagram.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk/wsa/dalian,108
-https://library.soton.ac.uk/research/training,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,109
+https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,109
 https://library.soton.ac.uk/wsa/specialcollections,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,110
 https://library.soton.ac.uk/wsa/opening,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,111
 https://library.soton.ac.uk/sb.php?subject_id=29730,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,112
 https://twitter.com/UniSotonLibrary,200,text/html; charset=utf-8,https://library.soton.ac.uk/wsa/dalian,113
-https://library.soton.ac.uk/sash,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,114
+https://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,114
 https://library.soton.ac.uk/thesis,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,115
 http://library.soton.ac.uk/home/subjects,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,116
 https://library.soton.ac.uk/malaysia,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,117
-https://library.soton.ac.uk/laptoploans,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,118
+https://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,118
 https://library.soton.ac.uk/research,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,119
 https://library.soton.ac.uk/loans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,120
 https://pastexampapers.soton.ac.uk/,200,text/html; charset=utf-8,https://library.soton.ac.uk/wsa/dalian,121
-https://library.soton.ac.uk/home/subjects,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,122
+https://library.soton.ac.uk/home/subjects,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,122
 https://southampton.on.worldcat.org/discovery,200,text/html;charset=utf-8,https://library.soton.ac.uk/wsa/dalian,123
 https://library.soton.ac.uk/techinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,124
 http://www.southampton.ac.uk/delphis,200,text/html; charset=utf-8,https://library.soton.ac.uk/wsa/dalian,125
 https://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,126
-https://library.soton.ac.uk/international,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,127
-https://library.soton.ac.uk/digital-scholarship,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,128
+https://library.soton.ac.uk/international,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,127
+https://library.soton.ac.uk/digital-scholarship,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,128
 https://library.soton.ac.uk/c.php?g=131315&p=4709257,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,129
 https://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,130
 https://sotonproduction.service-now.com/$sn-va-web-client-app.do?sysparm_skip_load_history=true&sysparm_branding_key=uos_chat,200,text/html;charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,131
@@ -154,8 +154,8 @@ https://www.southampton.ac.uk/library,200,text/html; charset=utf-8,https://libra
 https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,154
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,155
 https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,156
-https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,157
-https://library.soton.ac.uk/research/contacts,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,158
+https://library.soton.ac.uk,Timeout after 15 seconds,,https://library.soton.ac.uk/wsa/dalian,157
+https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,158
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,https://library.soton.ac.uk/wsa/dalian,159
 https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,160
 https://library.soton.ac.uk/copyright/researchers,200,text/html; charset=UTF-8,https://library.soton.ac.uk/wsa/dalian,161
@@ -165,7 +165,7 @@ https://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,https:/
 http://library.soton.ac.uk/home/resourceinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,165
 https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html; charset=utf-8,https://library.soton.ac.uk/document-supply,166
 https://www.southampton.ac.uk/library/regulations/ejournals.page,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,167
-https://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,168
+https://library.soton.ac.uk/hartley,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,168
 https://library.soton.ac.uk/srch.php?tag=PDF&default_lg=1,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,169
 https://library.soton.ac.uk/ill,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,170
 http://library.soton.ac.uk/wsa,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,171
@@ -174,18 +174,18 @@ https://pastexampapers.soton.ac.uk/,200,text/html; charset=utf-8,https://library
 https://library.soton.ac.uk/loans/postal_loans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,174
 https://oatd.org/,403,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,175
 https://library.soton.ac.uk/home/subjects,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,176
-https://library.soton.ac.uk/openaccess,Connection error: [Errno 104] Connection reset by peer,,https://library.soton.ac.uk/document-supply,177
+https://library.soton.ac.uk/openaccess,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,177
 https://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,178
-https://library.soton.ac.uk/hsl,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,179
+https://library.soton.ac.uk/hsl,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,179
 https://www.southampton.ac.uk/archives/,200,text/html; charset=utf-8,https://library.soton.ac.uk/document-supply,180
 https://library.soton.ac.uk/srch.php?tag=document+supply&default_lg=1,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,181
 https://library.soton.ac.uk/home/resourceinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,182
 https://library.soton.ac.uk/home/feedback,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,183
 https://southampton.on.worldcat.org/discovery,200,text/html;charset=utf-8,https://library.soton.ac.uk/document-supply,184
 https://library.soton.ac.uk/appointment,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,185
-https://library.soton.ac.uk/techinfo,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,186
+https://library.soton.ac.uk/techinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,186
 https://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,187
-https://library.soton.ac.uk/wsa,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,188
+https://library.soton.ac.uk/wsa,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,188
 https://eprints.soton.ac.uk/,200,text/html; charset=utf-8,https://library.soton.ac.uk/document-supply,189
 https://www.instagram.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk/document-supply,190
 https://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,191
@@ -194,7 +194,7 @@ https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https
 https://library.soton.ac.uk/sb.php?subject_id=29956,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,194
 http://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,195
 https://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,196
-http://library.soton.ac.uk/ldu,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,197
+http://library.soton.ac.uk/ldu,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,197
 https://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,198
 https://southampton.libapps.com/libapps/login.php,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,199
 https://twitter.com/UniSotonLibrary,200,text/html; charset=utf-8,https://library.soton.ac.uk/document-supply,200
@@ -202,25 +202,25 @@ https://library.soton.ac.uk/nol,200,text/html; charset=UTF-8,https://library.sot
 https://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,202
 https://www.southampton.ac.uk/library,200,text/html; charset=utf-8,https://library.soton.ac.uk/document-supply,203
 https://library.soton.ac.uk/LibrarySearch,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,204
-https://library.soton.ac.uk/bibliometrics,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,205
+https://library.soton.ac.uk/bibliometrics,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,205
 https://www.southampton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,206
 https://library.soton.ac.uk/thesis,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,207
 https://dropoff.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,208
 https://www.youtube.com/channel/UCmTW2BlHinv-zLe7a9XG3Og,200,text/html; charset=utf-8,https://library.soton.ac.uk/document-supply,209
 http://library.soton.ac.uk/nol,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,210
 https://library.soton.ac.uk/malaysia,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,211
-https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,212
+https://library.soton.ac.uk/offcampus_access,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,212
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,213
 https://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,214
 https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,215
 https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,216
-https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,217
+https://library.soton.ac.uk/research/contacts,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,217
 https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,https://library.soton.ac.uk/document-supply,218
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,https://library.soton.ac.uk/document-supply,219
 https://library.soton.ac.uk/home/keycontacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,220
 https://library.soton.ac.uk/Accessibility-Fire-Safety,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,221
 https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk/document-supply,222
-https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,223
+https://library.soton.ac.uk/,Timeout after 15 seconds,,https://library.soton.ac.uk/document-supply,223
 http://ethos.bl.uk/Home.do,404,text/html,https://library.soton.ac.uk/document-supply,224
 https://library.soton.ac.uk/srch.php?tag=digitisation&default_lg=1,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,225
 https://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,https://library.soton.ac.uk/document-supply,226
@@ -242,7 +242,7 @@ https://www.southampton.ac.uk/library/regulations/ejournals.page,200,text/html; 
 https://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,242
 http://library.soton.ac.uk/engagement,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,243
 https://library.soton.ac.uk/ill,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,244
-https://library.soton.ac.uk/loans,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley,245
+https://library.soton.ac.uk/loans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,245
 https://pastexampapers.soton.ac.uk/,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley,246
 https://libcal.soton.ac.uk/hours/,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley,247
 https://library.soton.ac.uk/home/subjects,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,248
@@ -275,7 +275,7 @@ https://southampton.libapps.com/libapps/login.php,200,text/html; charset=UTF-8,h
 https://twitter.com/UniSotonLibrary,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley,275
 https://library.soton.ac.uk/sb.php?subject_id=29730,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,276
 https://library.soton.ac.uk/nol,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,277
-https://library.soton.ac.uk/sash,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley,278
+https://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,278
 https://www.southampton.ac.uk/library,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley,279
 https://library.soton.ac.uk/bibliometrics,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,280
 https://go.soton.ac.uk/dfh,200,text/html;charset=UTF-8,https://library.soton.ac.uk/hartley,281
@@ -288,15 +288,15 @@ https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https:
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,288
 https://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,289
 https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,290
-https://library.soton.ac.uk,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley,291
+https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,291
 https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,292
-https://library.soton.ac.uk/az.php,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley,293
+https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley,293
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley,294
-https://library.soton.ac.uk/home/keycontacts,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley,295
+https://library.soton.ac.uk/home/keycontacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,295
 https://library.soton.ac.uk/Accessibility-Fire-Safety,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,296
 https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk/hartley,297
-https://library.soton.ac.uk/,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley,298
-https://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,299
+https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,298
+https://library.soton.ac.uk/researchdata,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley,299
 https://library.soton.ac.uk/identifiers/research/publicid/home,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,300
 https://library.soton.ac.uk/hartley/about-us,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,301
 https://library.soton.ac.uk/copyright/researchers,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley,302
@@ -336,7 +336,7 @@ https://library.soton.ac.uk/customer-service/visit,200,text/html; charset=UTF-8,
 https://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,336
 https://www.instagram.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk/returntocampus,337
 https://library.soton.ac.uk/digital-scholarship,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,338
-https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,339
+https://library.soton.ac.uk/research/training,Timeout after 15 seconds,,https://library.soton.ac.uk/returntocampus,339
 https://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,340
 https://myprint.soton.ac.uk/,200,text/html;charset=utf-8,https://library.soton.ac.uk/returntocampus,341
 https://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,342
@@ -358,12 +358,12 @@ https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https:
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,358
 https://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,359
 https://www.southampton.ac.uk/edusupport/index.page,200,text/html; charset=utf-8,https://library.soton.ac.uk/returntocampus,360
-https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,Timeout after 15 seconds,,https://library.soton.ac.uk/returntocampus,361
+https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,361
 https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,362
 https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,363
 https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,https://library.soton.ac.uk/returntocampus,364
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,https://library.soton.ac.uk/returntocampus,365
-https://library.soton.ac.uk/home/keycontacts,Timeout after 15 seconds,,https://library.soton.ac.uk/returntocampus,366
+https://library.soton.ac.uk/home/keycontacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,366
 https://library.soton.ac.uk/Accessibility-Fire-Safety,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,367
 https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk/returntocampus,368
 https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/returntocampus,369
@@ -420,10 +420,10 @@ https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UK
 https://library.soton.ac.uk/thesis,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,420
 https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer?tag_id=29726,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,421
 https://library.soton.ac.uk/malaysia,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,422
-https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,423
+https://library.soton.ac.uk/offcampus_access,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,423
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,424
 https://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,425
-https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer?tag_id=29731,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,426
+https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer?tag_id=29731,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,426
 https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,427
 https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,428
 https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,429
@@ -514,7 +514,7 @@ https://library.soton.ac.uk/wsa/dalian,200,text/html; charset=UTF-8,http://libra
 http://library.soton.ac.uk/home/resourceinfo,200,text/html; charset=UTF-8,http://library.soton.ac.uk/wsa/dalian,514
 https://library.soton.ac.uk/wsa/archive,200,text/html; charset=UTF-8,http://library.soton.ac.uk/wsa/dalian,515
 https://library.soton.ac.uk/wsa/home,200,text/html; charset=UTF-8,http://library.soton.ac.uk/wsa/dalian,516
-http://library.soton.ac.uk/digital-scholarship,200,text/html; charset=UTF-8,http://library.soton.ac.uk/wsa/dalian,517
+http://library.soton.ac.uk/digital-scholarship,Timeout after 15 seconds,,http://library.soton.ac.uk/wsa/dalian,517
 https://www.southampton.ac.uk/library/regulations/ejournals.page,200,text/html; charset=UTF-8,http://library.soton.ac.uk/wsa/dalian,518
 http://library.soton.ac.uk/ill,200,text/html; charset=UTF-8,http://library.soton.ac.uk/wsa/dalian,519
 http://library.soton.ac.uk/home/contact,200,text/html; charset=UTF-8,http://library.soton.ac.uk/wsa/dalian,520
@@ -674,7 +674,7 @@ https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.
 https://library.soton.ac.uk/copyright/researchers,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog,674
 https://library.soton.ac.uk/librarycatalogues,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog,675
 https://library.soton.ac.uk/wsa/dalian,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,676
-https://library.soton.ac.uk/document-supply,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley/opening,677
+https://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,677
 https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley/opening,678
 https://library.soton.ac.uk/hartley/home,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,679
 https://www.southampton.ac.uk/library/regulations/ejournals.page,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,680
@@ -699,7 +699,7 @@ https://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,https://libra
 https://library.soton.ac.uk/hartley/hartleyfloorplans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,699
 https://library.soton.ac.uk/digital-scholarship,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,700
 https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,701
-http://library.soton.ac.uk/Accessibility-Fire-Safety,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley/opening,702
+http://library.soton.ac.uk/Accessibility-Fire-Safety,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,702
 https://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,703
 https://library.soton.ac.uk/c.php?g=131349&p=5188372,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,704
 https://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/opening,705
@@ -786,7 +786,7 @@ https://library.soton.ac.uk/home/keycontacts,200,text/html; charset=UTF-8,https:
 https://library.soton.ac.uk/home/services,200,text/html; charset=UTF-8,https://library.soton.ac.uk/home/feedback,786
 https://library.soton.ac.uk/Accessibility-Fire-Safety,200,text/html; charset=UTF-8,https://library.soton.ac.uk/home/feedback,787
 https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk/home/feedback,788
-https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/home/feedback,789
+https://library.soton.ac.uk/,Timeout after 15 seconds,,https://library.soton.ac.uk/home/feedback,789
 https://library.soton.ac.uk/home/collections,200,text/html; charset=UTF-8,https://library.soton.ac.uk/home/feedback,790
 https://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,https://library.soton.ac.uk/home/feedback,791
 https://library.soton.ac.uk/identifiers/research/publicid/home,200,text/html; charset=UTF-8,https://library.soton.ac.uk/home/feedback,792
@@ -832,7 +832,7 @@ http://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,http://l
 http://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,832
 https://library.soton.ac.uk/business,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,833
 http://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,834
-http://library.soton.ac.uk,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,835
+http://library.soton.ac.uk,Timeout after 15 seconds,,http://library.soton.ac.uk/malaysia,835
 https://library.soton.ac.uk/malaysia/student,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,836
 http://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,837
 http://library.soton.ac.uk/bibliometrics,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,838
@@ -858,7 +858,7 @@ http://library.soton.ac.uk/librarycatalogues,200,text/html; charset=UTF-8,http:/
 http://library.soton.ac.uk/techinfo,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,858
 https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",http://library.soton.ac.uk/malaysia,859
 http://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,860
-https://library.soton.ac.uk/,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,861
+https://library.soton.ac.uk/,Timeout after 15 seconds,,http://library.soton.ac.uk/malaysia,861
 http://library.soton.ac.uk/systematic-reviews,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,862
 http://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,863
 http://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,864
@@ -866,7 +866,7 @@ https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html
 http://library.soton.ac.uk/hsl,200,text/html; charset=UTF-8,http://library.soton.ac.uk/malaysia,866
 https://southampton.on.worldcat.org/advancedsearch,200,text/html;charset=utf-8,http://library.soton.ac.uk/malaysia,867
 http://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,868
-http://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,869
+http://library.soton.ac.uk/laptoploans,Connection error: [Errno 104] Connection reset by peer,,http://library.soton.ac.uk/artistsbooks,869
 http://library.soton.ac.uk/appointment,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,870
 http://library.soton.ac.uk/home/resourceinfo,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,871
 http://library.soton.ac.uk/digital-scholarship,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,872
@@ -912,7 +912,7 @@ https://southampton.libapps.com/libapps/login.php,200,text/html; charset=UTF-8,h
 https://library.soton.ac.uk/artistsbooks,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,912
 https://www.southampton.ac.uk/library,200,text/html; charset=utf-8,http://library.soton.ac.uk/artistsbooks,913
 https://www.southampton.ac.uk/,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,914
-http://library.soton.ac.uk/research/training,Timeout after 15 seconds,,http://library.soton.ac.uk/artistsbooks,915
+http://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,915
 http://library.soton.ac.uk/openaccess,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,916
 http://library.soton.ac.uk/home/subjects,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,917
 https://www-lib.soton.ac.uk/uhtbin/cgisirsi/x/0/0/57/5/3?searchdata1=728864%7BCKEY%7D&searchfield1=GENERAL%5ESUBJECT%5EGENERAL%5E%5E&user_id=WEBSERVER,200,text/html;charset=utf-8,http://library.soton.ac.uk/artistsbooks,918
@@ -927,7 +927,7 @@ http://library.soton.ac.uk/librarycatalogues,200,text/html; charset=UTF-8,http:/
 http://library.soton.ac.uk/techinfo,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,927
 https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",http://library.soton.ac.uk/artistsbooks,928
 http://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,929
-https://library.soton.ac.uk/,Timeout after 15 seconds,,http://library.soton.ac.uk/artistsbooks,930
+https://library.soton.ac.uk/,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,930
 https://library.soton.ac.uk/sash/online-reading-lists,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,931
 http://library.soton.ac.uk/systematic-reviews,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,932
 http://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,933
@@ -936,7 +936,7 @@ http://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,htt
 https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html; charset=utf-8,http://library.soton.ac.uk/artistsbooks,936
 http://library.soton.ac.uk/hsl,200,text/html; charset=UTF-8,http://library.soton.ac.uk/artistsbooks,937
 https://southampton.on.worldcat.org/advancedsearch,200,text/html;charset=utf-8,http://library.soton.ac.uk/artistsbooks,938
-http://library.soton.ac.uk/laptoploans,Timeout after 15 seconds,,http://library.soton.ac.uk/sash,939
+http://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,939
 https://library.soton.ac.uk/srch.php?tag=study+support&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,940
 http://library.soton.ac.uk/home/contact,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,941
 http://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,942
@@ -987,7 +987,7 @@ http://library.soton.ac.uk/systematic-reviews,200,text/html; charset=UTF-8,http:
 https://library.soton.ac.uk/srch.php?tag=skills+hub&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,987
 https://library.soton.ac.uk/srch.php?tag=enhancement&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,988
 http://library.soton.ac.uk/hsl,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,989
-http://library.soton.ac.uk/sash/critical-thinking,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,990
+http://library.soton.ac.uk/sash/critical-thinking,Timeout after 15 seconds,,http://library.soton.ac.uk/sash,990
 http://library.soton.ac.uk/appointment,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,991
 https://www.skillsforstudy.com/walkthrough-videos,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,992
 https://pastexampapers.soton.ac.uk/,200,text/html; charset=utf-8,http://library.soton.ac.uk/sash,993
@@ -1002,16 +1002,16 @@ https://library.soton.ac.uk/sash/assignment-planner,200,text/html; charset=UTF-8
 http://library.soton.ac.uk/openaccess,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,2
 https://www.youtube.com/channel/UCmTW2BlHinv-zLe7a9XG3Og,200,text/html; charset=utf-8,http://library.soton.ac.uk/sash,3
 http://library.soton.ac.uk/nol,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,4
-https://library.soton.ac.uk/srch.php?tag=stats+help&default_lg=1,Timeout after 15 seconds,,http://library.soton.ac.uk/sash,5
+https://library.soton.ac.uk/srch.php?tag=stats+help&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,5
 https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,http://library.soton.ac.uk/sash,6
 https://library.soton.ac.uk/srch.php?tag=help+with+maths&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,7
 https://library.soton.ac.uk/srch.php?tag=help+with+stats&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,8
-https://library.soton.ac.uk/srch.php?tag=writing+help&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,9
+https://library.soton.ac.uk/srch.php?tag=writing+help&default_lg=1,Timeout after 15 seconds,,http://library.soton.ac.uk/sash,9
 https://library.soton.ac.uk/sash/time-management,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,10
 https://library.soton.ac.uk/AS_heretohelp,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,11
 https://library.soton.ac.uk/srch.php?tag=help+with+writing&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,12
-http://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,13
-http://library.soton.ac.uk/officialpublications,Timeout after 15 seconds,,http://library.soton.ac.uk/sash,14
+http://library.soton.ac.uk/diversity,Connection error: [Errno 104] Connection reset by peer,,http://library.soton.ac.uk/sash,13
+http://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,14
 https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html; charset=utf-8,http://library.soton.ac.uk/sash,15
 http://library.soton.ac.uk/sash/research-methods,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,16
 https://forms.office.com/r/wdv4Eafep4,200,text/html; charset=utf-8,http://library.soton.ac.uk/sash,17
@@ -1029,10 +1029,10 @@ https://library.soton.ac.uk/maths-stats-home,200,text/html; charset=UTF-8,http:/
 https://library.soton.ac.uk/sash/academic-conduct-meeting,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,29
 https://library.soton.ac.uk/digital_skills_for_study/home,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,30
 https://library.soton.ac.uk/sash/workshops/online-training,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,31
-http://library.soton.ac.uk/sash/copyright,Timeout after 15 seconds,,http://library.soton.ac.uk/sash,32
+http://library.soton.ac.uk/sash/copyright,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,32
 http://library.soton.ac.uk/sash/primary-research,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,33
 https://library.soton.ac.uk/srch.php?tag=statistics+skills&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,34
-http://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,35
+http://library.soton.ac.uk/hartley,Timeout after 15 seconds,,http://library.soton.ac.uk/sash,35
 http://library.soton.ac.uk/research,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,36
 http://library.soton.ac.uk/sash/exams,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,37
 http://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,38
@@ -1043,7 +1043,7 @@ https://library.soton.ac.uk?group_id=16143,200,text/html; charset=UTF-8,http://l
 https://help.soton.ac.uk/$sn-va-web-client-app.do?sysparm_skip_load_history=true&sysparm_branding_key=uos_chat,200,text/html;charset=UTF-8,http://library.soton.ac.uk/sash,43
 https://www.southampton.ac.uk/library,200,text/html; charset=utf-8,http://library.soton.ac.uk/sash,44
 http://library.soton.ac.uk/sash/referencing-software,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,45
-http://library.soton.ac.uk/sash/introduction-to-research-skills,Timeout after 15 seconds,,http://library.soton.ac.uk/sash,46
+http://library.soton.ac.uk/sash/introduction-to-research-skills,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,46
 https://library.soton.ac.uk/support-services/home,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,47
 https://library.soton.ac.uk/srch.php?tag=maths+skills&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,48
 https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,49
@@ -1052,14 +1052,14 @@ https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; 
 https://library.soton.ac.uk/srch.php?tag=academic+skills&default_lg=1,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,52
 https://library.soton.ac.uk/,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash,53
 https://library.soton.ac.uk/wsa/dalian,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,54
-https://library.soton.ac.uk/document-supply,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,55
+https://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,55
 https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html; charset=utf-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,56
 https://www.southampton.ac.uk/library/regulations/ejournals.page,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,57
 https://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,58
 https://library.soton.ac.uk/ill,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,59
 https://library.soton.ac.uk/loans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,60
 https://pastexampapers.soton.ac.uk/,200,text/html; charset=utf-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,61
-https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,62
+https://library.soton.ac.uk/blog/Are-you-interested-in-Open-Research-Become-a-UKRN-accredited-trainer,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,62
 https://library.soton.ac.uk/home/subjects,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,63
 https://library.soton.ac.uk/openaccess,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,64
 https://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,65
@@ -1075,7 +1075,7 @@ https://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,http
 https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts#comments,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,75
 https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts?tag_id=29727,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,76
 https://library.soton.ac.uk/wsa,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,77
-https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,78
+https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,78
 https://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,79
 https://library.soton.ac.uk/digital-scholarship,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,80
 https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,81
@@ -1092,9 +1092,9 @@ https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts?tag
 https://www.southampton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,92
 https://library.soton.ac.uk/thesis,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,93
 https://library.soton.ac.uk/malaysia,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,94
-https://library.soton.ac.uk/offcampus_access,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,95
+https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,95
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,96
-https://library.soton.ac.uk/laptoploans,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,97
+https://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,97
 https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,98
 https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,99
 https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,100
@@ -1111,13 +1111,13 @@ https://library.soton.ac.uk/systematic-reviews,200,text/html; charset=UTF-8,http
 https://library.soton.ac.uk/research,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,111
 https://library.soton.ac.uk/home/contact,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,112
 https://library.soton.ac.uk/wsa/dalian,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,113
-https://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,114
+https://library.soton.ac.uk/document-supply,Timeout after 15 seconds,,https://library.soton.ac.uk/c.php?g=131315&p=4709318,114
 https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html; charset=utf-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,115
 https://library.soton.ac.uk/wsa/archive,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,116
-https://library.soton.ac.uk/wsa/home,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,117
+https://library.soton.ac.uk/wsa/home,Timeout after 15 seconds,,https://library.soton.ac.uk/c.php?g=131315&p=4709318,117
 https://www.southampton.ac.uk/library/regulations/ejournals.page,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,118
 https://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,119
-https://library.soton.ac.uk/ill,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,120
+https://library.soton.ac.uk/ill,Timeout after 15 seconds,,https://library.soton.ac.uk/c.php?g=131315&p=4709318,120
 https://library.soton.ac.uk/loans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,121
 https://pastexampapers.soton.ac.uk/,200,text/html; charset=utf-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,122
 https://library.soton.ac.uk/home/subjects,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,123
@@ -1132,7 +1132,7 @@ https://library.soton.ac.uk/appointment,200,text/html; charset=UTF-8,https://lib
 http://library.soton.ac.uk/artistsbooks,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,132
 https://library.soton.ac.uk/techinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,133
 https://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,134
-https://library.soton.ac.uk/wsa,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,135
+https://library.soton.ac.uk/wsa,Timeout after 15 seconds,,https://library.soton.ac.uk/c.php?g=131315&p=4709318,135
 https://library.soton.ac.uk/c.php?g=131315&p=4709318,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,136
 https://www.instagram.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",https://library.soton.ac.uk/c.php?g=131315&p=4709318,137
 https://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,138
@@ -1153,12 +1153,12 @@ https://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,https://library.so
 https://library.soton.ac.uk/wsa/WSAPhotoTour,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,153
 https://www.southampton.ac.uk/library,200,text/html; charset=utf-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,154
 https://library.soton.ac.uk/wsa/visionaire,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,155
-https://library.soton.ac.uk/bibliometrics,Timeout after 15 seconds,,https://library.soton.ac.uk/c.php?g=131315&p=4709318,156
+https://library.soton.ac.uk/bibliometrics,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,156
 https://www.southampton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,157
 https://library.soton.ac.uk/thesis,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,158
 https://www.youtube.com/channel/UCmTW2BlHinv-zLe7a9XG3Og,200,text/html; charset=utf-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,159
 https://library.soton.ac.uk/malaysia,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,160
-https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,161
+https://library.soton.ac.uk/offcampus_access,Timeout after 15 seconds,,https://library.soton.ac.uk/c.php?g=131315&p=4709318,161
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,162
 https://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,163
 https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131315&p=4709318,164
@@ -1212,19 +1212,19 @@ https://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,https://
 https://southampton.libapps.com/libapps/login.php,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,212
 https://twitter.com/UniSotonLibrary,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,213
 https://library.soton.ac.uk/sb.php?subject_id=29730,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,214
-https://library.soton.ac.uk/nol,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley/hartleyfloorplans,215
+https://library.soton.ac.uk/nol,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,215
 https://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,216
 https://www.southampton.ac.uk/library,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,217
 https://library.soton.ac.uk/bibliometrics,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,218
 https://www.southampton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,219
-https://library.soton.ac.uk/thesis,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,220
+https://library.soton.ac.uk/thesis,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley/hartleyfloorplans,220
 https://www.youtube.com/channel/UCmTW2BlHinv-zLe7a9XG3Og,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,221
-https://library.soton.ac.uk/malaysia,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley/hartleyfloorplans,222
-https://library.soton.ac.uk/offcampus_access,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley/hartleyfloorplans,223
+https://library.soton.ac.uk/malaysia,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,222
+https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,223
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,224
 https://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,225
 https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,226
-https://library.soton.ac.uk,Timeout after 15 seconds,,https://library.soton.ac.uk/hartley/hartleyfloorplans,227
+https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,227
 https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,228
 https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,229
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,https://library.soton.ac.uk/hartley/hartleyfloorplans,230
@@ -1263,7 +1263,7 @@ http://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,http://li
 http://library.soton.ac.uk/wsa/dalian,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,263
 https://www.southampton.ac.uk/archives/,200,text/html; charset=utf-8,http://library.soton.ac.uk/loans,264
 https://www.southampton.ac.uk/alumni-supporters/benefits/alumni-id-card.page,200,text/html; charset=utf-8,http://library.soton.ac.uk/loans,265
-https://library.soton.ac.uk/returntocampus/postalreturns,Timeout after 15 seconds,,http://library.soton.ac.uk/loans,266
+https://library.soton.ac.uk/returntocampus/postalreturns,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,266
 http://library.soton.ac.uk/malaysia,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,267
 https://southampton.on.worldcat.org/discovery,200,text/html;charset=utf-8,http://library.soton.ac.uk/loans,268
 https://library.soton.ac.uk/sb.php?subject_id=29725,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,269
@@ -1279,7 +1279,7 @@ http://library.soton.ac.uk/research,200,text/html; charset=UTF-8,http://library.
 http://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,279
 http://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,280
 http://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,281
-http://library.soton.ac.uk,Timeout after 15 seconds,,http://library.soton.ac.uk/loans,282
+http://library.soton.ac.uk,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,282
 https://twitter.com/UniSotonLibrary,200,text/html; charset=utf-8,http://library.soton.ac.uk/loans,283
 http://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,284
 http://library.soton.ac.uk/bibliometrics,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,285
@@ -1297,13 +1297,13 @@ https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-fo
 http://library.soton.ac.uk/copyright/researchers,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,297
 https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,http://library.soton.ac.uk/loans,298
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,http://library.soton.ac.uk/loans,299
-http://library.soton.ac.uk/librarycatalogues,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,300
+http://library.soton.ac.uk/librarycatalogues,Timeout after 15 seconds,,http://library.soton.ac.uk/loans,300
 http://library.soton.ac.uk/techinfo,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,301
 https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",http://library.soton.ac.uk/loans,302
 http://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,303
 https://library.soton.ac.uk/,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,304
 https://library.soton.ac.uk/loans/externalborrowers,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,305
-http://library.soton.ac.uk/systematic-reviews,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,306
+http://library.soton.ac.uk/systematic-reviews,Timeout after 15 seconds,,http://library.soton.ac.uk/loans,306
 http://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,307
 https://library.soton.ac.uk/loans/closed_collections,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,308
 http://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,http://library.soton.ac.uk/loans,309
@@ -1353,7 +1353,7 @@ https://library.soton.ac.uk/az.php,200,text/html; charset=utf-8,https://library.
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,https://library.soton.ac.uk/sb.php?subject_id=29956,353
 https://library.soton.ac.uk/home/keycontacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/sb.php?subject_id=29956,354
 https://library.soton.ac.uk/Accessibility-Fire-Safety,200,text/html; charset=UTF-8,https://library.soton.ac.uk/sb.php?subject_id=29956,355
-https://library.soton.ac.uk/,Timeout after 15 seconds,,https://library.soton.ac.uk/sb.php?subject_id=29956,356
+https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/sb.php?subject_id=29956,356
 https://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,https://library.soton.ac.uk/sb.php?subject_id=29956,357
 https://library.soton.ac.uk/identifiers/research/publicid/home,200,text/html; charset=UTF-8,https://library.soton.ac.uk/sb.php?subject_id=29956,358
 https://library.soton.ac.uk/copyright/researchers,200,text/html; charset=UTF-8,https://library.soton.ac.uk/sb.php?subject_id=29956,359
@@ -1381,14 +1381,14 @@ https://library.soton.ac.uk/hsl,200,text/html; charset=UTF-8,https://library.sot
 https://www.southampton.ac.uk/archives/,200,text/html; charset=utf-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,381
 https://library.soton.ac.uk/blog,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,382
 https://library.soton.ac.uk/home/resourceinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,383
-https://library.soton.ac.uk/home/feedback,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,384
+https://library.soton.ac.uk/home/feedback,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,384
 https://library.soton.ac.uk/appointment,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,385
 https://library.soton.ac.uk/techinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,386
 https://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,387
-https://library.soton.ac.uk/wsa,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,388
+https://library.soton.ac.uk/wsa,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,388
 https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,389
 https://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,390
-https://library.soton.ac.uk/digital-scholarship,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,391
+https://library.soton.ac.uk/digital-scholarship,Timeout after 15 seconds,,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,391
 https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,392
 https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024#comments,200,text/html; charset=UTF-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,393
 https://eur03.safelinks.protection.outlook.com/?url=https%3A%2F%2Fuos-viewer.epexio.com%2F&data=05%7C01%7CM.J.Latham%40soton.ac.uk%7C9154e874502f445eaa0a08dbf6748039%7C4a5378f929f44d3ebe89669d03ada9d8%7C0%7C0%7C638374752463356691%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%7C&sdata=Pg%2FC5L7myhoRFPPOzOee0U3JAchR1NmD91TqBA3bHN0%3D&reserved=0,200,text/html; charset=utf-8,https://library.soton.ac.uk/blog/University-Data-Centre-Shutdown-27th-December-2023-to-2nd-January-2024,394
@@ -1453,7 +1453,7 @@ https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https
 http://library.soton.ac.uk/Accessibility-Fire-Safety,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131349&p=5188372,453
 https://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131349&p=5188372,454
 https://library.soton.ac.uk/c.php?g=131349&p=5188372,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131349&p=5188372,455
-https://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131349&p=5188372,456
+https://library.soton.ac.uk/home/enquiries,Timeout after 15 seconds,,https://library.soton.ac.uk/c.php?g=131349&p=5188372,456
 https://southampton.libapps.com/libapps/login.php,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131349&p=5188372,457
 https://twitter.com/UniSotonLibrary,200,text/html; charset=utf-8,https://library.soton.ac.uk/c.php?g=131349&p=5188372,458
 https://library.soton.ac.uk/sb.php?subject_id=29730,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131349&p=5188372,459
@@ -1488,7 +1488,7 @@ https://library.soton.ac.uk/research,200,text/html; charset=UTF-8,https://librar
 https://library.soton.ac.uk/home/contact,200,text/html; charset=UTF-8,https://library.soton.ac.uk/c.php?g=131349&p=5188372,488
 https://sotonproduction.service-now.com/serviceportal?id=kb_article_view&sys_kb_id=5dbc95151bc6cd14fd588732f54bcbee,200,text/html;charset=UTF-8,https://library.soton.ac.uk/business,489
 https://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,490
-https://library.soton.ac.uk/business/databases/companyinfo,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,491
+https://library.soton.ac.uk/business/databases/companyinfo,Timeout after 15 seconds,,https://library.soton.ac.uk/business,491
 https://library.soton.ac.uk/hartley,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,492
 https://soton.idm.oclc.org/login?url=https://www.scopus.com,200,text/html,https://library.soton.ac.uk/business,493
 "https://soton.idm.oclc.org/login?url=https://search.ebscohost.com/login.aspx?authtype=ip,url,shib&custid=s3879645&groupid=main&profile=ehost&defaultdb=bth",200,text/html,https://library.soton.ac.uk/business,494
@@ -1496,7 +1496,7 @@ http://library.soton.ac.uk/tutorials/ebsco,200,text/html; charset=UTF-8,https://
 http://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,496
 https://library.soton.ac.uk/home/feedback,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,497
 http://library.soton.ac.uk/business/databases,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,498
-http://library.soton.ac.uk/sash,Timeout after 15 seconds,,https://library.soton.ac.uk/business,499
+http://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,499
 https://library.soton.ac.uk/business/databases/accounting,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,500
 https://library.soton.ac.uk/business/databases/bsi,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,501
 https://library.soton.ac.uk/business,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,502
@@ -1512,7 +1512,7 @@ https://www.facebook.com/UniSotonLibrary/,200,"text/html; charset=""utf-8""",htt
 https://soton.idm.oclc.org/login?url=https://www.pressreader.com/catalog,200,text/html,https://library.soton.ac.uk/business,512
 https://library.soton.ac.uk/researchdata,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,513
 https://library.soton.ac.uk/business/tv,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,514
-https://library.soton.ac.uk/business/databases/markets,Timeout after 15 seconds,,https://library.soton.ac.uk/business,515
+https://library.soton.ac.uk/business/databases/markets,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,515
 https://www.southampton.ac.uk/library/regulations/ejournals.page,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,516
 https://library.soton.ac.uk/openaccess,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,517
 https://library.soton.ac.uk/officialpublications,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,518
@@ -1573,16 +1573,16 @@ https://library.soton.ac.uk/business/databases/data,200,text/html; charset=UTF-8
 https://library.soton.ac.uk/offcampus_access,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,573
 https://library.soton.ac.uk/diversity,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,574
 https://library.soton.ac.uk/business/databases,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,575
-https://library.soton.ac.uk,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,576
+https://library.soton.ac.uk,Timeout after 15 seconds,,https://library.soton.ac.uk/business,576
 https://library.soton.ac.uk/Accessibility-Fire-Safety/accessibility-statement-for-library-website/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,577
 https://library.soton.ac.uk/research/contacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,578
 https://www.southampton.ac.uk/isolutions/students/lynda-com.page,200,text/html; charset=utf-8,https://library.soton.ac.uk/business,579
-https://library.soton.ac.uk/,Timeout after 15 seconds,,https://library.soton.ac.uk/business,580
+https://library.soton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,580
 https://library.soton.ac.uk?group_id=2262,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,581
 https://library.soton.ac.uk/copyright/researchers,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,582
 https://library.soton.ac.uk/librarycatalogues,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,583
 https://www.thinglink.com/card/1605566995493814273,200,text/html;charset=UTF-8,https://library.soton.ac.uk/business,584
-http://library.soton.ac.uk/tutorials/scopus,200,text/html; charset=UTF-8,https://library.soton.ac.uk/business,585
+http://library.soton.ac.uk/tutorials/scopus,Timeout after 15 seconds,,https://library.soton.ac.uk/business,585
 http://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,http://library.soton.ac.uk,586
 https://library.soton.ac.uk/returntocampus,200,text/html; charset=UTF-8,http://library.soton.ac.uk,587
 http://library.soton.ac.uk/home/contact,200,text/html; charset=UTF-8,http://library.soton.ac.uk,588
@@ -1679,14 +1679,14 @@ https://library.soton.ac.uk/,200,text/html; charset=UTF-8,http://library.soton.a
 https://archives.soton.ac.uk/,200,text/html; charset=utf-8,http://library.soton.ac.uk,679
 https://southampton.on.worldcat.org/advancedsearch,200,text/html;charset=utf-8,http://library.soton.ac.uk,680
 http://library.soton.ac.uk/laptoploans,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,681
-http://library.soton.ac.uk/home/contact,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,682
+http://library.soton.ac.uk/home/contact,Timeout after 15 seconds,,http://library.soton.ac.uk/sash/managing-data,682
 http://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,683
 http://library.soton.ac.uk/wsa/dalian,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,684
 http://library.soton.ac.uk/malaysia,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,685
 http://library.soton.ac.uk/sash,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,686
 http://library.soton.ac.uk/loans,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,687
 http://library.soton.ac.uk/sash/managing-data,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,688
-http://library.soton.ac.uk,Timeout after 15 seconds,,http://library.soton.ac.uk/sash/managing-data,689
+http://library.soton.ac.uk,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,689
 http://library.soton.ac.uk/home/keycontacts,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,690
 https://www.southampton.ac.uk/,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,691
 https://library.soton.ac.uk/studying_online,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,692
@@ -1728,7 +1728,7 @@ http://library.soton.ac.uk/sash/evaluation,200,text/html; charset=UTF-8,http://l
 http://library.soton.ac.uk/sash/effective-reading,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,728
 https://library.soton.ac.uk/sash/managing-data,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,729
 http://www2.le.ac.uk/offices/ld/resources/numerical-data,404,text/html,http://library.soton.ac.uk/sash/managing-data,730
-http://library.soton.ac.uk/researchdata/phd,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,731
+http://library.soton.ac.uk/researchdata/phd,Timeout after 15 seconds,,http://library.soton.ac.uk/sash/managing-data,731
 https://generic.wordpress.soton.ac.uk/researchmethods/managing-data/,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,732
 http://library.soton.ac.uk/document-supply,200,text/html; charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,733
 https://sotonproduction.service-now.com/$sn-va-web-client-app.do?sysparm_skip_load_history=true&sysparm_branding_key=uos_chat,200,text/html;charset=UTF-8,http://library.soton.ac.uk/sash/managing-data,734
@@ -1779,8 +1779,8 @@ https://library.soton.ac.uk/blog,200,text/html; charset=UTF-8,https://library.so
 https://library.soton.ac.uk/home/feedback,200,text/html; charset=UTF-8,https://library.soton.ac.uk/homepage,779
 https://library.soton.ac.uk/blog/New-feature-in-Library-Search-search-alerts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/homepage,780
 https://library.soton.ac.uk/homepage,200,text/html; charset=UTF-8,https://library.soton.ac.uk/homepage,781
-https://library.soton.ac.uk/nol,Timeout after 15 seconds,,https://library.soton.ac.uk/homepage,782
-https://library.soton.ac.uk/engagement,Timeout after 15 seconds,,https://library.soton.ac.uk/homepage,783
+https://library.soton.ac.uk/nol,200,text/html; charset=UTF-8,https://library.soton.ac.uk/homepage,782
+https://library.soton.ac.uk/engagement,200,text/html; charset=UTF-8,https://library.soton.ac.uk/homepage,783
 https://www.southampton.ac.uk/,200,text/html; charset=UTF-8,https://library.soton.ac.uk/homepage,784
 https://library.soton.ac.uk/opening,200,text/html; charset=UTF-8,https://library.soton.ac.uk/homepage,785
 https://library.soton.ac.uk/home/keycontacts,200,text/html; charset=UTF-8,https://library.soton.ac.uk/homepage,786
@@ -1914,7 +1914,7 @@ https://library.soton.ac.uk/identifiers/research/publicid/home,200,text/html; ch
 https://library.soton.ac.uk/systematic-reviews,200,text/html; charset=UTF-8,https://library.soton.ac.uk/nol,914
 https://sotonac.sharepoint.com/teams/UniversityLibraryArtsIntranet,200,text/html; charset=utf-8,https://library.soton.ac.uk/nol,915
 https://library.soton.ac.uk/home/contact,200,text/html; charset=UTF-8,https://library.soton.ac.uk/nol,916
-https://library.soton.ac.uk/wsa/dalian,Timeout after 15 seconds,,https://library.soton.ac.uk/nol,917
+https://library.soton.ac.uk/wsa/dalian,200,text/html; charset=UTF-8,https://library.soton.ac.uk/nol,917
 https://library.soton.ac.uk/ill,200,text/html; charset=UTF-8,https://library.soton.ac.uk/nol,918
 https://library.soton.ac.uk/hsl,200,text/html; charset=UTF-8,https://library.soton.ac.uk/nol,919
 https://www.southampton.ac.uk/archives/,200,text/html; charset=utf-8,https://library.soton.ac.uk/nol,920
@@ -1954,7 +1954,7 @@ https://library.soton.ac.uk/newspaperresources,200,text/html; charset=UTF-8,http
 https://library.soton.ac.uk/wsa,200,text/html; charset=UTF-8,https://library.soton.ac.uk/srch.php?tag=academic+skills+southampton&default_lg=1,954
 https://library.soton.ac.uk/donations,200,text/html; charset=UTF-8,https://library.soton.ac.uk/srch.php?tag=academic+skills+southampton&default_lg=1,955
 https://library.soton.ac.uk/digital-scholarship,200,text/html; charset=UTF-8,https://library.soton.ac.uk/srch.php?tag=academic+skills+southampton&default_lg=1,956
-https://library.soton.ac.uk/research/training,200,text/html; charset=UTF-8,https://library.soton.ac.uk/srch.php?tag=academic+skills+southampton&default_lg=1,957
+https://library.soton.ac.uk/research/training,Timeout after 15 seconds,,https://library.soton.ac.uk/srch.php?tag=academic+skills+southampton&default_lg=1,957
 https://library.soton.ac.uk/research/pure,200,text/html; charset=UTF-8,https://library.soton.ac.uk/srch.php?tag=academic+skills+southampton&default_lg=1,958
 https://library.soton.ac.uk/home/enquiries,200,text/html; charset=UTF-8,https://library.soton.ac.uk/srch.php?tag=academic+skills+southampton&default_lg=1,959
 https://southampton.libapps.com/libapps/login.php,200,text/html; charset=UTF-8,https://library.soton.ac.uk/srch.php?tag=academic+skills+southampton&default_lg=1,960
