@@ -145,12 +145,16 @@
         document.getElementById("reportDate").textContent = new Date().toLocaleDateString();
 
         document.getElementById('searchInput').addEventListener('input', function() {
-            table.setFilter([
-                {field: 'URL', type: 'like', value: this.value},
-                {field: 'Parent URL', type: 'like', value: this.value},
-                {field: 'Status Code', type: 'like', value: this.value}
-            ]);
+            const searchTerm = this.value.toLowerCase();
+            table.setFilter(row => {
+                return (
+                    row.URL.toLowerCase().includes(searchTerm) ||
+                    row['Parent URL'].toLowerCase().includes(searchTerm) ||
+                    row['Status Code'].toLowerCase().includes(searchTerm)
+                );
+            });
         });
+
 
 
         // Load data function
