@@ -144,7 +144,7 @@ jobs:
         username: ${{secrets.GMAIL_USERNAME}}
         password: ${{secrets.GMAIL_PASSWORD}}
         subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Test Links Report' || 'No Broken Test Links Report' }}
-        html_body: ${{ env.STATUS_MESSAGE }}
+        html_body: ${{ env.STATUS_MESSAGE }} # Needs to be html to stop Outlook safelinks
         convert_markdown: true
         attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.EMAIL_RECIPIENT}}
