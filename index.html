@@ -147,8 +147,8 @@
         document.getElementById('searchInput').addEventListener('input', function() {
             table.setFilter([
                 {field: 'URL', type: 'like', value: this.value},
-                {field: 'Status Code', type: 'like', value: this.value},
-                {field: 'Parent URL', type: 'like', value: this.value}
+                {field: 'Parent URL', type: 'like', value: this.value},
+                {field: 'Status Code', type: 'like', value: this.value}
             ]);
         });
 
