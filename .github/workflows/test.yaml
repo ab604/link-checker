@@ -145,6 +145,7 @@ jobs:
         password: ${{secrets.GMAIL_PASSWORD}}
         subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Links Report A-Z - FAO Simon' || 'No Broken Links Report A-Z - FAO Simon' }}
         body: ${{ env.STATUS_MESSAGE }}
+        convert_markdown: true
         attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.EMAIL_RECIPIENT}}
         #cc: ${{secrets.EMAIL_RECIPIENT}}
