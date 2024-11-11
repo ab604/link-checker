@@ -1,33 +1,4 @@
 URL,Status Code,Content-Type,Parent URL,Input Line
-https://www.nlc-bnc.ca/thesescanada/,404,text/html; charset=utf-8,https://library.soton.ac.uk/az.php?,86
-https://opendocs.ids.ac.uk/opendocs/handle/123456789/3,404,text/html;charset=UTF-8,https://library.soton.ac.uk/az.php?,111
-https://www.math.fsu.edu/Virtual/,404,text/html; charset=UTF-8,https://library.soton.ac.uk/az.php?,231
-https://www.bl.uk/sounds,404,text/html,https://library.soton.ac.uk/az.php?,281
-https://www.hse.gov.uk/business/casestudy.htm,404,text/html,https://library.soton.ac.uk/az.php?,284
-https://www.edshare.soton.ac.uk/8893/,404,text/html; charset=utf-8,https://library.soton.ac.uk/az.php?,303
-https://www.bl.uk/bipc/dbandpubs/intpropres/index.html,404,text/html,https://library.soton.ac.uk/az.php?,462
-https://www.keynote.co.uk/check?type=shibboleth&entityID=https://webauth.soton.ac.uk/shibboleth,404,text/html; charset=UTF-8,https://library.soton.ac.uk/az.php?,495
-https://www.bl.uk/business-and-management,404,text/html,https://library.soton.ac.uk/az.php?,636
-https://www.campbellcollaboration.org/library.html,404,text/html; charset=UTF-8,https://library.soton.ac.uk/az.php?,660
-https://www.acm.org/publications/latex_style/,404,text/html;charset=UTF-8,https://library.soton.ac.uk/az.php?,770
-https://www.bl.uk/catalogues-and-collections/digital-collections,404,text/html,https://library.soton.ac.uk/az.php?,782
-https://elibrary.unm.edu/sora/index.php,404,text/html; charset=UTF-8,https://library.soton.ac.uk/az.php?,902
-https://library.soton.ac.uk/enquiries,404,text/html; charset=UTF-8,https://library.soton.ac.uk/az.php?,929
-https://www.hermitagemuseum.org/fcgi-bin/db2www/browse.mac/category?selLang=English,404,text/html; charset=iso-8859-1,https://library.soton.ac.uk/az.php?,942
-http://library.soton.ac.uk/tutorials/esbco,404,text/html; charset=UTF-8,https://library.soton.ac.uk/az.php?,974
-https://faculty.washington.edu/snoegel/okeanos.html,404,text/html,https://library.soton.ac.uk/az.php?,993
-https://help.nla.gov.au/trove/using-trove/getting-using-resources/using-resources,404,text/html; charset=UTF-8,https://library.soton.ac.uk/az.php?,50
-https://datashare.ed.ac.uk/handle/10283/2345 ,404,text/html;charset=utf-8,https://library.soton.ac.uk/az.php?,55
-https://bcs.bedfordstmartins.com/resdoc5e/RES5e_ch08_s1-0001.html,404,text/html,https://library.soton.ac.uk/az.php?,58
-https://www.bl.uk/social-welfare,404,text/html,https://library.soton.ac.uk/az.php?,146
-https://www.bl.uk/reshelp/bldept/music/,404,text/html,https://library.soton.ac.uk/az.php?,173
-https://www.bl.uk/manuscripts/,404,text/html,https://library.soton.ac.uk/az.php?,229
-https://lloydslist.maritimeintelligence.informa.com/customer-support/training-videos,404,text/html; charset=utf-8,https://library.soton.ac.uk/az.php?,270
-https://www.bl.uk/catalogues-and-collections/digital-collections#,404,text/html,https://library.soton.ac.uk/az.php?,349
-https://www.archives.soton.ac.uk/jewish/,404,text/html; charset=utf-8,https://library.soton.ac.uk/az.php?,360
-https://www.ukop.co.uk/members/advancedsearch_boolean.aspx,404,text/html; charset=UTF-8,https://library.soton.ac.uk/az.php?,369
-https://www.bailii.org/bailii/BAILII_IALS_quick_guide.pd,404,text/html,https://library.soton.ac.uk/az.php?,414
-https://library.soton.ac.uk/regulations,404,text/html; charset=utf8,https://library.soton.ac.uk/az.php?,426
-https://www.bl.uk/reshelp/findhelplang/german/germanaustrianexiles/germanaustrianexiles.html,404,text/html,https://library.soton.ac.uk/az.php?,467
-https://webauth.soton.ac.uk/shibboleth-idp/profile/Shibboleth/SSO?providerId=https%3A%2F%2Fshibboleth.ovid.com%2Fentity&target=cookie&shire=https%3A%2F%2Fshibboleth.ovid.com%2FShibboleth.sso%2FSAML%2FPOST,404,text/html;charset=utf-8,https://library.soton.ac.uk/az.php?,543
-https://www.uk.sagepub.com/archive.sp,404,text/html; charset=utf-8,https://library.soton.ac.uk/az.php?,583
+http://ethos.bl.uk/Home.do,404,text/html,https://library.soton.ac.uk/document-supply,224
+https://library.soton.ac.uk/connect.ebsco.com/s/article/Business-Source-Basic-Searching-on-EBSCOhost-Tutorial?language=en_US,404,text/html,https://library.soton.ac.uk/business,528
+http://www2.le.ac.uk/offices/ld/resources/numerical-data,404,text/html,http://library.soton.ac.uk/sash/managing-data,730
