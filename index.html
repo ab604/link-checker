@@ -68,18 +68,14 @@
 <body>
     <div class="container">
         <div class="page-header">
-        <h1>Test Link Checker Report</h1>
-        <img src="black-stag.svg" alt="Black Stag Logo" class="logo">
+            <h1>Test Link Checker Report</h1>
+            <img src="black-stag.svg" alt="Black Stag Logo" class="logo">
         </div>
         <div class="report-date">Report generated: <span id="reportDate"></span></div>
         
         <div class="tab-buttons">
             <button class="tab-button" onclick="loadData('all')">All Links</button>
             <button class="tab-button active" onclick="loadData('404')">Broken Links (404)</button>
-        </div>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Search links..." />
-          </div>
         </div>
         <div class="link-table-container">
             <p>This page has two tables: One table is for all links checked that includes both working and broken links. The other table is only for broken (404) links<br>URL is the checked link. Status is the HTTP status code. Page Found On is the parent page on which the checked link occurs.</p>
@@ -101,9 +97,9 @@
                     sorter: "string", 
                     width: 300,
                     formatter: function(cell) {
-                        const value = cell.getValue();
-                        return value ? `<a href="${value}" target="_blank">${value}</a>` : '';
-                    }
+                        const link = cell.getValue();
+                        return link ? `<a href="${link}" target="_blank" rel="noopener noreferrer">${link}</a>` : '';
+                    },
                 },
                 {title: "Status", field: "Status Code", sorter: "string", width: 100},
                 {
@@ -136,89 +132,78 @@
         // Set current date
         document.getElementById("reportDate").textContent = new Date().toLocaleDateString();
 
-        // Load data function
-        async function loadData(type) {
-            // Update active button
-            document.querySelectorAll('.tab-button').forEach(btn => {
-                btn.classList.remove('active');
-            });
-    
-            // If called from a button click, use event.target
-            if (event && event.target) {
-                event.target.classList.add('active');
-            } else {
-                // If called on page load, activate the 404 button
-                document.querySelector('.tab-button[onclick="loadData(\'404\')"]').classList.add('active');
-            }
-
-        // Advanced CSV parser
-        function parseCSV(csv) {
-            const lines = csv.split('\n');
-            const headers = lines[0].split(',').map(h => h.trim());
-            
-            return lines.slice(1).filter(line => line.trim()).map(line => {
-                const values = [];
-                let currentValue = '';
-                let inQuotes = false;
-                
-                for (let i = 0; i < line.length; i++) {
-                    const char = line[i];
-                    
-                    if (char === '"' && line[i+1] === '"') {
-                        currentValue += '"';
-                        i++;
-                    } else if (char === '"') {
-                        inQuotes = !inQuotes;
-                    } else if (char === ',' && !inQuotes) {
-                        values.push(currentValue.trim());
-                        currentValue = '';
-                    } else {
-                        currentValue += char;
-                    }
-                }
-                
-                // Add the last value
-                values.push(currentValue.trim());
-                
-                // Map values to headers
-                return headers.reduce((obj, header, i) => {
-                    // Remove surrounding quotes if present
-                    let value = values[i];
-                    if (value && value.startsWith('"') && value.endsWith('"')) {
-                        value = value.slice(1, -1);
-                    }
-                    obj[header] = value;
-                    return obj;
-                }, {});
-            });
+        <script>
+    // Load data function
+    async function loadData(type) {
+        // Set the active tab button
+        const tabButtons = document.querySelectorAll('.tab-button');
+        tabButtons.forEach(button => button.classList.remove('active'));
+        const selectedButton = event ? event.target : tabButtons[1];
+        if (selectedButton) {
+            selectedButton.classList.add('active');
+        } else {
+            console.error('No active button found.');
+            return;
         }
 
-            // Load appropriate CSV file
-            const fileName = type === '404' ? 'broken_links.csv' : 'all_links.csv';
-            try {
-                const response = await fetch(fileName);
-                const csvText = await response.text();
-                const data = parseCSV(csvText);
-                table.setData(data);
-            } catch (error) {
-                console.error('Error loading data:', error);
-            }
-        } 
-        // Add live search functionality
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', () => {
-          const searchTerm = searchInput.value.toLowerCase();
-          const tableRows = document.querySelectorAll('#linkTable tbody tr');
+        // Fetch the appropriate CSV file
+        const csvFileName = type === '404' ? 'broken_links.csv' : 'all_links.csv';
+        const response = await fetch(csvFileName);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch data: ${response.status}`);
+        }
+        const csvContent = await response.text();
 
-          tableRows.forEach(row => {
-            const url = row.children[0].textContent.toLowerCase();
-            if (url.includes(searchTerm)) {
-              row.style.display = 'table-row';
-            } else {
-              row.style.display = 'none';
-            }
-          });
-        });  
+        // Parse the CSV data
+        const parsedData = parseCSV(csvContent);
+
+        // Create the table headers
+        const table = document.getElementById('linkTable');
+        const tableHeader = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        const headers = ['URL', 'Status', 'Content Type', 'Page Found On', 'Line Number'];
+        headers.forEach(header => {
+            const headerCell = document.createElement('th');
+            headerCell.textContent = header;
+            headerRow.appendChild(headerCell);
+        });
+        tableHeader.appendChild(headerRow);
+        table.appendChild(tableHeader);
+
+        // Create the table rows
+        const tableBody = document.createElement('tbody');
+        parsedData.forEach(row => {
+            const rowElement = document.createElement('tr');
+            Object.values(row).forEach(value => {
+                const cell = document.createElement('td');
+                cell.textContent = value;
+                rowElement.appendChild(cell);
+            });
+            tableBody.appendChild(rowElement);
+        });
+        table.appendChild(tableBody);
+    }
+
+    // Call loadData with 404 type when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        loadData('404');
+    });
+</script>
+    <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search links..." />
+</div>
+<script>
+    const searchInputField = document.getElementById('searchInput');
+    searchInputField.addEventListener('input', () => {
+        const searchTerm = searchInputField.value.toLowerCase();
+        const tableRows = document.querySelectorAll('#linkTable tbody tr');
+
+        tableRows.forEach(tableRow => {
+            const url = tableRow.querySelector('td:nth-child(1)').textContent.toLowerCase();
+            tableRow.style.display = url.includes(searchTerm) ? 'table-row' : 'none';
+        });
+    });
     </script>
 </body>
 </html>
+
