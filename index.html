@@ -144,6 +144,14 @@
         // Set current date
         document.getElementById("reportDate").textContent = new Date().toLocaleDateString();
 
+        document.getElementById('searchInput').addEventListener('input', function() {
+            table.setFilter([
+                {field: 'URL', type: 'like', value: this.value},
+                {field: 'Parent URL', type: 'like', value: this.value}
+            ]);
+        });
+
+
         // Load data function
         async function loadData(type) {
             // Update active button
@@ -151,12 +159,10 @@
                 btn.classList.remove('active');
             });
             
-            // If called from a button click, use event.target
-            if (event && event.target) {
-                event.target.classList.add('active');
-            } else {
-                // If called on page load, activate the 404 button
-                document.querySelector('.tab-button[onclick="loadData(\'404\')"]').classList.add('active');
+            // Activate the correct button
+            const activeButton = document.querySelector(`.tab-button[onclick="loadData('${type}')"]`);
+            if (activeButton) {
+                activeButton.classList.add('active');
             }
 
             // Load appropriate CSV file
