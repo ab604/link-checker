@@ -192,7 +192,7 @@
             }
 
             // Load appropriate CSV file
-            const fileName = type === '404' ? 'broken_links.csv' : `reports/test-links-report-2024-11-11.csv` ;//'all_links.csv';
+            const fileName = type === '404' ? 'broken_links.csv' : 'all_links.csv';
             try {
                 const response = await fetch(fileName);
                 const csvText = await response.text();
