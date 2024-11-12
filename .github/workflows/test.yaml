@@ -4,7 +4,7 @@ name: Test Link Checker
 # Define when the workflow should run
 on:
   schedule:
-    - cron: '0 6 * * 1'  # Run weekly on Mondays at 0600 UTC
+  #  - cron: '0 6 * * 1'  # Run weekly on Mondays at 0600 UTC
   workflow_dispatch:  # Allow manual triggering of the workflow
 
 # Set explicit permissions for the workflow
@@ -146,7 +146,7 @@ jobs:
         subject: ${{ steps.check_broken_links.outputs.broken_links_found == 'true' && 'Broken Test Links Report' || 'No Broken Test Links Report' }}
         html_body: ${{ env.STATUS_MESSAGE }} # Needs to be html to stop Outlook safelinks
         convert_markdown: true
-        attachments: ${{ env.ATTACHMENT }}
+        #attachments: ${{ env.ATTACHMENT }}
         to: ${{secrets.EMAIL_RECIPIENT}}
         #cc: ${{secrets.EMAIL_RECIPIENT}}
         from: Library Linkchecker ${{secrets.EMAIL_SENDER}}
