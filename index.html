@@ -6,6 +6,11 @@
     <title>Test Link Checker Report</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.5.2/css/tabulator.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/5.5.2/js/tabulator.min.js"></script>
+    <!-- Add React and ReactDOM scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <!-- Add Babel for JSX support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -82,14 +87,32 @@
         <img src="black-stag.svg" alt="Black Stag Logo" class="logo">
         </div>
         <div class="report-date">Report generated: <span id="reportDate"></span></div>
+        <p>
+        This page can display two tables by clicking on the tabs: <strong>All links</strong> and <strong>Broken links (404)</strong>. 
+            <ul>
+                <li>All links is the table that includes both working and broken links.</li>
+                <li>Broken links (404) is the table that includes only broken links.</li>
+                <li>The link checker ignores links to downloadable files, emails, and recurses to a depth of 3. <strong>Don't expect it to catch everything.</strong></li>
+            </ul>
+
+        The table is sorted by the URL, Status Code, and Page Found On columns.
+        <ul>
+            <li><strong>URL</strong> is the URL of the checked link.</li>
+            <li><strong>Status Code</strong> is the HTTP status code of the checked link.</li>
+            <li><strong>Status Emoji</strong> is a visual indicator of the status code: 💙 for 200 OK, 💔 for 404 broken, 😕 for any other status.</li>
+            <li><strong>Page Found On</strong> is the webpage on which the link occurs.</li>
+        </ul>
+
+        You can filter the table using the search box and download either the filtered or unfiltered data as a CSV file.
+        </p>
         
         <div class="tab-buttons">
             <button class="tab-button" onclick="loadData('all')">All Links</button>
-            <button class="tab-button active" onclick="loadData('404')">Broken Links (404)</button>
+            <button class="tab-button active" onclick="loadData('404')">Broken Links (404)</button>      
         </div>
-        <p>This page has two tables: One table is for all links checked that includes both working and broken links. The other table is only for broken (404) links<br>URL is the checked link. Status is the HTTP status code. Page Found On is the parent page on which the checked link occurs.</p>
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Search in table...">
+            <div id="csvExportContainer"></div> 
         </div>
 
         <div id="linkTable"></div>
@@ -121,11 +144,11 @@
                     formatter: function(cell) {
                         const statusCode = cell.getValue();
                         if (statusCode === '200') {
-                            return '😺'; // Happy cat for 200 OK
+                            return '💙'; // Blue heart for 200 OK
                         } else if (statusCode === '404') {
-                            return '😿'; // Sad cat for 404 Not Found
+                            return '💔'; // Broken heart for 404 Not Found
                         } else {
-                            return '🐶'; // Dog for any other status
+                            return '😕'; // Confused face for any other status
                         }
                     }
                 },
@@ -169,7 +192,7 @@
             }
 
             // Load appropriate CSV file
-            const fileName = type === '404' ? 'broken_links.csv' : 'all_links.csv';
+            const fileName = type === '404' ? 'broken_links.csv' : `reports/test-links-report-2024-11-11.csv` ;//'all_links.csv';
             try {
                 const response = await fetch(fileName);
                 const csvText = await response.text();
@@ -226,6 +249,76 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadData('404');
         });
+
+    </script>
+
+    <!-- Add the CSV Export Component code -->
+    <script type="text/babel">
+        // First, create a simplified version of the UI button component since we don't have access to shadcn
+        const Button = ({ children, onClick, className }) => {
+            return (
+                <button 
+                    onClick={onClick}
+                    className={`px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 ${className}`}
+                >
+                    {children}
+                </button>
+            );
+        };
+
+        // Add the Download icon component
+        const Download = ({ className }) => (
+            <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                width="24" 
+                height="24" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+                className={className}
+            >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+        );
+
+        // Add the CSVExportButton component code here
+        const CSVExportButton = ({ tableId = 'linkTable' }) => {
+            const exportToCSV = () => {
+                // Use Tabulator's built-in export method
+                const tabulatorTable = Tabulator.findTable(`#${tableId}`)[0];
+                
+                if (!tabulatorTable) {
+                    console.error('Tabulator table not found');
+                    return;
+                }
+            
+                const today = new Date();
+                const date = today.toISOString().split('T')[0];
+                
+                tabulatorTable.download("csv", `link-checker-report-${date}.csv`);
+            };
+        
+            return (
+                <Button 
+                    onClick={exportToCSV}
+                    className="flex items-center gap-2"
+                >
+                    <Download className="w-4 h-4" />
+                    Export to CSV
+                </Button>
+            );
+        };
+
+        // Render the component
+        ReactDOM.render(
+            <CSVExportButton />,
+            document.getElementById('csvExportContainer')
+        );
     </script>
 </body>
 </html>
