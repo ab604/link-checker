@@ -170,6 +170,7 @@ jobs:
         # Copy essential files
         cp index.html _site/
         cp black-stag.svg _site/ # Add the logo
+        cp white-stag.svg _site/
 
         # Copy link reports with error handling
         if [[ -f "${{ env.REPORT_FILE }}" ]]; then

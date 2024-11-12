@@ -112,6 +112,19 @@
             color: #e0e0e0;
             border-color: #444;
         }
+
+        /* Dark mode link colors */
+        body.dark-mode a {
+            color: #74C9E5;  /* Lighter blue for dark mode */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        body.dark-mode a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
         /* Dark mode toggle switch styles */
         .switch {
             position: relative;
@@ -411,7 +424,7 @@
                 alignItems: 'center',
                 gap: '8px',
                 transition: 'background-color 0.2s',
-                backgroundColor: '#74C9E5',
+                backgroundColor: '#3CBAC6',
                 color: 'white',
                 border: 'none',
                 cursor: 'pointer'
