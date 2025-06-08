@@ -14,7 +14,7 @@ permissions:
 jobs:
   check_links:
     runs-on: ubuntu-latest
-    
+
     steps:
     # Check out the repository code
     - uses: actions/checkout@v4
@@ -35,50 +35,92 @@ jobs:
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.OS }}-node-
-    
+
     # Install the linkinator tool globally
     - name: Install dependencies
       run: npm install linkinator -g
-    
+
     # Create a directory to store reports
     - name: Create reports directory
       run: mkdir -p reports
-    
+
     # Run linkinator to check for broken links
     - name: Check for broken links
       run: |
         DATE=$(date +'%Y-%m-%d')
         REPORT_FILE="reports/ab_links_report_$DATE.csv"
+        echo "Creating report file: $REPORT_FILE"
         linkinator "${{ secrets.AB_URL }}" --recurse --skip "^(?:https?:\/\/(?:dx\.)?doi\.org|.*\.(png|jpg|jpeg|gif|svg|ico)$)"  --format CSV > $REPORT_FILE
         echo "REPORT_FILE=$REPORT_FILE" >> $GITHUB_ENV
+        echo "DATE=$DATE" >> $GITHUB_ENV
+        # Verify the file was created
+        if [ -f "$REPORT_FILE" ]; then
+          echo "Report file created successfully: $REPORT_FILE"
+          ls -la "$REPORT_FILE"
+        else
+          echo "Warning: Report file was not created"
+        fi
       continue-on-error: true  # Continue even if linkinator finds errors
-    
+
     # Check if any 404 broken links were found in the report
     - name: Check if broken links were found
       id: check_broken_links
       run: |
-        if grep -qE '\b(404)\b' "${{ env.REPORT_FILE }}"; then
-          echo "broken_links_found=true" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=Broken 404 links have been detected on the website. Please check attached report for all link details." >> $GITHUB_ENV
+        REPORT_FILE="${{ env.REPORT_FILE }}"
+        echo "Checking report file: $REPORT_FILE"
+
+        if [ -f "$REPORT_FILE" ]; then
+          if grep -qE '\b(404)\b' "$REPORT_FILE"; then
+            echo "broken_links_found=true" >> $GITHUB_OUTPUT
+            echo "STATUS_MESSAGE=Broken 404 links have been detected on the website. Please check attached report for all link details." >> $GITHUB_ENV
+          else
+            echo "broken_links_found=false" >> $GITHUB_OUTPUT
+            echo "STATUS_MESSAGE=No 404 broken links found. Please check attached report for all link details." >> $GITHUB_ENV
+          fi
         else
           echo "broken_links_found=false" >> $GITHUB_OUTPUT
-          echo "STATUS_MESSAGE=No 404 broken links found. Please check attached report for all link details." >> $GITHUB_ENV
+          echo "STATUS_MESSAGE=Report file not found. Link checking may have failed." >> $GITHUB_ENV
         fi
-    
+
     # Commit the report to the repository
     - name: Commit report to repository
       if: always()  # Run this step regardless of previous step outcomes
       run: |
+        REPORT_FILE="${{ env.REPORT_FILE }}"
+        DATE="${{ env.DATE }}"
+
+        echo "Report file variable: '$REPORT_FILE'"
+        echo "Date variable: '$DATE'"
+
+        # Check if REPORT_FILE is set and not empty
+        if [ -z "$REPORT_FILE" ]; then
+          echo "REPORT_FILE is empty, creating fallback filename"
+          REPORT_FILE="reports/ab_links_report_$(date +'%Y-%m-%d').csv"
+        fi
+
+        echo "Using report file: $REPORT_FILE"
+
+        # Configure git
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
-        git add "${{ env.REPORT_FILE }}"
-        if git diff --staged --quiet; then
-          echo "No changes to commit"
+
+        # Check if the file exists before trying to add it
+        if [ -f "$REPORT_FILE" ]; then
+          echo "Adding file to git: $REPORT_FILE"
+          git add "$REPORT_FILE"
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Add links report for $(date +'%Y-%m-%d')"
+            git push origin HEAD:${GITHUB_REF}
+          fi
         else
-          git commit -m "Add links report for $(date +'%Y-%m-%d')"
-          git push origin HEAD:${GITHUB_REF}
+          echo "Report file does not exist: $REPORT_FILE"
+          echo "Available files in reports directory:"
+          ls -la reports/ || echo "Reports directory does not exist"
         fi
-        
+
     # Upload the report as an artifact
     - name: Upload links report
       if: always()  # Run this step regardless of previous step outcomes
@@ -86,11 +128,12 @@ jobs:
       with:
         name: links-report
         path: ${{ env.REPORT_FILE }}
-    
+        if-no-files-found: warn  # Don't fail if no files found
+
     # Send an email notification with the report
     - name: Send email notification
       id: send_email
-      if: always()  # Run this step regardless of previous step outcomes
+      if: always() && env.REPORT_FILE != ''  # Only run if report file exists
       uses: dawidd6/action-send-mail@v3
       with:
         # Email server settings
