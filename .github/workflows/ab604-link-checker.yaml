@@ -3,8 +3,8 @@ name: Check links on my site
 
 # Define when the workflow should run
 on:
-  schedule:
-    - cron: '0 9 * * 6'  # Run weekly on Saturday at 09:00
+  #schedule:
+  #  - cron: '0 9 * * 6'  # Run weekly on Saturday at 09:00
   workflow_dispatch:  # Allow manual triggering
 
 # Set permissions for the workflow
