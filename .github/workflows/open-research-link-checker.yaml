@@ -2,8 +2,8 @@
 name: Check Links on Open Research
 
 on:
-  schedule:
-    - cron: '0 9 * * 1'  # Run weekly on Monday at 09:00
+  #schedule:
+  #  - cron: '0 9 * * 1'  # Run weekly on Monday at 09:00
   workflow_dispatch:  # Allow manual triggering
 
 permissions:
